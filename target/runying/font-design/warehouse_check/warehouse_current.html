@@ -1,0 +1,186 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <title>ry erp</title>
+
+    <!-- Bootstrap -->
+    <link href="../resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../resource/native_css/main.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../resource/jquery/jquery-1.11.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../resource/bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../plugins/js/cookie_helper.js"></script>
+    <script src="./js/warehouse_cur.js"></script>
+  </head>
+  <body>
+
+  <div class="container">
+    <!-- 顶部导航 -->
+    <div id="nav-top"></div>
+    <!-- 左侧导航 -->
+    <div id="nav-left" class="col-md-2 column">
+    </div>
+
+    <!-- 主界面 -->
+    <div id="warehouse_cur_main" class="col-md-10 column thumbnail">
+      <div class="form-head-des ">
+        当前库存信息
+      </div>
+      <legend class="valtype"></legend>
+
+        <!-- 表格的筛选操作 -->
+        <div class="row clearfix form-des">
+          <div>
+            <div class="col-md-1 column form-pre-des">
+              产品名称
+            </div>
+            <div class="col-md-2 column">
+              <select class="form-control">
+                <option>Enter</option>
+                <option>Your</option>
+                <option>Options</option>
+                <option>Here!</option>
+              </select>
+            </div>
+          </div>
+
+          <div class="col-md-3 col-md-offset-5">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="输入关键字进行搜索...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">搜索</button>
+              </span>
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+        </div>
+
+        <table class="table table-hover table-bordered">
+          <thead>
+            <tr>
+              <th>
+                编号
+              </th>
+              <th>
+                产品
+              </th>
+              <th>
+                交付时间
+              </th>
+              <th>
+                状态
+              </th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>
+                1
+              </td>
+              <td>
+                TB - Monthly
+              </td>
+              <td>
+                01/04/2012
+              </td>
+              <td>
+                Default
+              </td>
+            </tr>
+            <tr class="success">
+              <td>
+                1
+              </td>
+              <td>
+                TB - Monthly
+              </td>
+              <td>
+                01/04/2012
+              </td>
+              <td>
+                Approved
+              </td>
+            </tr>
+            <tr class="error">
+              <td>
+                2
+              </td>
+              <td>
+                TB - Monthly
+              </td>
+              <td>
+                02/04/2012
+              </td>
+              <td>
+                Declined
+              </td>
+            </tr>
+            <tr class="warning">
+              <td>
+                3
+              </td>
+              <td>
+                TB - Monthly
+              </td>
+              <td>
+                03/04/2012
+              </td>
+              <td>
+                Pending
+              </td>
+            </tr>
+            <tr class="info">
+              <td>
+                4
+              </td>
+              <td>
+                TB - Monthly
+              </td>
+              <td>
+                04/04/2012
+              </td>
+              <td>
+                Call in to confirm
+              </td>
+            </tr>
+          </tbody>
+        </table>
+
+        <!-- 翻页 -->
+        <ul class="pagination">
+          <li>
+             <a href="#">上一页</a>
+          </li>
+          <li>
+             <a href="#">1</a>
+          </li>
+          <li>
+             <a href="#">2</a>
+          </li>
+          <li>
+             <a href="#">3</a>
+          </li>
+          <li>
+             <a href="#">4</a>
+          </li>
+          <li>
+             <a href="#">5</a>
+          </li>
+          <li>
+             <a href="#">下一页</a>
+          </li>
+        </ul>
+
+        <legend class="valtype"></legend>
+
+      </div>
+    </div>
+
+    <!-- 底部脚注 -->
+    <div id="footer"></div>
+  </div>
+
+  </body>
+</html>

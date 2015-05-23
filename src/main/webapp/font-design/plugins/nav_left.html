@@ -1,0 +1,38 @@
+<script type="text/javascript">
+    $(document).ready(function(){
+        var identity = getCookie("identity");
+        if(identity == "adm") {
+            $("#nav-wh-in").hide();
+            $("#nav-wh-in").show();
+        }
+    });
+</script>
+
+<!-- 左侧导航 -->
+<div id="nav_left">
+    <div class="panel-group" id="panel-543946">
+      <div id="nav-wh-in" class="panel panel-default">
+        <div class="panel-heading">
+          <a class="panel-title" data-toggle="collapse" data-parent="#panel-543946" href="#panel-element-148059">入库管理</a>
+        </div>
+        <div id="panel-element-148059" class="panel-collapse in">
+          <div class="panel-body">
+            <a href="../warehouse_in/product_in.html">录入产品信息</a>
+          </div>
+          <div class="panel-body">
+            <a href="" onclick="watchWarehouse()">查看产品信息</a>
+          </div>
+        </div>
+      </div>
+      <div id="nav-wh-check" class="panel panel-default">
+        <div class="panel-heading">
+          <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-543946" href="#panel-element-599877">仓库查看</a>
+        </div>
+        <div id="panel-element-599877" class="panel-collapse collapse">
+          <div class="panel-body">
+            <a href="../warehouse_check/warehouse_current.html">当前库存信息查看</a>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>

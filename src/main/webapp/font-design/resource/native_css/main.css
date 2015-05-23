@@ -1,0 +1,91 @@
+body {
+	background-color: #CCCCCC;
+}
+
+.container {
+  padding-right: 5%;
+  padding-left: 5%;
+  padding-top: 20px;
+  margin-right: auto;
+  margin-left: auto;
+  width: auto;
+  min-height: 610px;
+}
+
+.thumbnail {
+  margin-bottom: 0;
+  padding: 12px;
+  /**
+  border-top-right-radius: 0;
+  border-top-right-radius: 0;
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+  **/
+  border: 0;
+  box-shadow: 10px 10px 5px #888888;
+}
+
+.login-panel {
+  margin-top: 50px;
+  background-color: rgba(19, 112, 203, 0.13);
+}
+
+.form-des {
+	margin-bottom: 20px;
+	margin-top: 20px;
+	margin-left: 10px;
+	margin-right: 10px;
+}
+
+.form-pre-des {
+	padding-top: 7px;
+	text-align: right;
+	font-weight: bold;
+}
+
+.form-suf-des {
+	padding-top: 7px;
+	text-align: left;
+}
+
+.form-head-des {
+  padding-left: 10px;
+  font-weight:900;
+  font-size:25px;
+  color: #000066;
+}
+
+/*override bootstrap navbar-fixed-top style*/
+.navbar-fixed-top {
+  padding-left: 5%;
+  padding-right: 5%;
+}
+
+/*override bootstrap navbar-inverse in order to change nav's color*/
+.navbar-inverse {
+  background-color: #330033;
+}
+
+.navbar {
+  box-shadow: 5px 5px 5px #888888;
+}
+
+.panel-group {
+  box-shadow: 10px 10px 5px #888888;
+}
+
+#nav-top {
+  margin-bottom: 40px; 
+}
+
+.footer {
+  width: 100%;
+  margin-top: 100px;
+  padding-top: 30px;
+  padding-bottom: 30px;
+  font-size: 12px;
+  line-height: 1.5;
+  border-top: 1px solid #eee;
+  background-color: grey;
+  text-align: center;
+}

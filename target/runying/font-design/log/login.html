@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8">
+    <title>ry erp</title>
+
+    <!-- Bootstrap -->
+    <link href="../resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="../resource/native_css/main.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../resource/jquery/jquery-1.11.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../resource/bootstrap/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="../plugins/js/cookie_helper.js"></script>
+    <script type="text/javascript" src="./js/login.js"></script>
+
+  </head>
+  <script type="text/javascript">
+    $(document).ready(function(){
+    });
+  </script>
+  <body>
+
+    <!-- 主页面 -->
+    <div class="col-md-3 col-md-offset-4 column thumbnail login-panel">
+      <div class="form-head-des ">
+        润莹库存管理系统登入
+      </div>
+      <legend class="valtype"></legend>
+
+        <div class="row clearfix form-des">
+          <div class="col-md-4 column form-pre-des">
+            用户名：
+          </div>
+          <div class="col-md-6 column">
+            <input id="username" type="text" class="form-control" placeholder="请输入用户名...">  
+          </div>
+        </div>
+        <div class="row clearfix form-des">
+          <div class="col-md-4 column form-pre-des">
+            密 码：
+          </div>
+          <div class="col-md-6 column">
+            <input id="password" type="password" class="form-control" placeholder="请输入密码...">  
+          </div>
+        </div>
+
+        <legend class="valtype"></legend>
+
+        <div class="row clearfix form-des">
+          <div class="col-md-6 column">
+            <button type="button" class="btn btn-success btn-block" onclick="login();">登入</button>
+          </div>
+          <div class="col-md-6 column">
+            <button type="button" class="btn btn-link btn-block">忘记密码?</button>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+  </body>
+</html>
