@@ -14,8 +14,6 @@ function login() {
 		param,
 		function(data) {
 			if(data.status == 1) {
-				setCookie("id", data.conts.id, 1);
-				setCookie("username", data.conts.username, 1);
 				location.href = "../warehouse_main/warehouse_main.html";
 			}
 		});

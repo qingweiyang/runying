@@ -81,12 +81,25 @@
     </div>
     <!-- 左侧导航 -->
     <div id="nav_left" class="col-md-2 column">
-        <div class="panel-group" id="panel-543946">
+        <div class="panel-group">
           <div id="nav-wh-in" class="panel panel-default">
             <div class="panel-heading">
-              <a class="panel-title" data-toggle="collapse" data-parent="#panel-543946" href="#panel-element-148059">入库管理</a>
+              <a class="panel-title" data-toggle="collapse" href="#panel-element-1">订单管理</a>
             </div>
-            <div id="panel-element-148059" class="panel-collapse in">
+            <div id="panel-element-1" class="panel-collapse in">
+              <div class="panel-body">
+                <a href="javascript:void(0)" onclick="loadOrdersIn()">录入订单信息</a>
+              </div>
+              <div class="panel-body">
+                <a href="javascript:void(0)" onclick="loadWarehouseCurrent()">查看产品信息</a>
+              </div>
+            </div>
+          </div>
+          <div id="nav-wh-in" class="panel panel-default">
+            <div class="panel-heading">
+              <a class="panel-title" data-toggle="collapse" href="#panel-element-2">入库管理</a>
+            </div>
+            <div id="panel-element-2" class="panel-collapse collapse">
               <div class="panel-body">
                 <a href="javascript:void(0)" onclick="loadProductIn()">录入产品信息</a>
               </div>
@@ -97,9 +110,9 @@
           </div>
           <div id="nav-wh-check" class="panel panel-default">
             <div class="panel-heading">
-              <a class="panel-title collapsed" data-toggle="collapse" data-parent="#panel-543946" href="#panel-element-599877">仓库查看</a>
+              <a class="panel-title collapsed" data-toggle="collapse" href="#panel-element-3">仓库查看</a>
             </div>
-            <div id="panel-element-599877" class="panel-collapse collapse">
+            <div id="panel-element-3" class="panel-collapse collapse">
               <div class="panel-body">
                 <a href="javascript:void(0)" onclick="loadWarehouseCurrent()">当前库存信息查看</a>
               </div>

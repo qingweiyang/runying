@@ -51,6 +51,7 @@ public class DaoUtil {
 	}
 	
 	public static void main(String[] args) {
+		DaoUtil.getObject(User.class, 1);
 		System.out.println(User.class.getName());
 		HibernateUtil.getSessionFactory().close();
     }
