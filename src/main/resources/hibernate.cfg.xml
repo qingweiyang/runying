@@ -32,8 +32,8 @@
         <property name="hbm2ddl.auto">update</property>
 
         <mapping resource="com/runying/po/Orders.hbm.xml"/>
-
         <mapping resource="com/runying/po/User.hbm.xml"/>
+        <mapping resource="com/runying/po/Product.hbm.xml"/>
 
     </session-factory>
 

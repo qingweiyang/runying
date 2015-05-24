@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import com.runying.po.User;
 import com.runying.util.Constants;
 
 
@@ -35,7 +36,7 @@ public class LoginFilter implements Filter{
         // 用户还未登录
         if(session.getAttribute(Constants.USER)==null){
         	System.out.println("用户未登录");
-        	Constants.username = null;
+        	Constants.user = null;
         	// 访问的URL如果包含jsp但是又不是login.jsp,那么就重定向到login.jsp页面
         	if(request.getRequestURI().indexOf(".html") != -1 && request.getRequestURI().indexOf("login.html")==-1){
         		System.out.println("重定向到登录界面");
@@ -44,7 +45,7 @@ public class LoginFilter implements Filter{
         }
         else{
 //        	System.out.println("用户已经登录"+session.getAttribute(Constants.USER));
-        	Constants.username = session.getAttribute(Constants.USER).toString();
+        	Constants.user = (User) session.getAttribute(Constants.USER);
         }
 //        System.out.println(arg2);
         arg2.doFilter(arg0, arg1);   

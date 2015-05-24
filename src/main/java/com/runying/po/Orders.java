@@ -12,22 +12,11 @@ public class Orders {
 	//单据编号
 	private String number;
 	
-	//物料名称
-	private String materialName;
-	
-	//产品规格型号
-	private String size1;
-
-	private String size2;
-	
 	//数量
 	private int count;
 	
 	//备注
 	private String remarks;
-	
-	//物料长代码
-	private String materialCode;
 	
 	//下达日期
 	private Date releaseTime;
@@ -35,6 +24,10 @@ public class Orders {
 	//交货日期
 	private Date deliveryTime;
 	
+	private Product product;
+	
+	//订单录入操作员
+	private User operator;
 
 	public int getId() {
 		return id;
@@ -50,30 +43,6 @@ public class Orders {
 
 	public void setNumber(String number) {
 		this.number = number;
-	}
-
-	public String getMaterialName() {
-		return materialName;
-	}
-
-	public void setMaterialName(String materialName) {
-		this.materialName = materialName;
-	}
-
-	public String getSize1() {
-		return size1;
-	}
-
-	public void setSize1(String size1) {
-		this.size1 = size1;
-	}
-
-	public String getSize2() {
-		return size2;
-	}
-
-	public void setSize2(String size2) {
-		this.size2 = size2;
 	}
 
 	public int getCount() {
@@ -92,14 +61,6 @@ public class Orders {
 		this.remarks = remarks;
 	}
 
-	public String getMaterialCode() {
-		return materialCode;
-	}
-
-	public void setMaterialCode(String materialCode) {
-		this.materialCode = materialCode;
-	}
-
 	public Date getReleaseTime() {
 		return releaseTime;
 	}
@@ -115,7 +76,21 @@ public class Orders {
 	public void setDeliveryTime(Date deliveryTime) {
 		this.deliveryTime = deliveryTime;
 	}
-	
-	
+
+	public Product getProduct() {
+		return product;
+	}
+
+	public void setProduct(Product product) {
+		this.product = product;
+	}
+
+	public User getOperator() {
+		return operator;
+	}
+
+	public void setOperator(User operator) {
+		this.operator = operator;
+	}
 	
 }

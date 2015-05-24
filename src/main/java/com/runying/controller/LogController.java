@@ -34,10 +34,8 @@ public class LogController {
 		msg.setStatus(1);
 		msg.setConts(conts);
 		//save login info to session
-		request.getSession().setAttribute(Constants.USER, username);
-		Constants.username = username;
-		Constants.userID = us.get(0).getId();
+		request.getSession().setAttribute(Constants.USER, us.get(0));
+		Constants.user = us.get(0);
 		return msg;
 	}
-	
 }

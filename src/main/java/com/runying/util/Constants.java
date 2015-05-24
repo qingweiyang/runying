@@ -1,10 +1,10 @@
 package com.runying.util;
 
+import com.runying.po.User;
+
 public class Constants {
 
-	public static final String USER = "username";
+	public static final String USER = "user";
 	
-	public static String username;
-	
-	public static int userID;
+	public static User user;
 }

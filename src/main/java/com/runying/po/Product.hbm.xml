@@ -5,18 +5,15 @@
 
 <hibernate-mapping package="com.runying.po">
 
-    <class name="Orders" table="orders">
+    <class name="Product" table="product">
         <id name="id" column="id">
             <generator class="native"/>
         </id>
-        <property name="number"/>
-        <property name="count"/>
-        <property name="remarks"/>
-        <property name="releaseTime"/>
-        <property name="deliveryTime"/>
+        <property name="materialName" column="material_name"/>
+        <property name="size1"/>
+        <property name="size2"/>
+        <property name="materialCode"/>
         
-        <many-to-one name="product" column="productID"/>
-        <many-to-one name="operator" column="operatorID"/>
     </class>
 
 </hibernate-mapping>
