@@ -23,7 +23,7 @@ public class LogController {
 	@ResponseBody
 	public Msg login(HttpServletRequest request, String username, String password) {
 		Msg msg = new Msg();
-		List<User> us = DaoUtil.loginCheck(username, password);
+		List<User> us = new DaoUtil().loginCheck(username, password);
 		if(us.size() < 1) {
 			msg.setStatus(0);
 			return msg;

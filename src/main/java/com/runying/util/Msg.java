@@ -7,6 +7,8 @@ public class Msg {
 	private int status;
 	
 	private Map<String, Object> conts;
+	
+	private String description;
 
 	public int getStatus() {
 		return status;
@@ -24,4 +26,13 @@ public class Msg {
 		this.conts = conts;
 	}
 
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	
 }

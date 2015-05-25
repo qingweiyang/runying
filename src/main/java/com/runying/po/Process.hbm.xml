@@ -5,20 +5,18 @@
 
 <hibernate-mapping package="com.runying.po">
 
-    <class name="Orders" table="orders">
+    <class name="Process" table="process">
         <id name="id" column="id">
             <generator class="native"/>
         </id>
-        <property name="orderNum"/>
-        <property name="number"/>
-        <property name="count"/>
-        <property name="remarks"/>
-        <property name="releaseTime"/>
-        <property name="deliveryTime"/>
+        <property name="processNum"/>
+        <property name="name"/>
+        <property name="num"/>
         <property name="systemTime"/>
         
-        <many-to-one name="product" column="productID"/>
-        <many-to-one name="operator" column="operatorID"/>
+        <many-to-one name="responsible" column="responsibleID"/>
+        <many-to-one name="receiver" column="receiverID"/>
+        <many-to-one name="orders" column="ordersID"/>
     </class>
 
 </hibernate-mapping>

@@ -9,6 +9,10 @@ import java.util.Date;
  */
 public class Orders {
 	private int id;
+	
+	//订单号
+	private int orderNum;
+	
 	//单据编号
 	private String number;
 	
@@ -24,6 +28,9 @@ public class Orders {
 	//交货日期
 	private Date deliveryTime;
 	
+	//订单录入系统日期
+	private Date systemTime;
+	
 	private Product product;
 	
 	//订单录入操作员
@@ -35,6 +42,14 @@ public class Orders {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public int getOrderNum() {
+		return orderNum;
+	}
+
+	public void setOrderNum(int orderNum) {
+		this.orderNum = orderNum;
 	}
 
 	public String getNumber() {
@@ -91,6 +106,14 @@ public class Orders {
 
 	public void setOperator(User operator) {
 		this.operator = operator;
+	}
+
+	public Date getSystemTime() {
+		return systemTime;
+	}
+
+	public void setSystemTime(Date systemTime) {
+		this.systemTime = systemTime;
 	}
 	
 }

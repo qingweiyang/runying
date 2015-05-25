@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.runying.dao.ProductDao;
 import com.runying.po.Orders;
 import com.runying.po.Product;
-import com.runying.util.DaoUtil;
 import com.runying.util.Msg;
 
 @Controller
@@ -23,7 +22,7 @@ public class OrdersController {
 		Msg msg = new Msg();
 		msg.setStatus(1);
 		
-		DaoUtil.addObject(o);
+		productDao.addObject(o);
 		
 		return msg;
 	}
