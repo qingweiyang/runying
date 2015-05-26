@@ -12,7 +12,7 @@ import com.runying.po.Product;
 import com.runying.util.Msg;
 
 @Controller
-@RequestMapping(value={"font-design/orders/"})
+@RequestMapping(value={"font-design/warehouse_main/"})
 public class OrdersController {
 	
 	private ProductDao productDao = new ProductDao();

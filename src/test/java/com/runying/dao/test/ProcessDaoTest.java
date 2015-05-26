@@ -34,7 +34,7 @@ public class ProcessDaoTest {
 		
 		Process p = new Process();
 		p.setName("first gongxu");
-		p.setNum(6);
+		p.setNum(4);
 		p.setOrders(o);
 		
 		Msg msg = processDao.addProcess(o, u, u, p);

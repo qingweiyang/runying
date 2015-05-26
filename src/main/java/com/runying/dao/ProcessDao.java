@@ -1,5 +1,8 @@
 package com.runying.dao;
 
+import java.util.Calendar;
+import java.util.Date;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
 
@@ -31,6 +34,11 @@ public class ProcessDao extends DaoUtil{
 			msg.setDescription("工序数量必须小于或等于前一道工序数量");
 			return msg;
 		}
+		
+		//获取系统（服务器）当前时间
+		Calendar now = Calendar.getInstance();
+		Date date = now.getTime();
+		p.setSystemTime(date);
 		this.addObject(p);
 		
 		msg.setStatus(1);
