@@ -19,8 +19,8 @@ public class OrdersDaoTest {
 	
 	@Test
 	public void addOrdersTest() {
-		User u = ordesDao.getObject(User.class, 2);
-		Product p = ordesDao.getObject(Product.class, 1);
+		User u = ordesDao.findByID(User.class, 2);
+		Product p = ordesDao.findByID(Product.class, 1);
 		Orders o = new Orders();
 		o.setOperator(u);
 		o.setProduct(p);

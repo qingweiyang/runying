@@ -16,7 +16,7 @@ public class Process {
 	
 	private Date systemTime;
 	
-	//责任人
+	//工序计划制定人
 	private User responsible;
 	
 	//接受人
