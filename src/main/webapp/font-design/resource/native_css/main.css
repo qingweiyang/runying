@@ -30,6 +30,10 @@ body {
   background-color: rgba(19, 112, 203, 0.13);
 }
 
+.table-panel {
+  margin-top: 20px;
+}
+
 .form-des {
 	margin-bottom: 20px;
 	margin-top: 20px;
