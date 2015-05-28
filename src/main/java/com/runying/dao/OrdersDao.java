@@ -22,8 +22,10 @@ public class OrdersDao extends DaoUtil{
 		
 		String hql = "from Orders";
 		Query query = session.createQuery(hql);
+		List<Product> res = query.list();
+		session.getTransaction().commit();
 		
-		return query.list();
+		return res;
 	}
 	
 	/**

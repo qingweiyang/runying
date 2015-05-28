@@ -18,7 +18,8 @@ public class ProductDao extends DaoUtil{
 		
 		String hql = "from Product";
 		Query query = session.createQuery(hql);
-		
-		return query.list();
+		List<Product> res = query.list();;
+		session.getTransaction().commit();
+		return res;
 	}
 }

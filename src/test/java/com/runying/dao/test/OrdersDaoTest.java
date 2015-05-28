@@ -25,6 +25,7 @@ public class OrdersDaoTest {
 		o.setOperator(u);
 		o.setProduct(p);
 		Msg msg = ordesDao.addOrders(o);
+		ordesDao.addOrders(o);
 		System.out.println(msg.getStatus()+"  "+msg.getDescription());
 	}
 }

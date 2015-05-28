@@ -16,9 +16,6 @@ import com.runying.util.Msg;
 public class ProcessDao extends DaoUtil{
 	
 	public Msg addProcess(Orders o, User responsible, User receiver, Process p) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		
 		Msg msg = new Msg();
 		
 		p.setOrders(o);
@@ -48,7 +45,7 @@ public class ProcessDao extends DaoUtil{
 	
 	private int getPreProcessAccount(Process p) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//		session.beginTransaction();
+		session.beginTransaction();
 		
 		int curNum = p.getProcessNum();
 		if(p == null || curNum == 1) {
@@ -61,6 +58,7 @@ public class ProcessDao extends DaoUtil{
 		query.setEntity(0, p.getOrders());
 		query.setParameter(1, curNum-1);
 		Process resP = (Process) query.uniqueResult();
+		session.getTransaction().commit();
 		
 		return resP.getNum();
 	}
@@ -72,7 +70,7 @@ public class ProcessDao extends DaoUtil{
 	 */
 	private int getProcessNum(Process p) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-//		session.beginTransaction();
+		session.beginTransaction();
 		
 		String hql = "from Process as p where p.orders = ?";
 		Query query = session.createQuery(hql);
@@ -81,6 +79,9 @@ public class ProcessDao extends DaoUtil{
 		if(query.list() == null) {
 			return 1;
 		}
-		return query.list().size()+1;
+		int num = query.list().size()+1;
+		session.getTransaction().commit();
+		
+		return num;
 	}
 }
