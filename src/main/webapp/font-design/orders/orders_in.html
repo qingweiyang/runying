@@ -5,139 +5,129 @@
 </div>
 <legend class="valtype"></legend>
 
-  <div class="row clearfix form-des">
-    <div class="col-md-1 column form-pre-des">
-      产品名称
+  <div class="col-md-7 column">
+    <!-- 订单号 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-3 column form-pre-des">
+        订单号 ：
+      </div>
+      <div class="col-md-4 column">
+        <input id="orderNum" class="form-control">  
+      </div>
+      <div class="col-md-5 column form-suf-des">
+        must finish
+      </div>
     </div>
-    <div class="col-md-2 column">
-      <select id="pdt-name" class="form-control">
-      </select>
+    <!-- 单据编号 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-3 column form-pre-des">
+        单据编号 ：
+      </div>
+      <div class="col-md-4 column">
+        <input id="number" class="form-control">  
+      </div>
+      <div class="col-md-5 column form-suf-des">
+        must finish
+      </div>
     </div>
-    <div class="col-md-8 column form-suf-des">
-      请选择系统相应产品名称
+    <!-- 产品名称 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-3 column form-pre-des">
+        产品名称 ：
+      </div>
+      <div class="col-md-4 column">
+        <select id="pdt-name" class="form-control">
+        </select>
+      </div>
+      <div class="col-md-5 column form-suf-des">
+        请选择系统相应产品名称
+      </div>
     </div>
-  </div>
-  <div class="row clearfix form-des">
-    <div class="col-md-1 column form-pre-des">
-      产品规格
+    <!-- 产品数量 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-3 column form-pre-des">
+        产品数量 ：
+      </div>
+      <div class="col-md-4 column">
+        <input id="count" class="form-control">  
+      </div>
+      <div class="col-md-5 column form-suf-des">
+        must finish
+      </div>
     </div>
-    <div class="col-md-2 column">
-      <input class="form-control">  
+    <!-- 备注 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-3 column form-pre-des">
+        备  注 ：
+      </div>
+      <div class="col-md-4 column">
+        <input id="remarks" class="form-control">  
+      </div>
+      <div class="col-md-5 column form-suf-des">
+        must finish
+      </div>
     </div>
-    <div class="col-md-9 column form-suf-des">
-      must finish
+    <!-- 下达日期 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-3 column form-pre-des">
+        下达日期 ：
+      </div>
+      <div class="col-md-4 column">
+        <input id="releaseTime" type="date" class="form-control">  
+      </div>
+      <div class="col-md-5 column form-suf-des">
+        must finish
+      </div>
     </div>
-  </div>
-  <div class="row clearfix form-des">
-    <div class="col-md-1 column form-pre-des">
-      产品规格
-    </div>
-    <div class="col-md-2 column">
-      <input class="form-control">  
-    </div>
-    <div class="col-md-9 column form-suf-des">
-      must finish
-    </div>
-  </div>
-  <div class="row clearfix form-des">
-    <div class="col-md-1 column form-pre-des">
-      产品规格
-    </div>
-    <div class="col-md-2 column">
-      <input class="form-control">  
-    </div>
-    <div class="col-md-8 column form-suf-des">
-      must finish
-    </div>
-  </div>
-  <div class="row clearfix form-des">
-    <div class="col-md-1 column form-pre-des">
-      产品规格
-    </div>
-    <div class="col-md-2 column">
-      <input class="form-control">  
-    </div>
-    <div class="col-md-8 column form-suf-des">
-      must finish
-    </div>
-  </div>
-  <div class="row clearfix form-des">
-    <div class="col-md-1 column form-pre-des">
-      产品规格
-    </div>
-    <div class="col-md-2 column">
-      <input class="form-control">  
-    </div>
-    <div class="col-md-8 column form-suf-des">
-      must finish
-    </div>
-  </div>
-  <div class="row clearfix form-des">
-    <div class="col-md-1 column form-pre-des">
-      产品规格
-    </div>
-    <div class="col-md-2 column">
-      <input class="form-control">  
-    </div>
-    <div class="col-md-8 column form-suf-des">
-      must finish
-    </div>
-  </div>
-  <div class="row clearfix form-des">
-    <div class="col-md-1 column form-pre-des">
-      产品规格
-    </div>
-    <div class="col-md-2 column">
-      <input class="form-control">  
-    </div>
-    <div class="col-md-8 column form-suf-des">
-      must finish
+    <!-- 交货日期 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-3 column form-pre-des">
+        交货日期 ：
+      </div>
+      <div class="col-md-4 column">
+        <input id="deliveryTime" type="date" class="form-control">  
+      </div>
+      <div class="col-md-5 column form-suf-des">
+        must finish
+      </div>
     </div>
   </div>
-  <div class="row clearfix form-des">
-    <div class="col-md-1 column form-pre-des">
-      产品规格
+  <!-- 显示产品具体信息 -->
+  <div id="pdt-detail" class="col-md-3 column pdt-panel">
+    <div class="row clearfix pdt-des">
+      <div class="col-md-5 column pdt-pre-des">
+        物料名称
+      </div>
+      <div id="materialName" class="col-md-7 column pdt-suf-des">
+          
+      </div>
     </div>
-    <div class="col-md-2 column">
-      <input class="form-control">  
+    <div class="row clearfix pdt-des">
+      <div class="col-md-5 column pdt-pre-des">
+        size1
+      </div>
+      <div id="size1" class="col-md-7 column pdt-suf-des">
+        
+      </div>
     </div>
-    <div class="col-md-8 column form-suf-des">
-      must finish
+    <div class="row clearfix pdt-des">
+      <div class="col-md-5 column pdt-pre-des">
+        size2
+      </div>
+      <div id="size2" class="col-md-7 column pdt-suf-des">
+        
+      </div>
     </div>
-  </div>
-  <div class="row clearfix form-des">
-    <div class="col-md-1 column form-pre-des">
-      产品规格
-    </div>
-    <div class="col-md-2 column">
-      <input class="form-control">  
-    </div>
-    <div class="col-md-8 column form-suf-des">
-      must finish
-    </div>
-  </div>
-  <div class="row clearfix form-des">
-    <div class="col-md-1 column form-pre-des">
-      产品规格
-    </div>
-    <div class="col-md-2 column">
-      <input class="form-control">  
-    </div>
-    <div class="col-md-8 column form-suf-des">
-      must finish
-    </div>
-  </div>
-  <div class="row clearfix form-des">
-    <div class="col-md-1 column form-pre-des">
-      产品规格
-    </div>
-    <div class="col-md-2 column">
-      <input class="form-control">  
-    </div>
-    <div class="col-md-8 column form-suf-des">
-      must finish
+    <div class="row clearfix pdt-des">
+      <div class="col-md-5 column pdt-pre-des">
+        物料长代码
+      </div>
+      <div id="materialCode" class="col-md-7 column pdt-suf-des">
+        
+      </div>
     </div>
   </div>
+
   <legend class="valtype"></legend>
 
   <div class="row clearfix form-des">
@@ -145,7 +135,7 @@
       <button type="button" class="btn btn-warning btn-lg btn-block">重新填写</button>
     </div>
     <div class="col-md-2 col-md-offset-1 column">
-      <button type="button" class="btn btn-success btn-lg btn-block">确认提交</button>
+      <button type="button" class="btn btn-success btn-lg btn-block" onclick="submit()">确认提交</button>
     </div>
   </div>
 
@@ -155,7 +145,60 @@ var products;
 
 $(document).ready(function() {
 	getProducts();
+	$("#pdt-name").change(function() {
+		var curID=$(this).children('option:selected').val();//这就是selected的值
+    $.each(products,function(i,item){
+        if(item.id == curID) {
+            var materialNameFromJson = item.materialName;
+            var size1FromJson = item.size1;
+            var size2FromJson = item.size2;
+            var materialCodeFromJson = item.materialCode;
+            $("#materialName").text(materialNameFromJson);
+            $("#size1").text(size1FromJson);
+            $("#size2").text(size2FromJson);
+            $("#materialCode").text(materialCodeFromJson);
+        }
+    });   
+	});
 });
+
+function submit() {
+    var orders = {};
+    orders.orderNum = $("#orderNum").val();
+    orders.number = $("#number").val();
+    orders.count = $("#count").val();
+    orders.remarks = $("#remarks").val();
+    orders.releaseTime = $("#releaseTime").val();
+    orders.deliveryTime = $("#deliveryTime").val();
+    var pdt = {};
+    pdt.id = $("#pdt-name").children('option:selected').val();
+    pdt.materialName = $("#materialName").text();
+    pdt.size1 = $("#size1").text();
+    pdt.size2 = $("#size2").text();
+    pdt.materialCode = $("#materialCode").text();
+    
+    alert(orders);
+    
+    // $.post(
+    //   "ordersIn.do",
+    //   orders,
+    //   function(data) {
+    //     alert(data.status);
+    //   });
+    $.ajax({
+      type : "POST",
+      contentType : 'application/json', 
+      url : "publish.do",
+      data : JSON.stringify(orders), 
+      dataType: "json",
+      success : function(data) {
+        alert(data.status);
+      },
+      error : function(){
+      location.href = "sureEnd.jsp";
+      }
+    });
+}
 
 function getProducts() {
 	
@@ -164,7 +207,7 @@ function getProducts() {
 		function(data) {
 			products = data;
       $.each(data,function(i,item){
-        var option = "'<option>"+item.materialName+"</option>'";
+        var option = "'<option value='"+item.id+"'>"+item.materialName+' '+item.size1+"</option>'";
         $("#pdt-name").append(option); 
       });
 		});

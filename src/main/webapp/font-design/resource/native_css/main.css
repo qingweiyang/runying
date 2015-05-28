@@ -55,6 +55,42 @@ body {
   color: #000066;
 }
 
+/*产品具体信息显示模版*/
+.pdt-panel {
+  border: 1px solid #6584E5;
+  border-radius: 3px;
+  background-color: #E5EDFA;
+}
+
+.pdt-des {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.pdt-pre-des {
+  padding-top: 3px;
+  text-align: right;
+  font-weight: bold;
+  font-size: smaller;
+  font-style: oblique;
+  color: purple;
+}
+
+.pdt-suf-des {
+  padding-top: 3px;
+  text-align: left;
+  font-size: smaller;
+  color: rgb(165, 164, 146);
+  font-style: oblique;
+}
+
+.pdt-head-des {
+  padding-left: 10px;
+  font-weight:900;
+  font-size:20px;
+  color: #000066;
+}
+
 /*override bootstrap navbar-fixed-top style*/
 .navbar-fixed-top {
   padding-left: 5%;
