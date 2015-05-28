@@ -99,7 +99,7 @@
         物料名称
       </div>
       <div id="materialName" class="col-md-7 column pdt-suf-des">
-          
+          未知
       </div>
     </div>
     <div class="row clearfix pdt-des">
@@ -107,7 +107,7 @@
         size1
       </div>
       <div id="size1" class="col-md-7 column pdt-suf-des">
-        
+        未知
       </div>
     </div>
     <div class="row clearfix pdt-des">
@@ -115,7 +115,7 @@
         size2
       </div>
       <div id="size2" class="col-md-7 column pdt-suf-des">
-        
+        未知
       </div>
     </div>
     <div class="row clearfix pdt-des">
@@ -123,7 +123,7 @@
         物料长代码
       </div>
       <div id="materialCode" class="col-md-7 column pdt-suf-des">
-        
+        未知
       </div>
     </div>
   </div>
@@ -176,28 +176,26 @@ function submit() {
     pdt.size1 = $("#size1").text();
     pdt.size2 = $("#size2").text();
     pdt.materialCode = $("#materialCode").text();
+    orders.product = pdt;
     
-    alert(orders);
-    
-    // $.post(
-    //   "ordersIn.do",
-    //   orders,
-    //   function(data) {
-    //     alert(data.status);
-    //   });
     $.ajax({
       type : "POST",
       contentType : 'application/json', 
-      url : "publish.do",
+      url : "ordersIn.do",
       data : JSON.stringify(orders), 
       dataType: "json",
       success : function(data) {
-        alert(data.status);
+          if(data.status == 1) {
+            alert("success");
+          } else {
+            alert(data.description);
+          }
       },
       error : function(){
-      location.href = "sureEnd.jsp";
+          alert("error");
       }
     });
+
 }
 
 function getProducts() {

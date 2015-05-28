@@ -17,8 +17,8 @@
         <property name="deliveryTime"/>
         <property name="systemTime"/>
         
-        <many-to-one name="product" column="productID"/>
-        <many-to-one name="operator" column="operatorID"/>
+        <many-to-one name="product" lazy="false" column="productID"/>
+        <many-to-one name="operator" lazy="false" column="operatorID"/>
     </class>
 
 </hibernate-mapping>

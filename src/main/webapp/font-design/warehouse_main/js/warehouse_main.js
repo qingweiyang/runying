@@ -28,3 +28,13 @@ function loadOrdersIn() {
 	$("#main-page").empty();
 	$("#main-page").load("../orders/orders_in.html");
 }
+
+function loadAllOrders() {
+	$("#main-page").empty();
+	$("#main-page").load("../orders/orders_all.html");
+}
+
+function loadProcessIn() {
+	$("#main-page").empty();
+	$("#main-page").load("./process_in.html");
+}

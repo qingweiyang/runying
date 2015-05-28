@@ -1,5 +1,7 @@
 package com.runying.dao.test;
 
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -17,7 +19,7 @@ public class OrdersDaoTest {
 		ordesDao = new OrdersDao();
 	}
 	
-	@Test
+	//@Test
 	public void addOrdersTest() {
 		User u = ordesDao.findByID(User.class, 2);
 		Product p = ordesDao.findByID(Product.class, 1);
@@ -27,5 +29,13 @@ public class OrdersDaoTest {
 		Msg msg = ordesDao.addOrders(o);
 		ordesDao.addOrders(o);
 		System.out.println(msg.getStatus()+"  "+msg.getDescription());
+	}
+	
+	@Test
+	public void findAllTest() {
+		List<Orders> os = ordesDao.findAll();
+		for(int i = 0 ; i < os.size() ; i++) {
+			System.out.println(os.get(i).getId());
+		}
 	}
 }

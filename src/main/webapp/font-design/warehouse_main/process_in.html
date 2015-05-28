@@ -1,0 +1,102 @@
+<div class="container">
+  <div class="row clearfix">
+    <div class="col-md-12 column">
+      <div class="tabbable" id="tabs-520769">
+        <ul class="nav nav-tabs">
+          <li>
+             <a href="#panel-699059" data-toggle="tab">Section 1</a>
+          </li>
+          <li class="active">
+             <a href="#panel-31060" data-toggle="tab">Section 2</a>
+          </li>
+        </ul>
+        <div class="tab-content">
+          <div class="tab-pane" id="panel-699059">
+            <p>
+              I'm in Section 1.
+            </p>
+          </div>
+          <div class="tab-pane active" id="panel-31060">
+            <p>
+              Howdy, I'm in Section 2.
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+<script type="text/javascript">
+
+var products;
+
+$(document).ready(function() {
+	getProducts();
+	$("#pdt-name").change(function() {
+		var curID=$(this).children('option:selected').val();//这就是selected的值
+    $.each(products,function(i,item){
+        if(item.id == curID) {
+            var materialNameFromJson = item.materialName;
+            var size1FromJson = item.size1;
+            var size2FromJson = item.size2;
+            var materialCodeFromJson = item.materialCode;
+            $("#materialName").text(materialNameFromJson);
+            $("#size1").text(size1FromJson);
+            $("#size2").text(size2FromJson);
+            $("#materialCode").text(materialCodeFromJson);
+        }
+    });   
+	});
+});
+
+function submit() {
+    var orders = {};
+    orders.orderNum = $("#orderNum").val();
+    orders.number = $("#number").val();
+    orders.count = $("#count").val();
+    orders.remarks = $("#remarks").val();
+    orders.releaseTime = $("#releaseTime").val();
+    orders.deliveryTime = $("#deliveryTime").val();
+    var pdt = {};
+    pdt.id = $("#pdt-name").children('option:selected').val();
+    pdt.materialName = $("#materialName").text();
+    pdt.size1 = $("#size1").text();
+    pdt.size2 = $("#size2").text();
+    pdt.materialCode = $("#materialCode").text();
+    orders.product = pdt;
+    
+    $.ajax({
+      type : "POST",
+      contentType : 'application/json', 
+      url : "ordersIn.do",
+      data : JSON.stringify(orders), 
+      dataType: "json",
+      success : function(data) {
+          if(data.status == 1) {
+            alert("success");
+          } else {
+            alert(data.description);
+          }
+      },
+      error : function(){
+          alert("error");
+      }
+    });
+
+}
+
+function getProducts() {
+	
+	$.get(
+		"getProducts.do",
+		function(data) {
+			products = data;
+      $.each(data,function(i,item){
+        var option = "'<option value='"+item.id+"'>"+item.materialName+' '+item.size1+"</option>'";
+        $("#pdt-name").append(option); 
+      });
+		});
+
+}
+</script>

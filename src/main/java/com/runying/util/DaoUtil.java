@@ -9,16 +9,17 @@ import com.runying.po.User;
 
 public class DaoUtil {
 	
-	public static<T> int addObject(T o) {
+	public <T> int addObject(T o) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         int id = (Integer) session.save(o);
         session.getTransaction().commit();
+        
         return id;
 	}
 	
 	@SuppressWarnings("unchecked")
-	public static<T> List<T> loginCheck(String username, String password) {
+	public <T> List<T> loginCheck(String username, String password) {
 //		List mothers = session.createQuery(
 //			    "select mother from Cat as cat join cat.mother as mother where cat.name = ?")
 //			    .setString(0, name)
@@ -30,7 +31,10 @@ public class DaoUtil {
 		Query query = session.createQuery(hql);
 		query.setParameter(0, username);
 		query.setParameter(1, password);
-		return query.list();
+		List<T> res = query.list();
+		session.getTransaction().commit();
+		
+		return res;
 	}
 	
 	/**
@@ -39,7 +43,7 @@ public class DaoUtil {
 	 * @param id
 	 * @return
 	 */
-	public static <T, V> V getObject(Class<T> c, int id) {
+	public <T, V> V findByID(Class<T> c, int id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
         
@@ -51,8 +55,12 @@ public class DaoUtil {
 	}
 	
 	public static void main(String[] args) {
-		DaoUtil.getObject(User.class, 1);
-		System.out.println(User.class.getName());
+		User u = new User();
+		u.setUsername("test");
+		u.setPassword("123");
+		new DaoUtil().addObject(u);
+		new DaoUtil().addObject(u);
+		new DaoUtil().addObject(u);
 		HibernateUtil.getSessionFactory().close();
     }
 }

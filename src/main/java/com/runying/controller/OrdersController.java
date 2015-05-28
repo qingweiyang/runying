@@ -3,34 +3,36 @@ package com.runying.controller;
 import java.util.List;
 
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.runying.dao.ProductDao;
+import com.runying.dao.OrdersDao;
 import com.runying.po.Orders;
-import com.runying.po.Product;
+import com.runying.util.Constants;
 import com.runying.util.Msg;
 
 @Controller
 @RequestMapping(value={"font-design/warehouse_main/"})
 public class OrdersController {
 	
-	private ProductDao productDao = new ProductDao();
+	private OrdersDao ordersDao = new OrdersDao();
 	
 	@RequestMapping("/ordersIn.do")
-	public Msg ordersIn(Orders o) {
-		Msg msg = new Msg();
-		msg.setStatus(1);
+	@ResponseBody
+	public Msg ordersIn(@RequestBody Orders o) {
+		Msg msg;
 		
-		productDao.addObject(o);
+		o.setOperator(Constants.user);
+		msg = ordersDao.addOrders(o);
 		
 		return msg;
 	}
 	
-	@RequestMapping("/getProducts.do")
+	@RequestMapping(value = "getAllOrders.do")
 	@ResponseBody
-	public List<Product> getProducts() {
-		return productDao.findAll();
+	public List<Orders> getOrders() {
+		return ordersDao.findAll();
 	}
 	
 }

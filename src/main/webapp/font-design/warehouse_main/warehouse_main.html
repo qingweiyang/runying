@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
   <head>
-    <meta charset="utf-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <title>ry erp</title>
 
     <!-- Bootstrap -->
@@ -11,6 +11,8 @@
     <script src="../resource/jquery/jquery-1.11.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../resource/bootstrap/js/bootstrap.min.js"></script>
+    
+    <script src="../plugins/js/date-helper.js"></script>
   </head>
   <body>
 
@@ -82,6 +84,7 @@
     <!-- 左侧导航 -->
     <div id="nav_left" class="col-md-2 column">
         <div class="panel-group">
+          <!-- 订单管理 -->
           <div id="nav-wh-in" class="panel panel-default">
             <div class="panel-heading">
               <a class="panel-title" data-toggle="collapse" href="#panel-element-1">订单管理</a>
@@ -91,15 +94,30 @@
                 <a href="javascript:void(0)" onclick="loadOrdersIn()">录入订单信息</a>
               </div>
               <div class="panel-body">
-                <a href="javascript:void(0)" onclick="loadWarehouseCurrent()">查看产品信息</a>
+                <a href="javascript:void(0)" onclick="loadAllOrders()">查看订单信息</a>
               </div>
             </div>
           </div>
+          <!-- 工序管理 -->
           <div id="nav-wh-in" class="panel panel-default">
             <div class="panel-heading">
-              <a class="panel-title" data-toggle="collapse" href="#panel-element-2">入库管理</a>
+              <a class="panel-title" data-toggle="collapse" href="#panel-element-2">工序管理</a>
             </div>
             <div id="panel-element-2" class="panel-collapse collapse">
+              <div class="panel-body">
+                <a href="javascript:void(0)" onclick="loadProcessIn()">录入工序信息</a>
+              </div>
+              <div class="panel-body">
+                <a href="javascript:void(0)" onclick="loadWarehouseCurrent()">查看工序信息</a>
+              </div>
+            </div>
+          </div>
+          <!-- 入库管理 -->
+          <div id="nav-wh-in" class="panel panel-default">
+            <div class="panel-heading">
+              <a class="panel-title" data-toggle="collapse" href="#panel-element-3">入库管理</a>
+            </div>
+            <div id="panel-element-3" class="panel-collapse collapse">
               <div class="panel-body">
                 <a href="javascript:void(0)" onclick="loadProductIn()">录入产品信息</a>
               </div>
@@ -108,11 +126,12 @@
               </div>
             </div>
           </div>
+          <!-- 仓库查看 -->
           <div id="nav-wh-check" class="panel panel-default">
             <div class="panel-heading">
-              <a class="panel-title collapsed" data-toggle="collapse" href="#panel-element-3">仓库查看</a>
+              <a class="panel-title collapsed" data-toggle="collapse" href="#panel-element-4">仓库查看</a>
             </div>
-            <div id="panel-element-3" class="panel-collapse collapse">
+            <div id="panel-element-4" class="panel-collapse collapse">
               <div class="panel-body">
                 <a href="javascript:void(0)" onclick="loadWarehouseCurrent()">当前库存信息查看</a>
               </div>

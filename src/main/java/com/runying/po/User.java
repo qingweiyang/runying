@@ -13,7 +13,8 @@ public class User {
 	
 	private String password;
 	
-	//用户权限，000,000 
+	//用户权限，000,000
+	// ？？？，？？［录入订单信息权限］
 	private int privilege;
 
 	public int getId() {
