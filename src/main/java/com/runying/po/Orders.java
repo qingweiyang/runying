@@ -35,6 +35,9 @@ public class Orders {
 	
 	//订单录入操作员
 	private User operator;
+	
+	//订单状态 0:已删除，1:未进行生产计划，2:已进行生产计划，3
+	private int status;
 
 	public int getId() {
 		return id;
@@ -114,6 +117,14 @@ public class Orders {
 
 	public void setSystemTime(Date systemTime) {
 		this.systemTime = systemTime;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 }

@@ -2,6 +2,7 @@ package com.runying.dao;
 
 import java.util.Calendar;
 import java.util.Date;
+import java.util.List;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
@@ -14,6 +15,19 @@ import com.runying.util.HibernateUtil;
 import com.runying.util.Msg;
 
 public class ProcessDao extends DaoUtil{
+	
+	public Msg addProcesses(Orders o, List<Process> ps) {
+		Msg msg = null;
+		for(Process p : ps) {
+			//检查用户是否存在 
+			//TODO
+			msg = addProcess(o, p.getResponsible(), p.getReceiver(), p);
+			if(msg.getStatus() == 0) {
+				return msg;
+			}
+		}
+		return msg;
+	}
 	
 	public Msg addProcess(Orders o, User responsible, User receiver, Process p) {
 		Msg msg = new Msg();
@@ -37,7 +51,9 @@ public class ProcessDao extends DaoUtil{
 		Date date = now.getTime();
 		p.setSystemTime(date);
 		this.addObject(p);
-		
+		//修改orders状态为 已进行生产计划
+		o.setStatus(2);
+		new DaoUtil().updat(o);
 		msg.setStatus(1);
 		return msg;
 	}

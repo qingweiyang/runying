@@ -16,6 +16,7 @@
         <property name="releaseTime"/>
         <property name="deliveryTime"/>
         <property name="systemTime"/>
+        <property name="status"/>
         
         <many-to-one name="product" lazy="false" column="productID"/>
         <many-to-one name="operator" lazy="false" column="operatorID"/>

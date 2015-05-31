@@ -1,0 +1,129 @@
+
+  <!-- 主页面 -->
+  <div class="form-head-des ">
+      录入工序信息
+  </div>
+  <legend class="valtype"></legend>
+
+<div id="process-main">
+  <!-- 面包屑导航 -->
+  <ul class="breadcrumb">
+    <li class="active">
+       订单选择
+    </li>
+  </ul>
+
+  <div class="panel panel-success table-panel">
+      <!-- Default panel contents -->
+      <div class="panel-heading">
+        <!-- 表格的筛选操作 -->
+        <div class="row clearfix">
+
+          <!-- 表格select筛选 -->
+          <div>
+            <div class="col-md-1 column form-pre-des">
+              名称
+            </div>
+            <div class="col-md-2 column">
+              <select class="form-control">
+                <option>Enter</option>
+                <option>Your</option>
+                <option>Options</option>
+                <option>Here!</option>
+              </select>
+            </div>
+          </div>
+          <!-- 表格搜索 -->
+          <div class="col-md-3 col-md-offset-5">
+            <div class="input-group">
+              <input type="text" class="form-control" placeholder="输入关键字进行搜索...">
+              <span class="input-group-btn">
+                <button class="btn btn-default" type="button">搜索</button>
+              </span>
+            </div><!-- /input-group -->
+          </div><!-- /.col-lg-6 -->
+        </div>
+      </div>
+
+      <table id="all-process-table" class="table table-hover table-bordered">
+        <thead>
+          <tr class="active">
+            <th>订单号</th>
+            <th>下达日期</th>
+            <th>单据编号</th>
+            <th>物料名称</th>
+            <th>规格型号</th>
+            <th>规格型号2</th>
+            <th>数量</th>
+            <th>交货日期</th>
+            <th>库存量</th>
+            <th>操作</th>
+          </tr>
+        </thead>
+        <tbody></tbody>
+      </table>
+  </div>
+
+</div>
+
+<script type="text/javascript">
+
+  $(document).ready(function() {
+	  showAll();
+  });
+
+  // 展示一条详细订单，进行工序流程
+  function detail(item) {
+    $("#process-main").empty();
+   	$("#process-main").load("../process/process_piece.html", function() {
+   		var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
+   	    var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
+   	   	var text =  "<tr class='warning'>"+
+   	   					  "<td>"+item.orderNum+"</td>"+
+   	                      "<td>"+releaseTime+"</td>"+
+   	                      "<td>"+item.number+"</td>"+
+   	                      "<td>"+item.product.materialName+"</td>"+
+   	                      "<td>"+item.product.size1+"</td>"+
+   	                      "<td>"+item.product.size2+"</td>"+
+   	                      "<td>"+item.count+"</td>"+
+   	                      "<td>"+deliveryTime+"</td>"+
+   	                      "<td>"+"0"+"</td>"+
+   	                      "</tr>";
+   	    $("#one-process-table tbody").html(text); 
+   	}); 
+    
+    
+  }
+
+  //详细订单，进行工序流程的面包屑
+  function detailDreadcrumb() {
+
+  }
+
+  function showAll() {
+    $.get(
+      "getAllOrders.do",
+      function(data) {
+        var text = "";
+        var option = "";
+        $.each(data, function(i, item) {
+        	option = "<div><a href='javascript:void(0);' onclick='detail("+JSON.stringify(item)+");'>生产计划</a></div>";
+        	var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
+        	var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
+          text += "<tr><td>"+item.orderNum+"</td>"+
+                      "<td>"+releaseTime+"</td>"+
+                      "<td>"+item.number+"</td>"+
+                      "<td>"+item.product.materialName+"</td>"+
+                      "<td>"+item.product.size1+"</td>"+
+                      "<td>"+item.product.size2+"</td>"+
+                      "<td>"+item.count+"</td>"+
+                      "<td>"+deliveryTime+"</td>"+
+                      "<td>"+"0"+"</td>"+
+                      "<td>"+option+"</td>"+
+                      "</tr>";
+        });
+        $("#all-process-table tbody").html(text);
+      });
+  }
+
+</script>

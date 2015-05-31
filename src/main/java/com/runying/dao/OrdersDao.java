@@ -46,6 +46,7 @@ public class OrdersDao extends DaoUtil{
 		Calendar now = Calendar.getInstance();
 		Date date = now.getTime();
 		o.setSystemTime(date);
+		o.setStatus(1);
 		this.addObject(o);
 		msg.setStatus(1);
 		return msg;

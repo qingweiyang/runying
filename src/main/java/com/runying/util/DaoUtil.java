@@ -18,6 +18,13 @@ public class DaoUtil {
         return id;
 	}
 	
+	public <T> void updat(T o) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        session.update(o);
+        session.getTransaction().commit();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public <T> List<T> loginCheck(String username, String password) {
 //		List mothers = session.createQuery(

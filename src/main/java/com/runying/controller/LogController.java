@@ -16,7 +16,7 @@ import com.runying.util.DaoUtil;
 import com.runying.util.Msg;
 
 @Controller
-@RequestMapping(value={"font-design/log/"})
+@RequestMapping(value={"font-design/log/", "font-design/warehouse_main"})
 public class LogController {
 	
 	@RequestMapping(value = "login.do")
@@ -36,6 +36,16 @@ public class LogController {
 		//save login info to session
 		request.getSession().setAttribute(Constants.USER, us.get(0));
 		Constants.user = us.get(0);
+		return msg;
+	}
+	
+	@RequestMapping(value = "logout.do")
+	@ResponseBody
+	public Msg logout(HttpServletRequest request) {
+		Msg msg = new Msg();
+		//delete login info from session
+		request.getSession().setAttribute(Constants.USER, null);
+		msg.setStatus(1);
 		return msg;
 	}
 }

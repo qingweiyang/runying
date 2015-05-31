@@ -2,6 +2,15 @@ $(document).ready(function(){
 	getCurUser();
 });
 
+function logout() {
+	$.get(
+		"logout.do",
+		function(data) {
+			if(data.status == 1)
+				location.href = "../log/login.html";
+		}); 
+}
+
 function getCurUser() {
 	$.get(
 		"getCurUser.do",
@@ -36,5 +45,5 @@ function loadAllOrders() {
 
 function loadProcessIn() {
 	$("#main-page").empty();
-	$("#main-page").load("./process_in.html");
+	$("#main-page").load("../process/process_in.html");
 }
