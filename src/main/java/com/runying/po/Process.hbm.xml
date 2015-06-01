@@ -14,9 +14,9 @@
         <property name="num"/>
         <property name="systemTime"/>
         
-        <one-to-one name="responsible" class="User"/>
-        <one-to-one name="receiver" class="User"/>
-        <many-to-one name="orders" column="ordersID"/>
+        <one-to-one name="responsible" class="User" cascade="all"/>
+        <many-to-one name="receiver" column="receiverID" cascade="all"/>
+        <many-to-one name="orders" column="ordersID" cascade="all"/>
     </class>
 
 </hibernate-mapping>

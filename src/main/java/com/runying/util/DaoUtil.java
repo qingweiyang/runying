@@ -61,6 +61,20 @@ public class DaoUtil {
         return o;
 	}
 	
+	@SuppressWarnings("unchecked")
+	protected <T> List<T> findByColumn(String className, String columnName, String columnValue) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		
+		String hql = "from "+className+" as t where t."+columnName+" = ?";
+		Query query = session.createQuery(hql);
+		query.setParameter(0, columnValue);
+		List<T> res = query.list();
+		session.getTransaction().commit();
+		
+		return res;
+	}
+	
 	public static void main(String[] args) {
 		User u = new User();
 		u.setUsername("test");

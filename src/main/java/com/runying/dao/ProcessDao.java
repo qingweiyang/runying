@@ -15,13 +15,27 @@ import com.runying.util.HibernateUtil;
 import com.runying.util.Msg;
 
 public class ProcessDao extends DaoUtil{
+	private UserDao userDao = new UserDao();
 	
-	public Msg addProcesses(Orders o, List<Process> ps) {
-		Msg msg = null;
+	/**
+	 * 增加多道工序
+	 * 
+	 * @param o
+	 * @param ps
+	 * @return
+	 */
+	public Msg addProcesses(Orders o, User responsible, List<Process> ps) {
+		Msg msg = new Msg();
 		for(Process p : ps) {
 			//检查用户是否存在 
-			//TODO
-			msg = addProcess(o, p.getResponsible(), p.getReceiver(), p);
+			User receiver = userDao.findByUsername(p.getReceiver().getUsername());
+			if(null == receiver) {
+				msg.setStatus(0);
+				msg.setDescription("接收者不存在");
+				return msg;
+			}
+			
+			msg = addProcess(o, responsible, receiver, p);
 			if(msg.getStatus() == 0) {
 				return msg;
 			}
@@ -52,14 +66,15 @@ public class ProcessDao extends DaoUtil{
 		p.setSystemTime(date);
 		this.addObject(p);
 		//修改orders状态为 已进行生产计划
-		o.setStatus(2);
-		new DaoUtil().updat(o);
+		Orders oDB = this.findByID(Orders.class, o.getId());
+		oDB.setStatus(2);
+		new DaoUtil().updat(oDB);
 		msg.setStatus(1);
 		return msg;
 	}
 	
 	
-	private int getPreProcessAccount(Process p) {
+	public int getPreProcessAccount(Process p) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		

@@ -9,7 +9,7 @@
     <div class="tabbable" id="tabs-520769">
       <ul class="nav nav-tabs">
         <li>
-           <a href="#panel-1" onclick="showAll()" data-toggle="tab">所有订单信息</a>
+           <a href="#panel-1" onclick="showAllOrders()" data-toggle="tab">所有订单信息</a>
         </li>
         <li class="active">
            <a href="#panel-2" data-toggle="tab">Section 2</a>
@@ -91,7 +91,7 @@
 
   });
 
-  function showAll() {
+  function showAllOrders() {
     $.get(
       "getAllOrders.do",
       function(data) {
@@ -99,7 +99,7 @@
         $.each(data, function(i, item) {
         	var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
         	var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
-            text += "<tr><td>"+item.orderNum+"</td>"+
+            text += "<tr><td>"+item.id+"</td>"+
                       "<td>"+releaseTime+"</td>"+
                       "<td>"+item.number+"</td>"+
                       "<td>"+item.product.materialName+"</td>"+

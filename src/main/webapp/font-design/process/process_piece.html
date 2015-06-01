@@ -17,7 +17,7 @@
       	订单详情
       </label>
       <!-- 展示订单详情 -->
-      <table id="one-process-table" class="table">
+      <table id="one-orders-table" class="table">
         <thead>
           <tr class="active">
             <th>订单号</th>
@@ -57,11 +57,56 @@
       增加一道工序
 </button>
 
+<button type="button" class="btn btn-success btn-default" onclick="submitProcesses();">
+      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+      完成工序输入
+</button>
+
 <script type="text/javascript">
 
   $(document).ready(function() {
 
   });
+
+  function submitProcesses() {
+    var data = {};
+    var ps = [];
+    $("#all-process-table tbody tr").each(function(i, item) {
+      var row = {};
+      row.processNum = $($(item).find("td:eq(0)")).text();
+      row.name = $($(item).find("input:eq(0)")).val();
+      row.num = $($(item).find("input:eq(1)")).val();
+      //添加 接收者 对象
+      var receiver = {};
+      receiver.username = $($(item).find("input:eq(2)")).val();
+      row.receiver = receiver;
+      ps.push(row);
+    });
+    var orders = {};
+    $("#one-orders-table tbody tr").each(function(i, item) {
+      orders.id = $($(item).find("td:eq(0)")).text();
+    });
+    data.ps = ps;
+    data.orders = orders;
+    $.ajax({
+      type : "POST",
+      contentType : 'application/json', 
+      url : "addProcesses.do",
+      data : JSON.stringify(data), 
+      dataType: "json",
+      success : function(res) {
+          if(res.status == 1) {
+            alert("success");
+          } else {
+            alert(res.description);
+          }
+      },
+      error : function(){
+          alert("error");
+      }
+    });
+
+  }
 
   function addProcess() {
     var processNum = $("#all-process-table tr").length;

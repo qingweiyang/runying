@@ -19,9 +19,9 @@ public class OrdersDaoTest {
 		ordesDao = new OrdersDao();
 	}
 	
-	//@Test
+	@Test
 	public void addOrdersTest() {
-		User u = ordesDao.findByID(User.class, 2);
+		User u = ordesDao.findByID(User.class, 1);
 		Product p = ordesDao.findByID(Product.class, 1);
 		Orders o = new Orders();
 		o.setOperator(u);
@@ -31,7 +31,7 @@ public class OrdersDaoTest {
 		System.out.println(msg.getStatus()+"  "+msg.getDescription());
 	}
 	
-	@Test
+	//@Test
 	public void findAllTest() {
 		List<Orders> os = ordesDao.findAll();
 		for(int i = 0 ; i < os.size() ; i++) {

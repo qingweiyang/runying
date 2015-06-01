@@ -79,7 +79,7 @@
    		var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
    	    var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
    	   	var text =  "<tr class='warning'>"+
-   	   					  "<td>"+item.orderNum+"</td>"+
+   	   					          "<td>"+item.id+"</td>"+
    	                      "<td>"+releaseTime+"</td>"+
    	                      "<td>"+item.number+"</td>"+
    	                      "<td>"+item.product.materialName+"</td>"+
@@ -89,15 +89,10 @@
    	                      "<td>"+deliveryTime+"</td>"+
    	                      "<td>"+"0"+"</td>"+
    	                      "</tr>";
-   	    $("#one-process-table tbody").html(text); 
+   	    $("#one-orders-table tbody").html(text); 
    	}); 
     
     
-  }
-
-  //详细订单，进行工序流程的面包屑
-  function detailDreadcrumb() {
-
   }
 
   function showAll() {
@@ -110,7 +105,7 @@
         	option = "<div><a href='javascript:void(0);' onclick='detail("+JSON.stringify(item)+");'>生产计划</a></div>";
         	var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
         	var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
-          text += "<tr><td>"+item.orderNum+"</td>"+
+          text += "<tr><td>"+item.id+"</td>"+
                       "<td>"+releaseTime+"</td>"+
                       "<td>"+item.number+"</td>"+
                       "<td>"+item.product.materialName+"</td>"+

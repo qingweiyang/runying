@@ -1,5 +1,8 @@
 package com.runying.dao.test;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.junit.Before;
 import org.junit.Test;
 
@@ -7,7 +10,6 @@ import com.runying.dao.ProcessDao;
 import com.runying.po.Orders;
 import com.runying.po.Process;
 import com.runying.po.User;
-import com.runying.util.Msg;
 
 
 public class ProcessDaoTest {
@@ -21,24 +23,31 @@ public class ProcessDaoTest {
 //		processDao.addObject(p);
 	}
 	
-	//@Test
+	@Test
 	public void getPreProcessAccountTest() {
-//		Process p = processDao.findByID(Process.class, 2);
-//		System.out.println(processDao.getPreProcessAccount(p));
+		Process p = processDao.findByID(Process.class, 2);
+		System.out.println(processDao.getPreProcessAccount(p));
 	}
 	
-	@Test
+	//@Test
 	public void addProcessTest() {
-		Orders o = processDao.findByID(Orders.class, 1);
-		User u = processDao.findByID(User.class, 1);
+		Orders o = processDao.findByID(Orders.class, 2);
+		User u = new User();
+		u.setId(1);
+		u.setUsername("adm");
 		
 		Process p = new Process();
+		p.setId(1);
 		p.setName("first gongxu");
 		p.setNum(4);
 		p.setOrders(o);
-		
-		Msg msg = processDao.addProcess(o, u, u, p);
-		System.out.println(msg.getDescription());
+		p.setReceiver(u);
+		List<Process> ps = new ArrayList<Process>();
+		ps.add(p);
+//		Msg msg = processDao.addProcess(o, u, u, p);
+		processDao.addProcess(o, u, u, p);
+//		processDao.addProcesses(o, u, ps);
+//		System.out.println(msg.getDescription());
 		
 	}
 }

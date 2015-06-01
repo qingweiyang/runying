@@ -11,7 +11,7 @@ public class Orders {
 	private int id;
 	
 	//订单号
-	private int orderNum;
+	//private int orderNum;
 	
 	//单据编号
 	private String number;
@@ -47,13 +47,13 @@ public class Orders {
 		this.id = id;
 	}
 
-	public int getOrderNum() {
-		return orderNum;
-	}
-
-	public void setOrderNum(int orderNum) {
-		this.orderNum = orderNum;
-	}
+//	public int getOrderNum() {
+//		return orderNum;
+//	}
+//
+//	public void setOrderNum(int orderNum) {
+//		this.orderNum = orderNum;
+//	}
 
 	public String getNumber() {
 		return number;
