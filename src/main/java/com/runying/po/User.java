@@ -14,7 +14,7 @@ public class User {
 	private String password;
 	
 	//用户权限，000,000
-	// ？？？，？？［录入订单信息权限］
+	// ？？？，？[增加工序权限]［录入订单信息权限］
 	private int privilege;
 
 	public int getId() {

@@ -25,12 +25,25 @@ public class ProcessDao extends DaoUtil{
 		Msg msg = new Msg();
 		
 		User resDB = userDao.findByUsername(responsible.getUsername());
+		//检查操作员是否拥有增加工序权限
+		if(1 != (resDB.getPrivilege() >> 1 & 1)) {
+			msg.setStatus(0);
+			msg.setDescription("权限不足");
+			return msg;
+		}
 		//检查订单状态
 		Orders oDB = ordersDao.findByID(o.getId());
 		if(oDB.getStatus() != 1) {
 			//状态不是 未进行生产计划 ， 这里只处理 未进行生产计划 的订单
 			msg.setStatus(0);
 			msg.setDescription("状态不是 未进行生产计划");
+			return msg;
+		}
+		
+		//未制定任何工序
+		if(null == ps || ps.size() == 0) {
+			msg.setStatus(0);
+			msg.setDescription("您还未制定任何工序");
 			return msg;
 		}
 		
@@ -64,6 +77,8 @@ public class ProcessDao extends DaoUtil{
 		//修改订单状态为 2:已进行生产计划
 		oDB.setStatus(2);
 		ordersDao.updat(oDB);
+		
+		msg.setStatus(1);
 		return msg;
 	}
 	

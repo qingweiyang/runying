@@ -76,7 +76,7 @@
   function detail(item) {
     $("#process-main").empty();
    	$("#process-main").load("../process/process_piece.html", function() {
-   		var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
+   		  var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
    	    var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
    	   	var text =  "<tr class='warning'>"+
    	   					          "<td>"+item.id+"</td>"+

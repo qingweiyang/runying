@@ -20,6 +20,12 @@ public class OrdersDaoTest {
 	}
 	
 	@Test
+	public void findByIDTest() {
+		Orders os = ordesDao.findByID(1);
+		
+	}
+	
+	//@Test
 	public void addOrdersTest() {
 		User u = ordesDao.findByID(User.class, 1);
 		Product p = ordesDao.findByID(Product.class, 1);
