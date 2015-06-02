@@ -1,9 +1,17 @@
-
 <!-- 主页面 -->
 <div class="form-head-des ">
     订单信息录入
 </div>
 <legend class="valtype"></legend>
+
+<div id="orders-main">
+
+<!-- 面包屑导航 -->
+<ul class="breadcrumb">
+  <li class="active">
+     	录入订单
+  </li>
+</ul>
 
   <div class="col-md-7 column">
     <!-- 订单号 
@@ -140,10 +148,10 @@
     </div>
   </div>
 
+</div>
+
 <script type="text/javascript">
-
 var products;
-
 $(document).ready(function() {
 	getProducts();
 	$("#pdt-name").change(function() {
@@ -187,7 +195,7 @@ function submit() {
       dataType: "json",
       success : function(data) {
           if(data.status == 1) {
-            alert("success");
+        	  showSubmitOrdersSuccess();
           } else {
             alert(data.description);
           }
@@ -196,7 +204,14 @@ function submit() {
           alert("error");
       }
     });
+}
 
+// 提交工序成功，跳转到成功页面
+function showSubmitOrdersSuccess() {
+  $("#orders-main").empty();
+  $("#orders-main").load("../orders/orders_in_suc.html", function() {
+
+  });
 }
 
 function getProducts() {
@@ -210,6 +225,5 @@ function getProducts() {
         $("#pdt-name").append(option); 
       });
 		});
-
 }
 </script>

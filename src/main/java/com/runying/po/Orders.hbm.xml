@@ -19,6 +19,13 @@
         
         <many-to-one name="product" lazy="false" column="productID"/>
         <many-to-one name="operator" lazy="false" column="operatorID"/>
+        
+        <!--  
+        <set name="processes" lazy="false" inverse="true">        
+            <key column="ordersID"/>  
+            <one-to-many class="Process"/>  
+        </set> 
+        --> 
     </class>
 
 </hibernate-mapping>

@@ -19,10 +19,10 @@ public class OrdersDaoTest {
 		ordesDao = new OrdersDao();
 	}
 	
-	@Test
+	//@Test
 	public void findByIDTest() {
-		Orders os = ordesDao.findByID(1);
-		
+		Orders os = ordesDao.findByID(4);
+//		System.out.println(os.getProcesses().size());
 	}
 	
 	//@Test
@@ -37,7 +37,7 @@ public class OrdersDaoTest {
 		System.out.println(msg.getStatus()+"  "+msg.getDescription());
 	}
 	
-	//@Test
+	@Test
 	public void findAllTest() {
 		List<Orders> os = ordesDao.findAll();
 		for(int i = 0 ; i < os.size() ; i++) {

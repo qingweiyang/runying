@@ -1,6 +1,7 @@
 package com.runying.po;
 
 import java.util.Date;
+import java.util.Set;
 
 /**
  * 订货单po
@@ -35,6 +36,9 @@ public class Orders {
 	
 	//订单录入操作员
 	private User operator;
+	
+	//对应的工序
+//	private Set<Process> processes;
 	
 	//订单状态 0:已删除，1:未进行生产计划，2:已进行生产计划，3
 	private int status;
@@ -126,5 +130,14 @@ public class Orders {
 	public void setStatus(int status) {
 		this.status = status;
 	}
+
+//	public Set<Process> getProcesses() {
+//		return processes;
+//	}
+//
+//	public void setProcesses(Set<Process> processes) {
+//		this.processes = processes;
+//	}
+	
 	
 }
