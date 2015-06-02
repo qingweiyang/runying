@@ -35,8 +35,8 @@
       <div class="col-md-4 column">
         <input id="number" class="form-control">  
       </div>
-      <div class="col-md-5 column form-suf-des">
-        must finish
+      <div id="number-suf-des" class="col-md-5 column form-suf-des text-info">
+        （必填）
       </div>
     </div>
     <!-- 产品名称 -->
@@ -48,8 +48,8 @@
         <select id="pdt-name" class="form-control">
         </select>
       </div>
-      <div class="col-md-5 column form-suf-des">
-        请选择系统相应产品名称
+      <div class="col-md-5 column form-suf-des text-info">
+        （请选择系统相应产品名称）
       </div>
     </div>
     <!-- 产品数量 -->
@@ -60,8 +60,8 @@
       <div class="col-md-4 column">
         <input id="count" class="form-control">  
       </div>
-      <div class="col-md-5 column form-suf-des">
-        must finish
+      <div id="count-suf-des" class="col-md-5 column form-suf-des text-info">
+       （必填）
       </div>
     </div>
     <!-- 备注 -->
@@ -72,8 +72,8 @@
       <div class="col-md-4 column">
         <input id="remarks" class="form-control">  
       </div>
-      <div class="col-md-5 column form-suf-des">
-        must finish
+      <div class="col-md-5 column form-suf-des text-info">
+        （选填）
       </div>
     </div>
     <!-- 下达日期 -->
@@ -84,8 +84,8 @@
       <div class="col-md-4 column">
         <input id="releaseTime" type="date" class="form-control">  
       </div>
-      <div class="col-md-5 column form-suf-des">
-        must finish
+      <div id="releaseTime-suf-des" class="col-md-5 column form-suf-des text-info">
+        （必填）
       </div>
     </div>
     <!-- 交货日期 -->
@@ -96,8 +96,8 @@
       <div class="col-md-4 column">
         <input id="deliveryTime" type="date" class="form-control">  
       </div>
-      <div class="col-md-5 column form-suf-des">
-        must finish
+      <div id="deliveryTime-suf-des" class="col-md-5 column form-suf-des text-info">
+        （必填）
       </div>
     </div>
   </div>
@@ -187,6 +187,41 @@ function submit() {
     pdt.materialCode = $("#materialCode").text();
     orders.product = pdt;
     
+    clearWarningMsg();
+
+    //检查输入是否合法
+    var isValid = 1;
+    if("" == orders.number) {
+      $("#number-suf-des").text("单据编号不能为空");
+      $("#number-suf-des").addClass("text-danger");
+      isValid = 0;
+    }
+    //测试是否为正整数
+    var type = "^[0-9]*[1-9][0-9]*$"; 
+    var re = new RegExp(type);
+    if("" == orders.count || orders.count.match(re) == null) { 
+      $("#count-suf-des").text("产品数量只能是大于0的整数");
+      $("#count-suf-des").addClass("text-danger");
+      isValid = 0;
+    }
+
+    //检查下达日期是否输入
+    if("" == orders.releaseTime) {
+      $("#releaseTime-suf-des").text("下达日期必须输入");
+      $("#releaseTime-suf-des").addClass("text-danger");
+      isValid = 0;
+    }
+
+    //检查交货日期是否输入
+    if("" == orders.deliveryTime) {
+      $("#deliveryTime-suf-des").text("交货日期必须输入");
+      $("#deliveryTime-suf-des").addClass("text-danger");
+      isValid = 0;
+    }
+
+    if(!isValid) {
+      return;
+    }
     $.ajax({
       type : "POST",
       contentType : 'application/json', 
@@ -204,6 +239,21 @@ function submit() {
           alert("error");
       }
     });
+}
+
+//提交前清除错误提示信息
+function clearWarningMsg() {
+  $("#number-suf-des").text("（必填）");
+  $("#number-suf-des").removeClass("text-danger");
+  
+  $("#count-suf-des").text("（必填）");
+  $("#count-suf-des").removeClass("text-danger");
+
+  $("#releaseTime-suf-des").text("（必填）");
+  $("#releaseTime-suf-des").removeClass("text-danger");
+
+  $("#deliveryTime-suf-des").text("（必填）");
+  $("#deliveryTime-suf-des").removeClass("text-danger");
 }
 
 // 提交工序成功，跳转到成功页面
