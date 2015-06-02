@@ -13,18 +13,23 @@ import com.runying.util.HibernateUtil;
 import com.runying.util.Msg;
 
 public class OrdersDao extends DaoUtil{
+	private String className = "Orders";
 	
 	@SuppressWarnings("unchecked")
 	public List<Orders> findAll() {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		
-		String hql = "from Orders";
+		String hql = "from "+className;
 		Query query = session.createQuery(hql);
 		List<Orders> res = query.list();
 		session.getTransaction().commit();
 		
 		return res;
+	}
+	
+	public Orders findByID(int id) {
+		return this.findByID(Orders.class, id);
 	}
 	
 	/**
