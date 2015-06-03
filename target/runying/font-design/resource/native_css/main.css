@@ -12,6 +12,11 @@ body {
   min-height: 610px;
 }
 
+.breadcrumb {
+  background-color : #FFFFFF;
+  margin-bottom: 0px;
+}
+
 .thumbnail {
   margin-bottom: 0;
   padding: 12px;
@@ -22,12 +27,20 @@ body {
   border-bottom-left-radius: 0;
   **/
   border: 0;
-  box-shadow: 10px 10px 5px #888888;
+  box-shadow: 5px 5px 5px #888888;
+}
+
+#main-page {
+  min-height: 500px;
 }
 
 .login-panel {
   margin-top: 50px;
   background-color: rgba(19, 112, 203, 0.13);
+}
+
+.table-panel {
+  margin-top: 20px;
 }
 
 .form-des {
@@ -55,6 +68,42 @@ body {
   color: #000066;
 }
 
+/*产品具体信息显示模版*/
+.pdt-panel {
+  border: 1px solid #6584E5;
+  border-radius: 3px;
+  background-color: #E5EDFA;
+}
+
+.pdt-des {
+  margin-bottom: 10px;
+  margin-top: 10px;
+}
+
+.pdt-pre-des {
+  padding-top: 3px;
+  text-align: right;
+  font-weight: bold;
+  font-size: smaller;
+  font-style: oblique;
+  color: purple;
+}
+
+.pdt-suf-des {
+  padding-top: 3px;
+  text-align: left;
+  font-size: smaller;
+  color: rgb(165, 164, 146);
+  font-style: oblique;
+}
+
+.pdt-head-des {
+  padding-left: 10px;
+  font-weight:900;
+  font-size:20px;
+  color: #000066;
+}
+
 /*override bootstrap navbar-fixed-top style*/
 .navbar-fixed-top {
   padding-left: 5%;
@@ -63,7 +112,20 @@ body {
 
 /*override bootstrap navbar-inverse in order to change nav's color*/
 .navbar-inverse {
-  background-color: #330033;
+  background-color : #5bc0de;
+  border-color : #5bc0de;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #131212;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+  background-color: #7bc0de;
+}
+
+.navbar-nav>li>.dropdown-menu {
+  background-color: #7bc0de;
 }
 
 .navbar {
@@ -71,7 +133,7 @@ body {
 }
 
 .panel-group {
-  box-shadow: 10px 10px 5px #888888;
+  box-shadow: 5px 5px 5px #888888;
 }
 
 #nav-top {
@@ -88,4 +150,12 @@ body {
   border-top: 1px solid #eee;
   background-color: grey;
   text-align: center;
+}
+
+.partition {
+  width: 100%;
+  padding: 0;
+  margin-bottom: 20px;
+  margin-top: 20px;
+  border-bottom: 1px solid #816262;
 }

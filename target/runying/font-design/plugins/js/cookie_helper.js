@@ -1,13 +1,5 @@
 function getCookie(c_name)
 {
-    // temp data
-    if(c_name == "username") {
-        return "yqw";
-    }
-    if(c_name == "identity") {
-        return "adm";
-    }
-
     if (document.cookie.length>0)
     {
         c_start=document.cookie.indexOf(c_name + "=");
@@ -24,7 +16,6 @@ function getCookie(c_name)
 }
 
 function setCookie(c_name,value,expiredays) {
-    alert(value);
     var exdate=new Date();
     exdate.setDate(exdate.getDate()+expiredays);
     document.cookie=c_name+ "=" +escape(value)+

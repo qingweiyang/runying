@@ -12,8 +12,9 @@ body {
   min-height: 610px;
 }
 
-#main-page {
-  min-height: 500px;
+.breadcrumb {
+  background-color : #FFFFFF;
+  margin-bottom: 0px;
 }
 
 .thumbnail {
@@ -26,7 +27,11 @@ body {
   border-bottom-left-radius: 0;
   **/
   border: 0;
-  box-shadow: 10px 10px 5px #888888;
+  box-shadow: 5px 5px 5px #888888;
+}
+
+#main-page {
+  min-height: 500px;
 }
 
 .login-panel {
@@ -107,7 +112,20 @@ body {
 
 /*override bootstrap navbar-inverse in order to change nav's color*/
 .navbar-inverse {
-  background-color: #330033;
+  background-color : #5bc0de;
+  border-color : #5bc0de;
+}
+
+.navbar-inverse .navbar-nav>li>a {
+  color: #131212;
+}
+
+.navbar-inverse .navbar-nav>.open>a, .navbar-inverse .navbar-nav>.open>a:focus, .navbar-inverse .navbar-nav>.open>a:hover {
+  background-color: #7bc0de;
+}
+
+.navbar-nav>li>.dropdown-menu {
+  background-color: #7bc0de;
 }
 
 .navbar {
@@ -115,7 +133,7 @@ body {
 }
 
 .panel-group {
-  box-shadow: 10px 10px 5px #888888;
+  box-shadow: 5px 5px 5px #888888;
 }
 
 #nav-top {

@@ -2,6 +2,9 @@
 <!-- 面包屑导航 -->
 <ul class="breadcrumb">
   <li>
+     <a href="#">工序管理</a>
+  </li>
+  <li>
      <a href="javascript:void(0);" onclick="loadProcessIn();">订单选择</a>
   </li>
 <li class="active">
@@ -52,19 +55,16 @@
 </div>
 
 <button type="button" class="btn btn-info btn-default" onclick="addProcess();">
-      <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
-      增加一道工序
+  <span class="glyphicon glyphicon-plus" aria-hidden="true"></span>
+  增加一道工序
 </button>
 
-<div class="partition"></div>
-
-<div class="col-md-2 col-md-offset-9 column">
-  <button type="button" class="btn btn-success btn-lg btn-block" onclick="submitProcesses();">
+<div class="ol-md-2 col-md-offset-10">
+  <button type="button" class="btn btn-success btn-block" onclick="submitProcesses();">
     <span class="glyphicon glyphicon-check" aria-hidden="true"></span>
-    完成工序输入
+    完成
   </button>
 </div>
-
 
 <script type="text/javascript">
 

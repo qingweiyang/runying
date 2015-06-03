@@ -1,3 +1,4 @@
+
 $(document).ready(function() {
 
 });
@@ -12,7 +13,9 @@ function login() {
 		"login.do",
 		param,
 		function(data) {
-			location.href = "../warehouse_main/warehouse_main.html";
+			if(data.status == 1) {
+				location.href = "../warehouse_main/warehouse_main.html";
+			}
 		});
 
 }
