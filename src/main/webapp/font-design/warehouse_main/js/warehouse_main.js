@@ -47,3 +47,8 @@ function loadProcessIn() {
 	$("#main-page").empty();
 	$("#main-page").load("../process/process_in.html");
 }
+
+function loadProcessCheck() {
+	$("#main-page").empty();
+	$("#main-page").load("../process/process_check.html");
+}

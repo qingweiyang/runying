@@ -2,6 +2,8 @@ package com.runying.po;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 public class Process {
 	private int id;
 	
@@ -84,6 +86,7 @@ public class Process {
 		return orders;
 	}
 
+	@JsonBackReference
 	public void setOrders(Orders orders) {
 		this.orders = orders;
 	}

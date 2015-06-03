@@ -38,7 +38,7 @@ public class Orders {
 	private User operator;
 	
 	//对应的工序
-//	private Set<Process> processes;
+	private Set<Process> processes;
 	
 	//订单状态 0:已删除，1:未进行生产计划，2:已进行生产计划，3
 	private int status;
@@ -131,13 +131,13 @@ public class Orders {
 		this.status = status;
 	}
 
-//	public Set<Process> getProcesses() {
-//		return processes;
-//	}
-//
-//	public void setProcesses(Set<Process> processes) {
-//		this.processes = processes;
-//	}
+	public Set<Process> getProcesses() {
+		return processes;
+	}
+
+	public void setProcesses(Set<Process> processes) {
+		this.processes = processes;
+	}
 	
 	
 }

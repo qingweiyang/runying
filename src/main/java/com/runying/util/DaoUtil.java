@@ -62,7 +62,7 @@ public class DaoUtil {
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected <T> List<T> findByColumn(String className, String columnName, String columnValue) {
+	protected <T> List<T> findByColumn(String className, String columnName, Object columnValue) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
 		

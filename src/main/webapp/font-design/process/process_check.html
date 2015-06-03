@@ -5,7 +5,7 @@
   <!-- 面包屑导航 -->
   <ul class="breadcrumb">
     <li>
-     <a href="#">工序录入</a>
+     <a href="#">工序查看</a>
     </li>
     <li class="active">
        订单选择
@@ -67,13 +67,13 @@
 <script type="text/javascript">
 
   $(document).ready(function() {
-	  showAll();
+	  showChecked();
   });
 
   // 展示一条详细订单，进行工序流程
   function detail(item) {
     $("#process-main").empty();
-   	$("#process-main").load("../process/process_piece.html", function() {
+   	$("#process-main").load("../process/process_check_piece.html", function() {
    		  var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
    	    var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
    	   	var text =  "<tr class='warning'>"+
@@ -88,19 +88,34 @@
    	                      "<td>"+"0"+"</td>"+
    	                      "</tr>";
    	    $("#one-orders-table tbody").html(text); 
+
+
+        // 展示订单下的所有关系
+        var pro = "";
+        $.each(item.processes, function(i, item) {
+          var systemTime = getFormatDateByLong(item.systemTime, "yyyy-MM-dd");
+          pro += "<tr><td>"+item.processNum+"</td>"+
+                      "<td>"+item.name+"</td>"+
+                      "<td>"+item.num+"</td>"+
+                      "<td>"+item.receiver.username+"</td>"+
+                      "<td>"+item.responsible.username+"</td>"+
+                      "<td>"+systemTime+"</td>"+
+                      "</tr>";
+        });
+        $("#all-process-table tbody").html(pro);
    	}); 
     
     
   }
 
-  function showAll() {
+  function showChecked() {
     $.get(
-      "getUncheckedOrders.do",
+      "getCheckedOrders.do",
       function(data) {
         var text = "";
         var option = "";
         $.each(data, function(i, item) {
-        	option = "<div><a href='javascript:void(0);' onclick='detail("+JSON.stringify(item)+");'>生产计划</a></div>";
+        	option = "<div><a href='javascript:void(0);' onclick='detail("+JSON.stringify(item)+");'>查看详情</a></div>";
         	var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
         	var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
           text += "<tr><td>"+item.id+"</td>"+

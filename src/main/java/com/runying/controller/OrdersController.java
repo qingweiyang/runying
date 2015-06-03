@@ -35,4 +35,26 @@ public class OrdersController {
 		return ordersDao.findAll();
 	}
 	
+	/**
+	 * 获取未经录入工序的订单
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "getUncheckedOrders.do")
+	@ResponseBody
+	public List<Orders> getUncheckedOrders() {
+		return ordersDao.findByStatus(1);
+	}
+	
+	/**
+	 * 获取已经录入工序的订单
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "getCheckedOrders.do")
+	@ResponseBody
+	public List<Orders> getCheckedOrders() {
+		return ordersDao.findByStatus(2);
+	}
+	
 }
