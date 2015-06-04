@@ -14,7 +14,7 @@
         <property name="num"/>
         <property name="systemTime"/>
         
-        <one-to-one name="responsible" class="User"/>
+        <many-to-one name="responsible" unique="true" column="responsibleID"/>
         <many-to-one name="receiver" column="receiverID"/>
         <many-to-one name="orders" column="ordersID"/>
     </class>

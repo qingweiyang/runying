@@ -22,4 +22,5 @@ public class ProductDao extends DaoUtil{
 		session.getTransaction().commit();
 		return res;
 	}
+	
 }

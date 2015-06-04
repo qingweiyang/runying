@@ -60,4 +60,5 @@ public class OrdersDao extends DaoUtil{
 		msg.setStatus(1);
 		return msg;
 	}
+	
 }

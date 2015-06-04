@@ -51,4 +51,52 @@ public class WarehouseDao extends DaoUtil{
 		msg.setStatus(1);
 		return msg;
 	}
+
+	/**
+	 * 出库
+	 * @return
+	 */
+	public Msg outWarehouse(User operator, Product product, int num) {
+		Msg msg = new Msg();
+		
+		//检查操作员是否有权限
+		if(1 != (operator.getPrivilege() >> 2 & 1)) {
+			msg.setStatus(0);
+			msg.setDescription("权限不足");
+			return msg;
+		}
+		
+		//出库数量是否合法
+		if(num <= 0) {
+			msg.setStatus(0);
+			msg.setDescription("入库数量错误，必须大于0");
+			return msg;
+		}
+		
+		//出库操作
+		//先检查仓库中是否已有该产品
+		List<Warehouse> wh = this.findByColumn(className, "product", product);
+		if(wh == null || wh.size() == 0) {
+			//没有该产品
+			msg.setStatus(0);
+			msg.setDescription("仓库没有该商品");
+			return msg;
+		} else {
+			Warehouse w = wh.get(0);
+			//库存量 是否足够
+			int wNum = w.getNumber();
+			if(wNum < num) {
+				msg.setStatus(0);
+				msg.setDescription("商品 "+w.getProduct().getMaterialName()+" 库存量不足");
+				return msg;
+			} else {
+				w.setNumber(w.getNumber()-num);
+				this.updat(w);
+			}
+			
+		}
+		
+		msg.setStatus(1);
+		return msg;
+	}
 }
