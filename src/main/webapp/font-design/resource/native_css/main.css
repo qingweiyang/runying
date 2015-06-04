@@ -43,6 +43,14 @@ body {
   margin-top: 20px;
 }
 
+.div-info {
+  background-color: #5bc0de;
+}
+
+.div-success {
+  background-color: #dff0d8;
+}
+
 .form-des {
 	margin-bottom: 20px;
 	margin-top: 20px;
@@ -112,8 +120,8 @@ body {
 
 /*override bootstrap navbar-inverse in order to change nav's color*/
 .navbar-inverse {
-  background-color : #5bc0de;
-  border-color : #5bc0de;
+  background-color : #337ab7;
+  border-color : #337ab7;
 }
 
 .navbar-inverse .navbar-nav>li>a {

@@ -7,7 +7,6 @@ function login() {
 	var param = {};
 	param.username = $("#username").val();
 	param.password = $("#password").val();
-	setCookie("username", username, 1);
 	
 	$.post(
 		"login.do",
