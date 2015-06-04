@@ -9,7 +9,7 @@ package com.runying.po;
 public class Warehouse {
 	private int id;
 	
-	private Process process;
+	private Product product;
 	
 	//库存量
 	private int number;
@@ -22,12 +22,12 @@ public class Warehouse {
 		this.id = id;
 	}
 
-	public Process getProcess() {
-		return process;
+	public Product getProduct() {
+		return product;
 	}
 
-	public void setProcess(Process process) {
-		this.process = process;
+	public void setProduct(Product product) {
+		this.product = product;
 	}
 
 	public int getNumber() {

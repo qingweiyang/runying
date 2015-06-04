@@ -35,6 +35,7 @@
         <mapping resource="com/runying/po/User.hbm.xml"/>
         <mapping resource="com/runying/po/Product.hbm.xml"/>
         <mapping resource="com/runying/po/Process.hbm.xml"/>
+        <mapping resource="com/runying/po/Warehouse.hbm.xml"/>
 
     </session-factory>
 

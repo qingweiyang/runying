@@ -11,7 +11,7 @@
         </id>
         <property name="number"/>
         
-        <one-to-one name="process" class="Process"/>
+        <one-to-one name="product" class="Product"/>
     </class>
 
 </hibernate-mapping>
