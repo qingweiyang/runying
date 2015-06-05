@@ -14,9 +14,8 @@
         <property name="num"/>
         <property name="systemTime"/>
         
-        <many-to-one name="responsible" unique="true" column="responsibleID"/>
-        <many-to-one name="receiver" column="receiverID"/>
-        <many-to-one name="orders" column="ordersID"/>
+        <many-to-one name="receiver" lazy="false" column="receiverID"/>
+        <many-to-one name="orders" lazy="false" column="ordersID"/>
     </class>
 
 </hibernate-mapping>

@@ -3,8 +3,6 @@ package com.runying.po;
 import java.util.Date;
 import java.util.Set;
 
-import com.fasterxml.jackson.annotation.JsonBackReference;
-
 /**
  * 订货单po
  * @author yqw
@@ -137,7 +135,6 @@ public class Orders {
 		return processes;
 	}
 
-	@JsonBackReference
 	public void setProcesses(Set<Process> processes) {
 		this.processes = processes;
 	}

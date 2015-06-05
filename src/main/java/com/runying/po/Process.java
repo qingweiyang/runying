@@ -18,9 +18,6 @@ public class Process {
 	
 	private Date systemTime;
 	
-	//工序计划制定人
-	private User responsible;
-	
 	//接受人
 	private User receiver;
 	
@@ -64,14 +61,6 @@ public class Process {
 
 	public void setNum(int num) {
 		this.num = num;
-	}
-
-	public User getResponsible() {
-		return responsible;
-	}
-
-	public void setResponsible(User responsible) {
-		this.responsible = responsible;
 	}
 
 	public User getReceiver() {

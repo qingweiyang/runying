@@ -69,7 +69,6 @@ public class ProcessDao extends DaoUtil{
 			Calendar now = Calendar.getInstance();
 			Date date = now.getTime();
 			p.setSystemTime(date);
-			p.setResponsible(resDB);
 			p.setReceiver(receiverDB);
 			p.setOrders(oDB);
 			this.addObject(p);
