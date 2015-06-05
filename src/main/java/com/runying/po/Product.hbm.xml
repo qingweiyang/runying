@@ -13,6 +13,7 @@
         <property name="size1"/>
         <property name="size2"/>
         <property name="materialCode"/>
+        <property name="img"/>
         
     </class>
 

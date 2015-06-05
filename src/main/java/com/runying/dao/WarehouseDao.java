@@ -13,6 +13,15 @@ public class WarehouseDao extends DaoUtil{
 	private final String className = "Warehouse";
 	
 	/**
+	 * 获取仓库里所有产品信息
+	 * 
+	 * @return
+	 */
+	public List<Warehouse> findAll() {
+		return this.findAll(className);
+	}
+	
+	/**
 	 * 入库
 	 * @return
 	 */

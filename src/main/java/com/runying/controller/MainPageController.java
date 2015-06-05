@@ -8,7 +8,7 @@ import com.runying.po.User;
 import com.runying.util.Constants;
 
 @Controller
-@RequestMapping(value={"font-design/warehouse_main/"})
+@RequestMapping(value={"font-design/warehouse_main/", "font-design/warehouse"})
 public class MainPageController {
 
 	@RequestMapping(value = "getCurUser.do")

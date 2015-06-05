@@ -52,3 +52,7 @@ function loadProcessCheck() {
 	$("#main-page").empty();
 	$("#main-page").load("../process/process_check.html");
 }
+
+function loadWarehouseInOut() {
+	location.href = "../warehouse/main.html";
+}

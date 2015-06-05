@@ -14,6 +14,9 @@ public class Product {
 	
 	//物料长代码
 	private String materialCode;
+	
+	//商品图片信息
+	private String img;
 
 	public int getId() {
 		return id;
@@ -53,6 +56,14 @@ public class Product {
 
 	public void setMaterialCode(String materialCode) {
 		this.materialCode = materialCode;
+	}
+
+	public String getImg() {
+		return img;
+	}
+
+	public void setImg(String img) {
+		this.img = img;
 	}
 	
 }

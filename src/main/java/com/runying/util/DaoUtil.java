@@ -9,6 +9,19 @@ import com.runying.po.User;
 
 public class DaoUtil {
 	
+	@SuppressWarnings("unchecked")
+	protected <T> List<T> findAll(String className) {
+		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
+		session.beginTransaction();
+		
+		String hql = "from "+className;
+		Query query = session.createQuery(hql);
+		List<T> res = query.list();
+		session.getTransaction().commit();
+		
+		return res;
+	}
+	
 	public <T> int addObject(T o) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
