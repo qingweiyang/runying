@@ -2,25 +2,46 @@ package com.runying.po;
 
 import java.util.Date;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.Table;
+
 import com.fasterxml.jackson.annotation.JsonBackReference;
 
+@Entity
+@Table(name="process")
 public class Process {
+	@Id
+	@GeneratedValue
+	@Column
 	private int id;
 	
 	//工序号
+	@Column
 	private int processNum;
 	
 	//工序名称
+	@Column
 	private String name;
 	
 	//数量
+	@Column
 	private int num;
 	
+	@Column
 	private Date systemTime;
 	
 	//接受人
+	@ManyToOne
+	@JoinColumn(name = "receiverID")
 	private User receiver;
 	
+	@ManyToOne
+	@JoinColumn(name = "ordersID")
 	private Orders orders;
 
 	public int getId() {

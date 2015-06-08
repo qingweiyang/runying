@@ -2,14 +2,19 @@ package com.runying.util;
 
 import java.util.List;
 
+import javax.transaction.Transactional;
+
 import org.hibernate.Query;
 import org.hibernate.Session;
+import org.springframework.stereotype.Repository;
 
 import com.runying.po.User;
 
-public class DaoUtil {
+@Repository
+public class DaoUtil{
 	
 	@SuppressWarnings("unchecked")
+	@Transactional
 	protected <T> List<T> findAll(String className) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();
@@ -22,6 +27,7 @@ public class DaoUtil {
 		return res;
 	}
 	
+	@Transactional
 	public <T> int addObject(T o) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -31,6 +37,7 @@ public class DaoUtil {
         return id;
 	}
 	
+	@Transactional
 	public <T> void updat(T o) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -39,6 +46,7 @@ public class DaoUtil {
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Transactional
 	public <T> List<T> loginCheck(String username, String password) {
 //		List mothers = session.createQuery(
 //			    "select mother from Cat as cat join cat.mother as mother where cat.name = ?")
@@ -52,7 +60,7 @@ public class DaoUtil {
 		query.setParameter(0, username);
 		query.setParameter(1, password);
 		List<T> res = query.list();
-		session.getTransaction().commit();
+//		session.getTransaction().commit();
 		
 		return res;
 	}
@@ -63,6 +71,7 @@ public class DaoUtil {
 	 * @param id
 	 * @return
 	 */
+	@Transactional
 	public <T, V> V findByID(Class<T> c, int id) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
         session.beginTransaction();
@@ -75,6 +84,7 @@ public class DaoUtil {
 	}
 	
 	@SuppressWarnings("unchecked")
+	@Transactional
 	protected <T> List<T> findByColumn(String className, String columnName, Object columnValue) {
 		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
 		session.beginTransaction();

@@ -1,21 +1,36 @@
 package com.runying.po;
 
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.Id;
+import javax.persistence.Table;
+
+@Entity
+@Table(name="product")
 public class Product {
-	
+	@Id
+	@GeneratedValue
+	@Column
 	private int id;
 	
 	//物料名称
+	@Column
 	private String materialName;
 	
 	//产品规格型号
+	@Column
 	private String size1;
 
+	@Column
 	private String size2;
 	
 	//物料长代码
+	@Column
 	private String materialCode;
 	
 	//商品图片信息
+	@Column
 	private String img;
 
 	public int getId() {
