@@ -10,7 +10,6 @@ import com.runying.dao.ProcessDao;
 import com.runying.po.Orders;
 import com.runying.po.Process;
 import com.runying.po.User;
-import com.runying.util.Msg;
 
 
 public class ProcessDaoTest {
@@ -54,8 +53,8 @@ public class ProcessDaoTest {
 		ps.add(p2);
 //		Msg msg = processDao.addProcess(o, u, u, p);
 //		processDao.addProcess(o, u, u, p);
-		Msg msg = processDao.addProcesses(o, u, ps);
-		System.out.println(msg.getDescription());
+//		Msg msg = processDao.addProcesses(o, u, ps);
+//		System.out.println(msg.getDescription());
 		
 	}
 }

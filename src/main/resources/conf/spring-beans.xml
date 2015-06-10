@@ -22,6 +22,8 @@
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
 	
+
+	
 	<!-- 此处为代理 -->
 	<bean name="userDaoProxy" parent="transactionProxy">
 		<property name="target" ref="userDao"></property>

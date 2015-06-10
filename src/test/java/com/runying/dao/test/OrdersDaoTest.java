@@ -4,6 +4,10 @@ import java.util.List;
 
 import org.junit.Before;
 import org.junit.Test;
+import org.junit.runner.RunWith;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.test.context.ContextConfiguration;
+import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.runying.dao.OrdersDao;
 import com.runying.po.Orders;
@@ -11,41 +15,43 @@ import com.runying.po.Product;
 import com.runying.po.User;
 import com.runying.util.Msg;
 
+@RunWith(SpringJUnit4ClassRunner.class)
+@ContextConfiguration(locations = {"classpath:conf/spring-mvc.xml", "classpath:conf/spring-hibernate.xml", "classpath:conf/spring-beans.xml"})
 public class OrdersDaoTest {
-	private OrdersDao ordesDao;
+	@Autowired
+	private OrdersDao ordesDaoProxy;
 	
 	@Before
 	public void before() {
-		ordesDao = new OrdersDao();
 	}
 	
 	//@Test
 	public void findByIDTest() {
-		Orders os = ordesDao.findByID(4);
+		Orders os = ordesDaoProxy.findByID(4);
 		System.out.println(os.getProcesses().size());
 	}
 	
 	@Test
 	public void findByStatusTest() {
-		List<Orders> os = ordesDao.findByStatus(1);
+		List<Orders> os = ordesDaoProxy.findByStatus(1);
 		System.out.println(os.size());
 	}
 	
 	//@Test
 	public void addOrdersTest() {
-		User u = ordesDao.findByID(User.class, 1);
-		Product p = ordesDao.findByID(Product.class, 1);
+		User u = ordesDaoProxy.findByID(User.class, 1);
+		Product p = ordesDaoProxy.findByID(Product.class, 1);
 		Orders o = new Orders();
 		o.setOperator(u);
 		o.setProduct(p);
-		Msg msg = ordesDao.addOrders(o);
-		ordesDao.addOrders(o);
+		Msg msg = ordesDaoProxy.addOrders(o);
+		ordesDaoProxy.addOrders(o);
 		System.out.println(msg.getStatus()+"  "+msg.getDescription());
 	}
 	
 	//@Test
 	public void findAllTest() {
-		List<Orders> os = ordesDao.findAll();
+		List<Orders> os = ordesDaoProxy.findAll();
 		for(int i = 0 ; i < os.size() ; i++) {
 			System.out.println(os.get(i).getId());
 		}

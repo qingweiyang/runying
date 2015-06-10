@@ -73,7 +73,7 @@ public class DaoUtil {
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected <T> List<T> findByColumn(String className, String columnName, Object columnValue) {
+	public <T> List<T> findByColumn(String className, String columnName, Object columnValue) {
 		Session session = sessionFactory.getCurrentSession();
 		
 		String hql = "from "+className+" as t where t."+columnName+" = ?";

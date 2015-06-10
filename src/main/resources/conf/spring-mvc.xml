@@ -17,7 +17,7 @@
         ">
 	
 	<!-- 注解扫描包 -->
-	<context:component-scan base-package="com.runying.controller" /> 
+	<context:component-scan base-package="com.runying" /> 
 
 	<!-- 开启注解 -->
 	<mvc:annotation-driven />
