@@ -19,11 +19,13 @@ public class DaoUtil {
 	}
 	
 	@SuppressWarnings("unchecked")
-	protected <T> List<T> findAll(String className) {
+	public <T> List<T> findAll(String className, int pageNumber, int countPerPage) {
 		Session session = sessionFactory.getCurrentSession();
 		
 		String hql = "from "+className;
 		Query query = session.createQuery(hql);
+		query.setFirstResult((pageNumber - 1)*countPerPage);
+		query.setMaxResults(countPerPage);
 		List<T> res = query.list();
 		
 		return res;

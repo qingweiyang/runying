@@ -22,7 +22,7 @@ public class WarehouseController {
 	@RequestMapping("/getWarehouses.do")
 	@ResponseBody
 	public List<Warehouse> getWarehouses() {
-		return warehouseDaoProxy.findAll();
+		return warehouseDaoProxy.findAll(1, 5);
 	}
 	
 	@RequestMapping("/inWarehouse.do")

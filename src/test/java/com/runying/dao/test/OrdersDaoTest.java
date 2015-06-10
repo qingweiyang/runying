@@ -51,7 +51,7 @@ public class OrdersDaoTest {
 	
 	//@Test
 	public void findAllTest() {
-		List<Orders> os = ordesDaoProxy.findAll();
+		List<Orders> os = ordesDaoProxy.findAll(1, 5);
 		for(int i = 0 ; i < os.size() ; i++) {
 			System.out.println(os.get(i).getId());
 		}

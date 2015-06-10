@@ -19,7 +19,7 @@ public class ProductDaoTest {
 	
 	@Test
 	public void acceptTask() {
-		List<Product> ps = productDao.findAll();
+		List<Product> ps = productDao.findAll(1, 5);
 		for(int i = 0 ; i < ps.size() ; i++) {
 			System.out.println(ps.get(i).getMaterialName());
 		}

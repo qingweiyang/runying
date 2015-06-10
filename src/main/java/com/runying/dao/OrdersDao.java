@@ -11,8 +11,8 @@ import com.runying.util.Msg;
 public class OrdersDao extends DaoUtil{
 	private String className = "Orders";
 	
-	public List<Orders> findAll() {
-		return this.findAll(className);
+	public List<Orders> findAll(int pageNumber, int countPerPage) {
+		return this.findAll(className, pageNumber, countPerPage);
 	}
 	
 	public Orders findByID(int id) {

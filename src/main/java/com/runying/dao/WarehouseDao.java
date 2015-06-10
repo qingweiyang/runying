@@ -17,8 +17,8 @@ public class WarehouseDao extends DaoUtil{
 	 * 
 	 * @return
 	 */
-	public List<Warehouse> findAll() {
-		return this.findAll(className);
+	public List<Warehouse> findAll(int pageNumber, int countPerPage) {
+		return this.findAll(className, pageNumber, countPerPage);
 	}
 	
 	/**

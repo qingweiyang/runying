@@ -19,7 +19,7 @@ public class ProductController {
 	@RequestMapping("/getProducts.do")
 	@ResponseBody
 	public List<Product> getProducts() {
-		return productDaoProxy.findAll();
+		return productDaoProxy.findAll(1, 5);
 	}
 	
 }

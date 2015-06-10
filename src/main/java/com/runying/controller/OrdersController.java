@@ -33,7 +33,7 @@ public class OrdersController {
 	@RequestMapping(value = "getAllOrders.do")
 	@ResponseBody
 	public List<Orders> getOrders() {
-		return ordersDaoProxy.findAll();
+		return ordersDaoProxy.findAll(1, 5);
 	}
 	
 	/**
