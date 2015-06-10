@@ -6,8 +6,36 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans.xsd">
 	
-	<bean id="daoUtil" class="com.runying.util.DaoUtil">
+	<bean id="userDao" class="com.runying.dao.UserDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
-
+	<bean id="ordersDao" class="com.runying.dao.OrdersDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="processDao" class="com.runying.dao.ProcessDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="productDao" class="com.runying.dao.ProductDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="warehouseDao" class="com.runying.dao.WarehouseDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	
+	<!-- 此处为代理 -->
+	<bean name="userDaoProxy" parent="transactionProxy">
+		<property name="target" ref="userDao"></property>
+	</bean>	
+	<bean name="ordersDaoProxy" parent="transactionProxy">
+		<property name="target" ref="ordersDao"></property>
+	</bean>	
+	<bean name="processDaoProxy" parent="transactionProxy">
+		<property name="target" ref="processDao"></property>
+	</bean>	
+	<bean name="productDaoProxy" parent="transactionProxy">
+		<property name="target" ref="productDao"></property>
+	</bean>
+	<bean name="warehouseDaoProxy" parent="transactionProxy">
+		<property name="target" ref="warehouseDao"></property>
+	</bean>
 </beans>

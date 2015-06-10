@@ -6,24 +6,27 @@ import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.runying.dao.UserDao;
 import com.runying.po.User;
 import com.runying.util.Constants;
-import com.runying.util.DaoUtil;
 import com.runying.util.Msg;
 
 @Controller
 @RequestMapping(value={"font-design/log/", "font-design/warehouse_main", "font-design/warehouse"})
 public class LogController {
+	@Autowired
+	private UserDao userDaoProxy;
 	
 	@RequestMapping(value = "login.do")
 	@ResponseBody
 	public Msg login(HttpServletRequest request, String username, String password) {
 		Msg msg = new Msg();
-		List<User> us = new DaoUtil().loginCheck(username, password);
+		List<User> us = userDaoProxy.loginCheck(username, password);
 		if(us.size() < 1) {
 			msg.setStatus(0);
 			return msg;

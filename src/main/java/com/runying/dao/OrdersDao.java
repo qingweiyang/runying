@@ -4,28 +4,15 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-
 import com.runying.po.Orders;
 import com.runying.util.DaoUtil;
-import com.runying.util.HibernateUtil;
 import com.runying.util.Msg;
 
 public class OrdersDao extends DaoUtil{
 	private String className = "Orders";
 	
-	@SuppressWarnings("unchecked")
 	public List<Orders> findAll() {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		
-		String hql = "from "+className;
-		Query query = session.createQuery(hql);
-		List<Orders> res = query.list();
-		session.getTransaction().commit();
-		
-		return res;
+		return this.findAll(className);
 	}
 	
 	public Orders findByID(int id) {

@@ -1,5 +1,6 @@
 package com.runying.controller;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -13,13 +14,13 @@ import com.runying.vo.OrdersProcessVO;
 @Controller
 @RequestMapping(value={"font-design/warehouse_main/"})
 public class ProcessController {
-	
-	private ProcessDao processDao = new ProcessDao();
+	@Autowired
+	private ProcessDao processDaoProxy;
 	
 	@RequestMapping("/addProcesses.do")
 	@ResponseBody
 	public Msg addProcesses(@RequestBody OrdersProcessVO opv) {
-		return processDao.addProcesses(opv.getOrders(), Constants.user, opv.getPs());
+		return processDaoProxy.addProcesses(opv.getOrders(), Constants.user, opv.getPs());
 	}
 	
 }

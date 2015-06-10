@@ -2,6 +2,7 @@ package com.runying.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,24 +16,24 @@ import com.runying.util.Msg;
 @Controller
 @RequestMapping(value={"font-design/warehouse/"})
 public class WarehouseController {
-	
-	private WarehouseDao warehouseDao = new WarehouseDao();
+	@Autowired
+	private WarehouseDao warehouseDaoProxy;
 	
 	@RequestMapping("/getWarehouses.do")
 	@ResponseBody
 	public List<Warehouse> getWarehouses() {
-		return warehouseDao.findAll();
+		return warehouseDaoProxy.findAll();
 	}
 	
 	@RequestMapping("/inWarehouse.do")
 	@ResponseBody
 	public Msg inWarehouse(@RequestBody Warehouse w) {
-		return warehouseDao.inWarehouse(Constants.user, w.getProduct(), w.getNumber());
+		return warehouseDaoProxy.inWarehouse(Constants.user, w.getProduct(), w.getNumber());
 	}
 	
 	@RequestMapping("/outWarehouse.do")
 	@ResponseBody
 	public Msg outWarehouse(@RequestBody Warehouse w) {
-		return warehouseDao.outWarehouse(Constants.user, w.getProduct(), w.getNumber());
+		return warehouseDaoProxy.outWarehouse(Constants.user, w.getProduct(), w.getNumber());
 	}
 }

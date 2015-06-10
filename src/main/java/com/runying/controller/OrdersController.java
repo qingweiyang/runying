@@ -2,6 +2,7 @@ package com.runying.controller;
 
 import java.util.List;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,8 @@ import com.runying.util.Msg;
 @Controller
 @RequestMapping(value={"font-design/warehouse_main/"})
 public class OrdersController {
-	
-	private OrdersDao ordersDao = new OrdersDao();
+	@Autowired
+	private OrdersDao ordersDaoProxy;
 	
 	@RequestMapping("/ordersIn.do")
 	@ResponseBody
@@ -24,7 +25,7 @@ public class OrdersController {
 		Msg msg;
 		
 		o.setOperator(Constants.user);
-		msg = ordersDao.addOrders(o);
+		msg = ordersDaoProxy.addOrders(o);
 		
 		return msg;
 	}
@@ -32,7 +33,7 @@ public class OrdersController {
 	@RequestMapping(value = "getAllOrders.do")
 	@ResponseBody
 	public List<Orders> getOrders() {
-		return ordersDao.findAll();
+		return ordersDaoProxy.findAll();
 	}
 	
 	/**
@@ -43,7 +44,7 @@ public class OrdersController {
 	@RequestMapping(value = "getUncheckedOrders.do")
 	@ResponseBody
 	public List<Orders> getUncheckedOrders() {
-		return ordersDao.findByStatus(1);
+		return ordersDaoProxy.findByStatus(1);
 	}
 	
 	/**
@@ -54,7 +55,7 @@ public class OrdersController {
 	@RequestMapping(value = "getCheckedOrders.do")
 	@ResponseBody
 	public List<Orders> getCheckedOrders() {
-		return ordersDao.findByStatus(2);
+		return ordersDaoProxy.findByStatus(2);
 	}
 	
 }

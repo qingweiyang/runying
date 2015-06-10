@@ -15,7 +15,7 @@ public class Product {
 	private int id;
 	
 	//物料名称
-	@Column
+	@Column(name = "material_name")
 	private String materialName;
 	
 	//产品规格型号

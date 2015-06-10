@@ -2,65 +2,57 @@ package com.runying.util;
 
 import java.util.List;
 
-import javax.transaction.Transactional;
+import javax.annotation.Resource;
 
 import org.hibernate.Query;
 import org.hibernate.Session;
-import org.springframework.stereotype.Repository;
+import org.hibernate.SessionFactory;
 
 import com.runying.po.User;
 
-@Repository
-public class DaoUtil{
+public class DaoUtil {
+	@Resource(name="sessionFactory")
+	private SessionFactory sessionFactory;
+
+	public void setSessionFactory(SessionFactory sessionFactory) {
+		this.sessionFactory = sessionFactory;
+	}
 	
 	@SuppressWarnings("unchecked")
-	@Transactional
 	protected <T> List<T> findAll(String className) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+		Session session = sessionFactory.getCurrentSession();
 		
 		String hql = "from "+className;
 		Query query = session.createQuery(hql);
 		List<T> res = query.list();
-		session.getTransaction().commit();
 		
 		return res;
 	}
 	
-	@Transactional
 	public <T> int addObject(T o) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
+		Session session = sessionFactory.getCurrentSession();
+		
         int id = (Integer) session.save(o);
-        session.getTransaction().commit();
         
         return id;
 	}
 	
-	@Transactional
 	public <T> void updat(T o) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
+		Session session = sessionFactory.getCurrentSession();
+      
         session.update(o);
-        session.getTransaction().commit();
+        
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Transactional
 	public <T> List<T> loginCheck(String username, String password) {
-//		List mothers = session.createQuery(
-//			    "select mother from Cat as cat join cat.mother as mother where cat.name = ?")
-//			    .setString(0, name)
-//			    .list();
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+		Session session = sessionFactory.getCurrentSession();
 		
 		String hql = "from com.runying.po.User as user where user.username = ? and user.password = ?";
 		Query query = session.createQuery(hql);
 		query.setParameter(0, username);
 		query.setParameter(1, password);
 		List<T> res = query.list();
-//		session.getTransaction().commit();
 		
 		return res;
 	}
@@ -71,29 +63,23 @@ public class DaoUtil{
 	 * @param id
 	 * @return
 	 */
-	@Transactional
+	@SuppressWarnings("unchecked")
 	public <T, V> V findByID(Class<T> c, int id) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-        session.beginTransaction();
-        
-		@SuppressWarnings("unchecked")
+		Session session = sessionFactory.getCurrentSession();
+		
 		V o = (V) session.get(c, id);
 		
-        session.getTransaction().commit();
         return o;
 	}
 	
 	@SuppressWarnings("unchecked")
-	@Transactional
 	protected <T> List<T> findByColumn(String className, String columnName, Object columnValue) {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
+		Session session = sessionFactory.getCurrentSession();
 		
 		String hql = "from "+className+" as t where t."+columnName+" = ?";
 		Query query = session.createQuery(hql);
 		query.setParameter(0, columnValue);
 		List<T> res = query.list();
-		session.getTransaction().commit();
 		
 		return res;
 	}

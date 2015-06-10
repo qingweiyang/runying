@@ -2,25 +2,14 @@ package com.runying.dao;
 
 import java.util.List;
 
-import org.hibernate.Query;
-import org.hibernate.Session;
-
 import com.runying.po.Product;
 import com.runying.util.DaoUtil;
-import com.runying.util.HibernateUtil;
 
 public class ProductDao extends DaoUtil{
+	private String className = "Product";
 	
-	@SuppressWarnings("unchecked")
 	public List<Product> findAll() {
-		Session session = HibernateUtil.getSessionFactory().getCurrentSession();
-		session.beginTransaction();
-		
-		String hql = "from Product";
-		Query query = session.createQuery(hql);
-		List<Product> res = query.list();;
-		session.getTransaction().commit();
-		return res;
+		return this.findAll(className);
 	}
 	
 }

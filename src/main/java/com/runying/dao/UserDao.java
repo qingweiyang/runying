@@ -17,4 +17,8 @@ public class UserDao extends DaoUtil{
 			return null;
 		}
 	}
+	
+//	public boolean exist(String username, String password) {
+//		
+//	}
 }
