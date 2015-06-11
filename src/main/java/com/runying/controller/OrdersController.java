@@ -12,6 +12,7 @@ import com.runying.dao.OrdersDao;
 import com.runying.po.Orders;
 import com.runying.util.Constants;
 import com.runying.util.Msg;
+import com.runying.vo.TableVO;
 
 @Controller
 @RequestMapping(value={"font-design/warehouse_main/"})
@@ -32,8 +33,14 @@ public class OrdersController {
 	
 	@RequestMapping(value = "getAllOrders.do")
 	@ResponseBody
-	public List<Orders> getOrders() {
-		return ordersDaoProxy.findAll(1, 5);
+	public TableVO<Orders> getOrders(int currentPage, int countPerPage) {
+		List<Orders> os = ordersDaoProxy.findAll(currentPage, countPerPage);
+		TableVO<Orders> tvo = new TableVO<Orders>();
+		tvo.setRows(os);
+		tvo.setCurrentPage(currentPage);
+		tvo.setCountPerPage(countPerPage);
+		tvo.setPages((ordersDaoProxy.size()-1) / countPerPage + 1);
+		return tvo;
 	}
 	
 	/**

@@ -18,6 +18,14 @@ public class DaoUtil {
 		this.sessionFactory = sessionFactory;
 	}
 	
+	public Long size(String className) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		String hql = "select count(*) from "+className;
+		Query query = session.createQuery(hql);
+		return (Long) query.uniqueResult();
+	}
+	
 	@SuppressWarnings("unchecked")
 	public <T> List<T> findAll(String className, int pageNumber, int countPerPage) {
 		Session session = sessionFactory.getCurrentSession();

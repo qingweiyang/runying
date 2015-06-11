@@ -23,6 +23,10 @@ public class OrdersDao extends DaoUtil{
 		return this.findByColumn(className, "status", status);
 	}
 	
+	public Long size() {
+		return this.size(className);
+	}
+	
 	/**
 	 * add an order, return false if the user has not the privilege. System adds current time as the time the recorded in system
 	 *  
