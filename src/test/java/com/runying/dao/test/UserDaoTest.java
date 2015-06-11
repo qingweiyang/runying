@@ -14,7 +14,7 @@ public class UserDaoTest {
 		userDao = new UserDao();
 	}
 	
-	@Test
+	//@Test
 	public void findByUsernameTest() {
 		System.out.println(userDao.findByUsername("yq99w"));
 	}

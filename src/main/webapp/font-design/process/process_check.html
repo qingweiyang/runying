@@ -64,10 +64,17 @@
   </div>
 </div>
 
+<!-- 分页 -->
+<nav>
+  <ul class="pagination">
+  </ul>
+</nav>
+
+<script src="../plugins/js/page_division.js"></script>  
 <script type="text/javascript">
 
   $(document).ready(function() {
-	  showChecked();
+	  showAllOrders(1, countPerPage);
   });
 
   // 展示一条详细订单，进行工序流程
@@ -102,18 +109,24 @@
                       "</tr>";
         });
         $("#all-process-table tbody").html(pro);
+        // 删除分页
+        $(".pagination").remove();
    	}); 
     
     
   }
 
-  function showChecked() {
+  function showAllOrders(currentPage, countPerPage) {
+    var param = {};
+    param.currentPage = currentPage;
+    param.countPerPage = countPerPage;
     $.get(
       "getCheckedOrders.do",
+      param,
       function(data) {
         var text = "";
         var option = "";
-        $.each(data, function(i, item) {
+        $.each(data.rows, function(i, item) {
         	option = "<div><a href='javascript:void(0);' onclick='detail("+JSON.stringify(item)+");'>查看详情</a></div>";
         	var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
         	var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
@@ -130,6 +143,7 @@
                       "</tr>";
         });
         $("#all-process-table tbody").html(text);
+        pageDivision(data.pages, currentPage);
       });
   }
 </script>

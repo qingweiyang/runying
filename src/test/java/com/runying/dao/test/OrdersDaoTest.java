@@ -15,8 +15,8 @@ import com.runying.po.Product;
 import com.runying.po.User;
 import com.runying.util.Msg;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:conf/spring-mvc.xml", "classpath:conf/spring-hibernate.xml", "classpath:conf/spring-beans.xml"})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = {"classpath:conf/spring-mvc.xml", "classpath:conf/spring-hibernate.xml", "classpath:conf/spring-beans.xml"})
 public class OrdersDaoTest {
 	@Autowired
 	private OrdersDao ordesDaoProxy;
@@ -31,10 +31,8 @@ public class OrdersDaoTest {
 		System.out.println(os.getProcesses().size());
 	}
 	
-	@Test
+	//@Test
 	public void findByStatusTest() {
-		List<Orders> os = ordesDaoProxy.findByStatus(1);
-		System.out.println(os.size());
 	}
 	
 	//@Test

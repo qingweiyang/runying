@@ -17,7 +17,7 @@ public class ProductDaoTest {
 		productDao = new ProductDao();
 	}
 	
-	@Test
+	//@Test
 	public void acceptTask() {
 		List<Product> ps = productDao.findAll(1, 5);
 		for(int i = 0 ; i < ps.size() ; i++) {

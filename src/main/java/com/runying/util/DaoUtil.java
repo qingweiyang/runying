@@ -94,6 +94,21 @@ public class DaoUtil {
 		return res;
 	}
 	
+	@SuppressWarnings("unchecked")
+	public <T> List<T> findByColumn(String className, String columnName, Object columnValue,
+			int pageNumber, int countPerPage) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		String hql = "from "+className+" as t where t."+columnName+" = ?";
+		Query query = session.createQuery(hql);
+		query.setParameter(0, columnValue);
+		query.setFirstResult((pageNumber - 1)*countPerPage);
+		query.setMaxResults(countPerPage);
+		List<T> res = query.list();
+		
+		return res;
+	}
+	
 	public static void main(String[] args) {
 		User u = new User();
 		u.setUsername("test");

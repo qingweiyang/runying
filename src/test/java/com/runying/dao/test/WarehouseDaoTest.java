@@ -25,7 +25,7 @@ public class WarehouseDaoTest {
 		System.out.println(msg.getDescription());
 	}
 
-	@Test
+	//@Test
 	public void outWarehouseTest() {
 		User operator = new DaoUtil().findByID(User.class, 1);
 		Product product = new DaoUtil().findByID(Product.class, 1);

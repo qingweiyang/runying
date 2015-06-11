@@ -19,8 +19,12 @@ public class OrdersDao extends DaoUtil{
 		return this.findByID(Orders.class, id);
 	}
 	
-	public List<Orders> findByStatus(int status) {
-		return this.findByColumn(className, "status", status);
+	public List<Orders> findByStatus(int status, int pageNumber, int countPerPage) {
+		return this.findByColumn(className, "status", status, pageNumber, countPerPage);
+	}
+	
+	public Long sizeWithStatus(int status) {
+		return (long) this.findByColumn(className, "status", status).size();
 	}
 	
 	public Long size() {

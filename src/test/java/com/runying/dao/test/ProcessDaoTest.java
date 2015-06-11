@@ -9,8 +9,8 @@ import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 
 import com.runying.service.ProcessService;
 
-@RunWith(SpringJUnit4ClassRunner.class)
-@ContextConfiguration(locations = {"classpath:conf/spring-mvc.xml", "classpath:conf/spring-hibernate.xml", "classpath:conf/spring-beans.xml"})
+//@RunWith(SpringJUnit4ClassRunner.class)
+//@ContextConfiguration(locations = {"classpath:conf/spring-mvc.xml", "classpath:conf/spring-hibernate.xml", "classpath:conf/spring-beans.xml"})
 public class ProcessDaoTest {
 	@Autowired
 	private ProcessService processService;
@@ -23,7 +23,7 @@ public class ProcessDaoTest {
 //		processDao.addObject(p);
 	}
 	
-	@Test
+	//@Test
 	public void addProcessTest() {
 		
 	}

@@ -50,8 +50,14 @@ public class OrdersController {
 	 */
 	@RequestMapping(value = "getUncheckedOrders.do")
 	@ResponseBody
-	public List<Orders> getUncheckedOrders() {
-		return ordersDaoProxy.findByStatus(1);
+	public TableVO<Orders> getUncheckedOrders(int currentPage, int countPerPage) {
+		List<Orders> os = ordersDaoProxy.findByStatus(1, currentPage, countPerPage);
+		TableVO<Orders> tvo = new TableVO<Orders>();
+		tvo.setRows(os);
+		tvo.setCurrentPage(currentPage);
+		tvo.setCountPerPage(countPerPage);
+		tvo.setPages((ordersDaoProxy.sizeWithStatus(1)-1) / countPerPage + 1);
+		return tvo;
 	}
 	
 	/**
@@ -61,8 +67,14 @@ public class OrdersController {
 	 */
 	@RequestMapping(value = "getCheckedOrders.do")
 	@ResponseBody
-	public List<Orders> getCheckedOrders() {
-		return ordersDaoProxy.findByStatus(2);
+	public TableVO<Orders> getCheckedOrders(int currentPage, int countPerPage) {
+		List<Orders> os = ordersDaoProxy.findByStatus(2, currentPage, countPerPage);
+		TableVO<Orders> tvo = new TableVO<Orders>();
+		tvo.setRows(os);
+		tvo.setCurrentPage(currentPage);
+		tvo.setCountPerPage(countPerPage);
+		tvo.setPages((ordersDaoProxy.sizeWithStatus(2)-1) / countPerPage + 1);
+		return tvo;
 	}
 	
 }

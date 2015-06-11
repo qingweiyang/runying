@@ -16,7 +16,7 @@ public class DaoUtilTest {
 		daoUtil = new OrdersDao();
 	}
 	
-	@Test
+	//@Test
 	public void addObjectTest() {
 		User u = new User();
 		u.setUsername("yqw");
