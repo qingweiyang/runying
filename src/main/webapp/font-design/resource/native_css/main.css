@@ -4,6 +4,8 @@ body {
 
 #main-page {
   min-height: 500px;
+  padding: 12px;
+  background-color: #fff;
 }
 
 .login-panel {
@@ -111,7 +113,6 @@ body {
   border-bottom-left-radius: 0;
   **/
   border: 0;
-  box-shadow: 5px 5px 5px #888888;
 }
 
 .pagination {
@@ -138,12 +139,12 @@ body {
   background-color: #7bc0de;
 }
 
-.navbar-nav>li>.dropdown-menu {
+.navbar-default .navbar-nav>.open>a, .navbar-default .navbar-nav>.open>a:focus, .navbar-default .navbar-nav>.open>a:hover {
   background-color: #7bc0de;
 }
 
-.navbar {
-  box-shadow: 5px 5px 5px #888888;
+.navbar-nav>li>.dropdown-menu {
+  background-color: #7bc0de;
 }
 
 .panel-group {

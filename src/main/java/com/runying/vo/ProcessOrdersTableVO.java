@@ -1,6 +1,9 @@
 package com.runying.vo;
 
 import java.util.Date;
+import java.util.Set;
+
+import com.runying.po.Process;
 
 /**
  * 工序录入>订单选择 时展示订单详情的table vo
@@ -35,6 +38,9 @@ public class ProcessOrdersTableVO {
 	//库存量
 	private int warehouseCount;
 
+	//对应的工序
+	private Set<Process> processes;
+	
 	public int getId() {
 		return id;
 	}
@@ -106,6 +112,13 @@ public class ProcessOrdersTableVO {
 	public void setWarehouseCount(int warehouseCount) {
 		this.warehouseCount = warehouseCount;
 	}
-	
-	
+
+	public Set<Process> getProcesses() {
+		return processes;
+	}
+
+	public void setProcesses(Set<Process> processes) {
+		this.processes = processes;
+	}
+
 }

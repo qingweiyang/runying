@@ -8,8 +8,6 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-import com.runying.po.User;
-
 public class DaoUtil {
 	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
@@ -82,6 +80,13 @@ public class DaoUtil {
         return o;
 	}
 	
+	/**
+	 * 
+	 * @param className
+	 * @param columnName
+	 * @param columnValue
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public <T> List<T> findByColumn(String className, String columnName, Object columnValue) {
 		Session session = sessionFactory.getCurrentSession();
@@ -94,6 +99,15 @@ public class DaoUtil {
 		return res;
 	}
 	
+	/**
+	 * 
+	 * @param className
+	 * @param columnName
+	 * @param columnValue
+	 * @param pageNumber
+	 * @param countPerPage
+	 * @return
+	 */
 	@SuppressWarnings("unchecked")
 	public <T> List<T> findByColumn(String className, String columnName, Object columnValue,
 			int pageNumber, int countPerPage) {
@@ -108,14 +122,5 @@ public class DaoUtil {
 		
 		return res;
 	}
-	
-	public static void main(String[] args) {
-		User u = new User();
-		u.setUsername("test");
-		u.setPassword("123");
-		new DaoUtil().addObject(u);
-		new DaoUtil().addObject(u);
-		new DaoUtil().addObject(u);
-		HibernateUtil.getSessionFactory().close();
-    }
+
 }

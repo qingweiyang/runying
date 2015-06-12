@@ -41,12 +41,13 @@ public class OrdersService {
 			po.setReleaseTime(o.getReleaseTime());
 			po.setSize1(o.getProduct().getSize1());
 			po.setSize2(o.getProduct().getSize2());
+			po.setProcesses(o.getProcesses());
 			
 			pos.add(po);
 		}
 		tvo.setCountPerPage(countPerPage);
 		tvo.setCurrentPage(currentPage);
-		tvo.setPages((ordersDaoProxy.sizeWithStatus(1)-1) / countPerPage + 1);
+		tvo.setPages((ordersDaoProxy.sizeWithStatus(status)-1) / countPerPage + 1);
 		tvo.setRows(pos);
 		
 		return tvo;
