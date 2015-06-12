@@ -62,13 +62,13 @@
         <tbody></tbody>
       </table>
   </div>
-</div>
 
-<!-- 分页 -->
-<nav>
-  <ul class="pagination">
-  </ul>
-</nav>
+  <!-- 分页 -->
+  <nav>
+    <ul class="pagination">
+    </ul>
+  </nav>
+</div>
 
 <script src="../plugins/js/page_division.js"></script>  
 <script type="text/javascript">
@@ -87,12 +87,12 @@
    	   					          "<td>"+item.id+"</td>"+
    	                      "<td>"+releaseTime+"</td>"+
    	                      "<td>"+item.number+"</td>"+
-   	                      "<td>"+item.product.materialName+"</td>"+
-   	                      "<td>"+item.product.size1+"</td>"+
-   	                      "<td>"+item.product.size2+"</td>"+
+   	                      "<td>"+item.materialName+"</td>"+
+   	                      "<td>"+item.size1+"</td>"+
+   	                      "<td>"+item.size2+"</td>"+
    	                      "<td>"+item.count+"</td>"+
    	                      "<td>"+deliveryTime+"</td>"+
-   	                      "<td>"+"0"+"</td>"+
+   	                      "<td>"+item.warehouseCount+"</td>"+
    	                      "</tr>";
    	    $("#one-orders-table tbody").html(text); 
 
@@ -109,8 +109,6 @@
                       "</tr>";
         });
         $("#all-process-table tbody").html(pro);
-        // 删除分页
-        $(".pagination").remove();
    	}); 
     
     
@@ -133,12 +131,12 @@
           text += "<tr><td>"+item.id+"</td>"+
                       "<td>"+releaseTime+"</td>"+
                       "<td>"+item.number+"</td>"+
-                      "<td>"+item.product.materialName+"</td>"+
-                      "<td>"+item.product.size1+"</td>"+
-                      "<td>"+item.product.size2+"</td>"+
+                      "<td>"+item.materialName+"</td>"+
+                      "<td>"+item.size1+"</td>"+
+                      "<td>"+item.size2+"</td>"+
                       "<td>"+item.count+"</td>"+
                       "<td>"+deliveryTime+"</td>"+
-                      "<td>"+"0"+"</td>"+
+                      "<td>"+item.warehouseCount+"</td>"+
                       "<td>"+option+"</td>"+
                       "</tr>";
         });

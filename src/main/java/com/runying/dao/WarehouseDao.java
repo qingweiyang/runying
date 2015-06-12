@@ -21,6 +21,15 @@ public class WarehouseDao extends DaoUtil{
 		return this.findAll(className, pageNumber, countPerPage);
 	}
 	
+	public Warehouse findByProduct(Product p) {
+		List<Warehouse> ps = this.findByColumn(className, "product", p);
+		if(ps == null || ps.size() == 0) {
+			return null;
+		} else {
+			return ps.get(0);
+		}
+	}
+	
 	/**
 	 * 入库
 	 * @return

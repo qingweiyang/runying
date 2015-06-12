@@ -10,8 +10,10 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.runying.dao.OrdersDao;
 import com.runying.po.Orders;
+import com.runying.service.OrdersService;
 import com.runying.util.Constants;
 import com.runying.util.Msg;
+import com.runying.vo.ProcessOrdersTableVO;
 import com.runying.vo.TableVO;
 
 @Controller
@@ -19,6 +21,9 @@ import com.runying.vo.TableVO;
 public class OrdersController {
 	@Autowired
 	private OrdersDao ordersDaoProxy;
+	
+	@Autowired
+	private OrdersService ordersService;
 	
 	@RequestMapping("/ordersIn.do")
 	@ResponseBody
@@ -50,14 +55,8 @@ public class OrdersController {
 	 */
 	@RequestMapping(value = "getUncheckedOrders.do")
 	@ResponseBody
-	public TableVO<Orders> getUncheckedOrders(int currentPage, int countPerPage) {
-		List<Orders> os = ordersDaoProxy.findByStatus(1, currentPage, countPerPage);
-		TableVO<Orders> tvo = new TableVO<Orders>();
-		tvo.setRows(os);
-		tvo.setCurrentPage(currentPage);
-		tvo.setCountPerPage(countPerPage);
-		tvo.setPages((ordersDaoProxy.sizeWithStatus(1)-1) / countPerPage + 1);
-		return tvo;
+	public TableVO<ProcessOrdersTableVO> getUncheckedOrders(int currentPage, int countPerPage) {
+		return ordersService.getOrdersVOByStatus(1, currentPage, countPerPage);
 	}
 	
 	/**
@@ -67,14 +66,8 @@ public class OrdersController {
 	 */
 	@RequestMapping(value = "getCheckedOrders.do")
 	@ResponseBody
-	public TableVO<Orders> getCheckedOrders(int currentPage, int countPerPage) {
-		List<Orders> os = ordersDaoProxy.findByStatus(2, currentPage, countPerPage);
-		TableVO<Orders> tvo = new TableVO<Orders>();
-		tvo.setRows(os);
-		tvo.setCurrentPage(currentPage);
-		tvo.setCountPerPage(countPerPage);
-		tvo.setPages((ordersDaoProxy.sizeWithStatus(2)-1) / countPerPage + 1);
-		return tvo;
+	public TableVO<ProcessOrdersTableVO> getCheckedOrders(int currentPage, int countPerPage) {
+		return ordersService.getOrdersVOByStatus(2, currentPage, countPerPage);
 	}
 	
 }
