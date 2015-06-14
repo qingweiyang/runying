@@ -9,26 +9,17 @@ import com.runying.util.DaoUtil;
 import com.runying.util.Msg;
 
 public class OrdersDao extends DaoUtil{
-	private String className = "Orders";
-	
-	public List<Orders> findAll(int pageNumber, int countPerPage) {
-		return this.findAll(className, pageNumber, countPerPage);
-	}
 	
 	public Orders findByID(int id) {
 		return this.findByID(Orders.class, id);
 	}
 	
 	public List<Orders> findByStatus(int status, int pageNumber, int countPerPage) {
-		return this.findByColumn(className, "status", status, pageNumber, countPerPage);
+		return this.findByColumn("status", status, pageNumber, countPerPage);
 	}
 	
 	public Long sizeWithStatus(int status) {
-		return (long) this.findByColumn(className, "status", status).size();
-	}
-	
-	public Long size() {
-		return this.size(className);
+		return (long) this.findByColumn("status", status).size();
 	}
 	
 	/**
@@ -54,6 +45,11 @@ public class OrdersDao extends DaoUtil{
 		this.addObject(o);
 		msg.setStatus(1);
 		return msg;
+	}
+
+	@Override
+	protected String className() {
+		return "Orders";
 	}
 	
 }

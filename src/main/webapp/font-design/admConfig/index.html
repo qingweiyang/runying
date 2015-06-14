@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="UTF-8">
+	<title>ry erp</title>
+
+	<!-- Bootstrap -->
+    <link href="../resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="../resource/jquery/jquery-1.11.3.min.js"></script>
+    <!-- Include all compiled plugins (below), or include individual files as needed -->
+    <script src="../resource/bootstrap/js/bootstrap.min.js"></script>
+
+    <link href="./css/native.css" rel="stylesheet">
+    <link rel="stylesheet" href="lib/font-awesome-4.3.0/css/font-awesome.css">
+</head>
+<body>
+
+	<!-- nav导航栏 -->
+	<nav class="navbar navbar-default theme-blue" role="navigation">
+		<div class="navbar-header">
+          <a class="" href="index.html">
+          	<span class="navbar-brand">
+          		<span class="fa fa-diamond"></span> RunYing
+          	</span>
+          </a>
+      	</div>
+				
+		<div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+			<form class="navbar-form navbar-left" role="search">
+				<div class="form-group">
+					<input type="text" class="form-control" />
+				</div> <button type="submit" class="btn btn-default">Submit</button>
+			</form>
+			<ul class="nav navbar-nav navbar-right">
+				<li>
+					 <a href="#">Link</a>
+				</li>
+				<li class="dropdown">
+					 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+					 	<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+					 	 username<strong class="caret"></strong>
+					 </a>
+					<ul class="dropdown-menu">
+						<li>
+							 <a href="#">Action</a>
+						</li>
+						<li>
+							 <a href="#">Another action</a>
+						</li>
+						<li>
+							 <a href="#">Something else here</a>
+						</li>
+						<li class="divider">
+						</li>
+						<li>
+							 <a href="#">Separated link</a>
+						</li>
+					</ul>
+				</li>
+			</ul>
+		</div>
+	</nav>
+
+	<!-- 左侧导航栏 -->
+	<div class="sidebar-nav">
+		<ul>
+			<li>
+				<a href="#dashboard-menu" class="nav-header collapsed" data-toggle="collapse">
+					<i class="fa fa-fw fa-dashboard"></i>
+					Dashboard
+					<i class="fa fa-collapse"></i>
+				</a>
+			</li>	
+			<li>
+				<ul id="dashboard-menu" class="nav nav-list collapse in">
+		            <li><a href="index.html"><span class="fa fa-caret-right"></span> Main</a></li>
+		            <li><a href="index.html"><span class="fa fa-caret-right"></span> User List</a></li>
+		            <li><a href="user.html"><span class="fa fa-caret-right"></span> User Profile</a></li>
+		            <li><a href="media.html"><span class="fa fa-caret-right"></span> Media</a></li>
+		            <li><a href="calendar.html"><span class="fa fa-caret-right"></span> Calendar</a></li>
+    			</ul>
+    		</li>
+
+			<!-- 用户管理 -->
+    		<li>
+				<a href="#usermanage-menu" class="nav-header collapsed" data-toggle="collapse">
+					<i class="fa fa-fw fa-users"></i>
+					用户管理
+					<i class="fa fa-collapse"></i>
+				</a>
+			</li>	
+			<li>
+				<ul id="usermanage-menu" class="nav nav-list collapse">
+		            <li><a href="javascript:void(0);" onclick="loadList();"><span class="fa fa-caret-right"></span> 用户列表</a></li>
+		            <li><a href="users.html"><span class="fa fa-caret-right"></span> 新增用户</a></li>
+		            <li><a href="user.html"><span class="fa fa-caret-right"></span> 操作日志</a></li>
+    			</ul>
+    		</li>
+
+    		<!-- 产品管理 -->
+    		<li>
+				<a href="#productrmanage-menu" class="nav-header collapsed" data-toggle="collapse">
+					<i class="fa fa-fw fa-wrench"></i>
+					产品管理
+					<i class="fa fa-collapse"></i>
+				</a>
+			</li>	
+			<li>
+				<ul id="productrmanage-menu" class="nav nav-list collapse">
+		            <li><a href="javascript:void(0);"><span class="fa fa-caret-right"></span> 产品列表</a></li>
+		            <li><a href="users.html"><span class="fa fa-caret-right"></span> 新增产品</a></li>
+		            <li><a href="user.html"><span class="fa fa-caret-right"></span> 操作日志</a></li>
+    			</ul>
+    		</li>
+
+		</ul>
+
+    </div>
+
+    <!-- 主页面 -->
+    <div class="content">
+    </div>
+
+</body>
+
+<script src="./js/index.js"></script>
+
+</html>

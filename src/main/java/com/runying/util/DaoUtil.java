@@ -8,7 +8,9 @@ import org.hibernate.Query;
 import org.hibernate.Session;
 import org.hibernate.SessionFactory;
 
-public class DaoUtil {
+public abstract class DaoUtil {
+	protected abstract String className();
+	
 	@Resource(name="sessionFactory")
 	private SessionFactory sessionFactory;
 
@@ -16,19 +18,19 @@ public class DaoUtil {
 		this.sessionFactory = sessionFactory;
 	}
 	
-	public Long size(String className) {
+	public Long size() {
 		Session session = sessionFactory.getCurrentSession();
 		
-		String hql = "select count(*) from "+className;
+		String hql = "select count(*) from " + this.className();
 		Query query = session.createQuery(hql);
 		return (Long) query.uniqueResult();
 	}
 	
 	@SuppressWarnings("unchecked")
-	public <T> List<T> findAll(String className, int pageNumber, int countPerPage) {
+	public <T> List<T> findAll(int pageNumber, int countPerPage) {
 		Session session = sessionFactory.getCurrentSession();
 		
-		String hql = "from "+className;
+		String hql = "from " + this.className();
 		Query query = session.createQuery(hql);
 		query.setFirstResult((pageNumber - 1)*countPerPage);
 		query.setMaxResults(countPerPage);
@@ -88,10 +90,10 @@ public class DaoUtil {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public <T> List<T> findByColumn(String className, String columnName, Object columnValue) {
+	public <T> List<T> findByColumn(String columnName, Object columnValue) {
 		Session session = sessionFactory.getCurrentSession();
 		
-		String hql = "from "+className+" as t where t."+columnName+" = ?";
+		String hql = "from "+this.className()+" as t where t."+columnName+" = ?";
 		Query query = session.createQuery(hql);
 		query.setParameter(0, columnValue);
 		List<T> res = query.list();
@@ -109,11 +111,11 @@ public class DaoUtil {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public <T> List<T> findByColumn(String className, String columnName, Object columnValue,
+	public <T> List<T> findByColumn(String columnName, Object columnValue,
 			int pageNumber, int countPerPage) {
 		Session session = sessionFactory.getCurrentSession();
 		
-		String hql = "from "+className+" as t where t."+columnName+" = ?";
+		String hql = "from "+ this.className() +" as t where t."+columnName+" = ?";
 		Query query = session.createQuery(hql);
 		query.setParameter(0, columnValue);
 		query.setFirstResult((pageNumber - 1)*countPerPage);

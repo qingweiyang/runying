@@ -9,5 +9,11 @@ public class ProcessDao extends DaoUtil{
 		// TODO Auto-generated method stub
 		super.updat(o);
 	}
+
+	@Override
+	protected String className() {
+		// TODO Auto-generated method stub
+		return "Process";
+	}
 	
 }

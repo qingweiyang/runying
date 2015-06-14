@@ -7,14 +7,18 @@ import com.runying.util.DaoUtil;
 
 public class UserDao extends DaoUtil{
 	
-	private final String className = "User";
-	
 	public User findByUsername(String username) {
-		List<User> us = this.findByColumn(className, "username", username);
+		List<User> us = this.findByColumn("username", username);
 		if(us != null && us.size() !=0) {
 			return us.get(0);
 		} else {
 			return null;
 		}
+	}
+
+	@Override
+	protected String className() {
+		// TODO Auto-generated method stub
+		return "User";
 	}
 }

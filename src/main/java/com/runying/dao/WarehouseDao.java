@@ -10,19 +10,8 @@ import com.runying.util.Msg;
 
 public class WarehouseDao extends DaoUtil{
 	
-	private final String className = "Warehouse";
-	
-	/**
-	 * 获取仓库里所有产品信息
-	 * 
-	 * @return
-	 */
-	public List<Warehouse> findAll(int pageNumber, int countPerPage) {
-		return this.findAll(className, pageNumber, countPerPage);
-	}
-	
 	public Warehouse findByProduct(Product p) {
-		List<Warehouse> ps = this.findByColumn(className, "product", p);
+		List<Warehouse> ps = this.findByColumn("product", p);
 		if(ps == null || ps.size() == 0) {
 			return null;
 		} else {
@@ -53,7 +42,7 @@ public class WarehouseDao extends DaoUtil{
 		
 		//入库操作
 		//先检查仓库中是否已有该产品
-		List<Warehouse> wh = this.findByColumn(className, "product", product);
+		List<Warehouse> wh = this.findByColumn("product", product);
 		if(wh == null || wh.size() == 0) {
 			//没有该产品
 			Warehouse w = new Warehouse();
@@ -93,7 +82,7 @@ public class WarehouseDao extends DaoUtil{
 		
 		//出库操作
 		//先检查仓库中是否已有该产品
-		List<Warehouse> wh = this.findByColumn(className, "product", product);
+		List<Warehouse> wh = this.findByColumn("product", product);
 		if(wh == null || wh.size() == 0) {
 			//没有该产品
 			msg.setStatus(0);
@@ -116,5 +105,10 @@ public class WarehouseDao extends DaoUtil{
 		
 		msg.setStatus(1);
 		return msg;
+	}
+
+	@Override
+	protected String className() {
+		return "Warehouse";
 	}
 }
