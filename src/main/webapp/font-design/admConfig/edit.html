@@ -15,7 +15,7 @@
   <div class="info-panel">
     <!-- 用户名 -->
     <div class="row clearfix form-des">
-      <div class="col-md-1 column form-pre-des">
+      <div class="col-md-2 column form-pre-des">
         用户名 ：
       </div>
       <div id="name-suf-des" class="col-md-7 column form-suf-des text-info">
@@ -24,31 +24,29 @@
     </div>
 
   	<div class="row clearfix form-des">
-      <div class="col-md-1 column form-pre-des">
+      <div class="col-md-2 column form-pre-des">
           权限编辑 ：
+      </div>
+      <div class="checkbox-cont-des">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox1" value="option1"> 录入订单
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox2" value="option2"> 增加工序
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox3" value="option3"> 入库出库
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox4" value="option4" disabled> 管理员
+          </label>
       </div>
     </div>
    
-    <div class="row clearfix form-des">
-      <div class="col-md-offset-1">
-        <label class="checkbox-inline">
-          <input type="checkbox" id="inlineCheckbox1" value="option1"> 录入订单
-        </label>
-        <label class="checkbox-inline">
-          <input type="checkbox" id="inlineCheckbox2" value="option2"> 增加工序
-        </label>
-        <label class="checkbox-inline">
-          <input type="checkbox" id="inlineCheckbox3" value="option3"> 入库出库
-        </label>
-        <label class="checkbox-inline">
-          <input type="checkbox" id="inlineCheckbox4" value="option4" disabled> 管理员
-        </label>
-      </div>
-    </div>
 
     <div class="row clearfix form-des">
-      <div class="col-md-1">
-        <button type="button" class="btn btn-default btn-block" onclick="editUserPrivilege();"><i class="fa fa-fw fa-check-square-o"></i> 完成</button>
+      <div class="col-left-1p">
+        <button type="button" class="btn btn-default" onclick="editUserPrivilege();"><i class="fa fa-fw fa-check-square-o"></i> 完成</button>
       </div>
     </div>
 

@@ -91,6 +91,26 @@
         }
     }); 
   }
+
+  function deleteUser(user) {
+    $.ajax({
+      type : "POST",
+      contentType : 'application/json', 
+      url : "deleteUser.do",
+      data : JSON.stringify(user), 
+      dataType: "json",
+      success : function(data) {
+          if(data.status == 1) {
+            loadList();
+          } else {
+            alert(data.description);
+          }
+      },
+      error : function(){
+          alert("error");
+      }
+    });
+  }
     
   function show(currentPage, countPerPage) {
     var param = {};
@@ -104,7 +124,7 @@
         var option = "";
         $.each(data.rows, function(i, item) {
         	option = "<a href='javascript:void(0);' onclick='edit("+JSON.stringify(item)+");'><i class='fa fa-pencil-square-o fa-lg'> </i></a>  ";
-          option += "<a href='javascript:void(0);' onclick='detail("+JSON.stringify(item)+");'><i class='fa fa-trash fa-lg'> </i></a>";
+          option += "<a href='javascript:void(0);' onclick='deleteUser("+JSON.stringify(item)+");'><i class='fa fa-trash fa-lg'> </i></a>";
           var pri = '';
           var privilege = item.privilege;
           if((privilege & 1) == 1) {

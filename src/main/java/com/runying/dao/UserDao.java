@@ -16,6 +16,10 @@ public class UserDao extends DaoUtil{
 		}
 	}
 
+	public Long sizeWithStatus(int status) {
+		return (long) this.findByColumn("status", status).size();
+	}
+	
 	@Override
 	protected String className() {
 		// TODO Auto-generated method stub

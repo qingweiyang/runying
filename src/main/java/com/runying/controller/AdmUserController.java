@@ -21,7 +21,7 @@ public class AdmUserController {
 	@RequestMapping(value = "getAllUser.do")
 	@ResponseBody
 	public TableVO<User> getAllUser(int currentPage, int countPerPage) {
-		return userService.getAllUser(currentPage, countPerPage);
+		return userService.getUndeletedUser(currentPage, countPerPage);
 	}
 	
 	/**
@@ -35,4 +35,29 @@ public class AdmUserController {
 	public Msg editUserPrivilege(@RequestBody User user) {
 		return userService.editUserPrivilege(user, Constants.user);
 	}
+	
+	/**
+	 * 删除用户权限
+	 * @param currentPage
+	 * @param countPerPage
+	 * @return
+	 */
+	@RequestMapping(value = "deleteUser.do")
+	@ResponseBody
+	public Msg deleteUser(@RequestBody User user) {
+		return userService.deleteUser(user, Constants.user);
+	}
+	
+	/**
+	 * 添加用户
+	 * 
+	 * @param 　user
+	 * @return
+	 */
+	@RequestMapping(value = "addUser.do")
+	@ResponseBody
+	public Msg addUser(@RequestBody User user) {
+		return userService.addUser(user, Constants.user);
+	}
+	
 }

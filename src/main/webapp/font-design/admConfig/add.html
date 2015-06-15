@@ -14,74 +14,50 @@
   <div class="info-panel">
     <!-- 用户名 -->
     <div class="row clearfix form-des">
-      <div class="col-md-1 column form-pre-des">
+      <div class="col-md-2 column form-pre-des">
         用户名 ：
       </div>
-      <div id="name-suf-des" class="col-md-2 column">
-        <input id="username" class="form-control"> 
+      <div class="col-md-2 column">
+        <input id="name-suf-des" type="text" class="form-control">
       </div>
     </div>
-
-  	<div class="row clearfix form-des">
-      <div class="col-md-1 column form-pre-des">
-         	权限 ：
+    <div class="row clearfix form-des">
+      <div class="col-md-2 column form-pre-des">
+          拥有权限 ：
       </div>
-      <div class="col-md-6 column">
-        <div class="checkbox-cont-des">
-        <label class="checkbox-inline">
-          <input type="checkbox" id="inlineCheckbox1" value="option1"> 录入订单
-        </label>
-        <label class="checkbox-inline">
-          <input type="checkbox" id="inlineCheckbox2" value="option2"> 增加工序
-        </label>
-        <label class="checkbox-inline">
-          <input type="checkbox" id="inlineCheckbox3" value="option3"> 入库出库
-        </label>
-        <label class="checkbox-inline">
-          <input type="checkbox" id="inlineCheckbox4" value="option4" disabled> 管理员
-        </label>
-        </div>
+      <div class="checkbox-cont-des">
+          <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox1" value="option1"> 录入订单
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox2" value="option2"> 增加工序
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox3" value="option3"> 入库出库
+          </label>
+          <label class="checkbox-inline">
+            <input type="checkbox" id="inlineCheckbox4" value="option4" disabled> 管理员
+          </label>
+      </div>
     </div>
-    </div>
-  
+   
 
     <div class="row clearfix form-des">
-      <div class="col-md-1">
-        <button type="button" class="btn btn-default btn-block" onclick="addUser();"><i class="fa fa-fw fa-check-square-o"></i> 完成</button>
+      <div class="col-left-1p">
+        <button type="button" class="btn btn-default" onclick="addUser();"><i class="fa fa-fw fa-check-square-o"></i> 完成</button>
       </div>
     </div>
 
   </div>
 
+
 </div>
 
 <script type="text/javascript">
 
-  function editSuccess(item) {
-    $("#process-main").empty();
-    $("#process-main").load("editSuccess.html", function() {
-        $("#name-suf-des").text(item.username);
-        var pri = '';
-        var privilege = item.privilege;
-        if((privilege & 1) == 1) {
-          pri += '<span class="label label-primary">录入订单</span> ';
-        } 
-        if(((privilege >> 1) & 1) == 1) {
-          pri += '<span class="label label-primary">增加工序</span> ';
-        } 
-        if(((privilege >> 2) & 1) == 1) {
-          pri += '<span class="label label-primary">入库出库</span> ';
-        }
-        if(((privilege >> 3) & 1) == 1) {
-          pri += '<span class="label label-success">管理员</span> ';
-        }
-        $("#pri-suf-des").append(pri);
-    }); 
-  }
-
-  function editUserPrivilege() {
+  function addUser() {
     var user = {};
-    user.username = $("#name-suf-des").text();
+    user.username = $("#name-suf-des").val();
     var privilege = 0;
     if(true == $("#inlineCheckbox1").is(":checked")) {
       privilege += 1;
@@ -100,12 +76,12 @@
     $.ajax({
       type : "POST",
       contentType : 'application/json', 
-      url : "editUserPrivilege.do",
+      url : "addUser.do",
       data : JSON.stringify(user), 
       dataType: "json",
       success : function(data) {
           if(data.status == 1) {
-            editSuccess(user);
+            addSuccess(user);
           } else {
             alert(data.description);
           }
@@ -114,6 +90,28 @@
           alert("error");
       }
     });
+  }
+
+  function addSuccess(item) {
+    $("#process-main").empty();
+    $("#process-main").load("addSuccess.html", function() {
+        $("#name-suf-des").text(item.username);
+        var pri = '';
+        var privilege = item.privilege;
+        if((privilege & 1) == 1) {
+          pri += '<span class="label label-primary">录入订单</span> ';
+        } 
+        if(((privilege >> 1) & 1) == 1) {
+          pri += '<span class="label label-primary">增加工序</span> ';
+        } 
+        if(((privilege >> 2) & 1) == 1) {
+          pri += '<span class="label label-primary">入库出库</span> ';
+        }
+        if(((privilege >> 3) & 1) == 1) {
+          pri += '<span class="label label-success">管理员</span> ';
+        }
+        $("#pri-suf-des").append(pri);
+    }); 
   }
 
 </script>

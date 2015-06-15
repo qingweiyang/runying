@@ -29,6 +29,11 @@ public class User {
 	// ？？？，[入库/出库，增加产品到仓库][增加工序权限]［录入订单信息权限］
 	@Column
 	private int privilege;
+	
+	// 用户状态 000,000
+	// [删除]
+	@Column
+	private int status;
 
 	public int getId() {
 		return id;
@@ -62,4 +67,12 @@ public class User {
 		this.privilege = privilege;
 	}
 
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
+	}
+	
 }
