@@ -5,14 +5,14 @@
   <!-- 面包屑导航 -->
   <ul class="breadcrumb">
     <li>
-     <a href="#">工序查看</a>
+     <a href="#">用户管理</a>
     </li>
     <li class="active">
-       订单选择
+       用户列表
     </li>
   </ul>
 
-  <div class="panel panel-success table-panel">
+  <div class="panel panel-info table-panel">
       <!-- Default panel contents -->
       <div class="panel-heading">
         <!-- 表格的筛选操作 -->
@@ -44,18 +44,12 @@
         </div>
       </div>
 
-      <table id="all-process-table" class="table table-hover table-bordered">
+      <table id="current-table" class="table table-hover">
         <thead>
           <tr class="active">
-            <th>订单号</th>
-            <th>下达日期</th>
-            <th>单据编号</th>
-            <th>物料名称</th>
-            <th>规格型号</th>
-            <th>规格型号2</th>
-            <th>数量</th>
-            <th>交货日期</th>
-            <th>库存量</th>
+            <th>#</th>
+            <th>用户名</th>
+            <th>权限</th>
             <th>操作</th>
           </tr>
         </thead>
@@ -77,70 +71,56 @@
 	  show(1, countPerPage);
   });
 
-  // 展示一条详细订单，进行工序流程
-  function detail(item) {
+  // 权限编辑
+  function edit(item) {
     $("#process-main").empty();
-   	$("#process-main").load("../process/process_check_piece.html", function() {
-   		  var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
-   	    var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
-   	   	var text =  "<tr class='info'>"+
-   	   					          "<td>"+item.id+"</td>"+
-   	                      "<td>"+releaseTime+"</td>"+
-   	                      "<td>"+item.number+"</td>"+
-   	                      "<td>"+item.materialName+"</td>"+
-   	                      "<td>"+item.size1+"</td>"+
-   	                      "<td>"+item.size2+"</td>"+
-   	                      "<td>"+item.count+"</td>"+
-   	                      "<td>"+deliveryTime+"</td>"+
-   	                      "<td>"+item.warehouseCount+"</td>"+
-   	                      "</tr>";
-   	    $("#one-orders-table tbody").html(text); 
-
-
-        // 展示订单下的所有关系
-        var pro = "";
-        $.each(item.processes, function(i, item) {
-          var systemTime = getFormatDateByLong(item.systemTime, "yyyy-MM-dd");
-          pro += "<tr><td>"+item.processNum+"</td>"+
-                      "<td>"+item.name+"</td>"+
-                      "<td>"+item.num+"</td>"+
-                      "<td>"+item.receiver.username+"</td>"+
-                      "<td>"+systemTime+"</td>"+
-                      "</tr>";
-        });
-        $("#all-process-table tbody").html(pro);
-   	}); 
-    
-    
+    $("#process-main").load("edit.html", function() {
+        $("#name-suf-des").text(item.username);
+        var privilege = item.privilege;
+        if((privilege & 1) == 1) {
+          $("#inlineCheckbox1").attr("checked", true);
+        } 
+        if(((privilege >> 1) & 1) == 1) {
+          $("#inlineCheckbox2").attr("checked", true);
+        } 
+        if(((privilege >> 2) & 1) == 1) {
+          $("#inlineCheckbox3").attr("checked", true);
+        }
+    }); 
   }
-
+    
   function show(currentPage, countPerPage) {
     var param = {};
     param.currentPage = currentPage;
     param.countPerPage = countPerPage;
     $.get(
-      "getCheckedOrders.do",
+      "getAllUser.do",
       param,
       function(data) {
         var text = "";
         var option = "";
         $.each(data.rows, function(i, item) {
-        	option = "<div><a href='javascript:void(0);' onclick='detail("+JSON.stringify(item)+");'>查看详情</a></div>";
-        	var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
-        	var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
-          text += "<tr><td>"+item.id+"</td>"+
-                      "<td>"+releaseTime+"</td>"+
-                      "<td>"+item.number+"</td>"+
-                      "<td>"+item.materialName+"</td>"+
-                      "<td>"+item.size1+"</td>"+
-                      "<td>"+item.size2+"</td>"+
-                      "<td>"+item.count+"</td>"+
-                      "<td>"+deliveryTime+"</td>"+
-                      "<td>"+item.warehouseCount+"</td>"+
+        	option = "<a href='javascript:void(0);' onclick='edit("+JSON.stringify(item)+");'><i class='fa fa-pencil-square-o fa-lg'> </i></a>  ";
+          option += "<a href='javascript:void(0);' onclick='detail("+JSON.stringify(item)+");'><i class='fa fa-trash fa-lg'> </i></a>";
+          var pri = '';
+          var privilege = item.privilege;
+          if((privilege & 1) == 1) {
+            pri += '<span class="label label-primary">录入订单</span> ';
+          } 
+          if(((privilege >> 1) & 1) == 1) {
+            pri += '<span class="label label-primary">增加工序</span> ';
+          } 
+          if(((privilege >> 2) & 1) == 1) {
+            pri += '<span class="label label-primary">入库出库</span> ';
+          }
+
+          text += "<tr><td>"+(i+1)+"</td>"+
+                      "<td>"+item.username+"</td>"+
+                      "<td>"+pri+"</td>"+
                       "<td>"+option+"</td>"+
                       "</tr>";
         });
-        $("#all-process-table tbody").html(text);
+        $("#current-table tbody").html(text);
         pageDivision(data.pages, currentPage);
       });
   }

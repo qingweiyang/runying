@@ -35,7 +35,7 @@
   background: #fff;
   margin-left: 15%;
   border-left: 1px solid #cccccc;
-  padding: 15px 15px 0px 15px;
+  padding: 25px;
 }
 
 .theme-blue {
@@ -44,6 +44,37 @@
 
 a:hover {
   text-decoration: none;
+}
+
+.form-des {
+  margin-bottom: 20px;
+  margin-top: 20px;
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.form-pre-des {
+  padding-top: 7px;
+  text-align: right;
+  font-weight: bold;
+}
+
+.form-suf-des {
+  padding-top: 7px;
+  text-align: left;
+}
+
+.form-head-des {
+  padding-left: 10px;
+  font-weight:900;
+  font-size:25px;
+  color: #000066;
+}
+
+.info-panel {
+  background-color: #f7f7f9;
+  border: 1px solid #e1e1e8;
+  border-radius: 4px;
 }
 
 /*------------------------- Navigation ------------------------*/
