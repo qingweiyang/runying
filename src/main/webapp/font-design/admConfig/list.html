@@ -86,6 +86,9 @@
         if(((privilege >> 2) & 1) == 1) {
           $("#inlineCheckbox3").attr("checked", true);
         }
+        if(((privilege >> 3) & 1) == 1) {
+          $("#inlineCheckbox4").attr("checked", true);
+        }
     }); 
   }
     
@@ -112,6 +115,9 @@
           } 
           if(((privilege >> 2) & 1) == 1) {
             pri += '<span class="label label-primary">入库出库</span> ';
+          }
+          if(((privilege >> 3) & 1) == 1) {
+            pri += '<span class="label label-success">管理员</span> ';
           }
 
           text += "<tr><td>"+(i+1)+"</td>"+

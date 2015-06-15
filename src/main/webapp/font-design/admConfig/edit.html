@@ -40,6 +40,9 @@
         <label class="checkbox-inline">
           <input type="checkbox" id="inlineCheckbox3" value="option3"> 入库出库
         </label>
+        <label class="checkbox-inline">
+          <input type="checkbox" id="inlineCheckbox4" value="option4" disabled> 管理员
+        </label>
       </div>
     </div>
 
@@ -69,6 +72,9 @@
         if(((privilege >> 2) & 1) == 1) {
           pri += '<span class="label label-primary">入库出库</span> ';
         }
+        if(((privilege >> 3) & 1) == 1) {
+          pri += '<span class="label label-success">管理员</span> ';
+        }
         $("#pri-suf-des").append(pri);
     }); 
   }
@@ -85,6 +91,9 @@
     } 
     if(true == $("#inlineCheckbox3").is(":checked")) {
       privilege += 4;
+    }
+    if(true == $("#inlineCheckbox4").is(":checked")) {
+      privilege += 8;
     }
     user.privilege = privilege;
 
