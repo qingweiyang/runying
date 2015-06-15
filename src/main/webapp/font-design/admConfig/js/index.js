@@ -23,3 +23,8 @@ function loadList() {
 	$(".content").empty();
 	$(".content").load("../admConfig/list.html");
 }
+
+function loadAdd() {
+	$(".content").empty();
+	$(".content").load("../admConfig/add.html");
+}

@@ -71,6 +71,10 @@ a:hover {
   color: #000066;
 }
 
+.checkbox-cont-des {
+  padding-top: 7px;
+}
+
 .info-panel {
   background-color: #f7f7f9;
   border: 1px solid #e1e1e8;
