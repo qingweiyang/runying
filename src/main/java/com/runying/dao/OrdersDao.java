@@ -10,10 +10,6 @@ import com.runying.util.Msg;
 
 public class OrdersDao extends DaoUtil{
 	
-	public Orders findByID(int id) {
-		return this.findByID(Orders.class, id);
-	}
-	
 	public List<Orders> findByStatus(int status, int pageNumber, int countPerPage) {
 		return this.findByColumn("status", status, pageNumber, countPerPage);
 	}

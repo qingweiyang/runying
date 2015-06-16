@@ -15,7 +15,7 @@ public class Product {
 	private int id;
 	
 	//物料名称
-	@Column(name = "material_name")
+	@Column
 	private String materialName;
 	
 	//产品规格型号
@@ -32,6 +32,11 @@ public class Product {
 	//商品图片信息
 	@Column
 	private String img;
+	
+	// 商品状态 000,000
+	// [删除]
+	@Column
+	private int status;
 
 	public int getId() {
 		return id;
@@ -79,6 +84,14 @@ public class Product {
 
 	public void setImg(String img) {
 		this.img = img;
+	}
+
+	public int getStatus() {
+		return status;
+	}
+
+	public void setStatus(int status) {
+		this.status = status;
 	}
 	
 }

@@ -6,8 +6,10 @@ public class ProductDao extends DaoUtil{
 
 	@Override
 	protected String className() {
-		// TODO Auto-generated method stub
 		return "Product";
 	}
 	
+	public Long sizeWithStatus(int status) {
+		return (long) this.findByColumn("status", status).size();
+	}
 }

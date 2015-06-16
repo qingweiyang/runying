@@ -7,19 +7,19 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.runying.dao.ProductDao;
 import com.runying.po.Product;
+import com.runying.service.ProductService;
 
 @Controller
 @RequestMapping(value={"font-design/warehouse_main/"})
 public class ProductController {
 	@Autowired
-	private ProductDao productDaoProxy;
+	private ProductService productService;
 	
 	@RequestMapping("/getProducts.do")
 	@ResponseBody
 	public List<Product> getProducts() {
-		return productDaoProxy.findAll(1, 5);
+		return productService.getAllUndeletedProduct();
 	}
 	
 }

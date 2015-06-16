@@ -28,3 +28,13 @@ function loadAdd() {
 	$(".content").empty();
 	$(".content").load("../admConfig/add.html");
 }
+
+function loadProductList() {
+	$(".content").empty();
+	$(".content").load("../admConfig/productList.html");
+}
+
+function loadProductAdd() {
+	$(".content").empty();
+	$(".content").load("../admConfig/productAdd.html");
+}

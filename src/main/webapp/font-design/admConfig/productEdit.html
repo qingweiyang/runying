@@ -1,0 +1,115 @@
+
+  <!-- 面包屑导航 -->
+  <ul class="breadcrumb">
+    <li>
+     <a href="#">产品管理</a>
+    </li>
+    <li>
+     <a href="javascript:void(0);" onclick="loadProductList();">产品列表</a>
+    </li>
+    <li class="active">
+       	产品编辑
+    </li>
+  </ul>
+
+  <div class="info-panel">
+    <!-- 产品序列号(id) -->
+    <div class="row clearfix form-des">
+      <div class="col-md-2 column form-pre-des">
+        产品序列号 ：
+      </div>
+      <div id="id" class="col-md-3 column form-suf-des text-info">
+        null
+      </div>
+    </div>
+    
+    <!-- 产品名 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-2 column form-pre-des">
+        产品名 ：
+      </div>
+      <div class="col-md-3 column">
+        <input id="name" type="text" class="form-control">
+      </div>
+    </div>
+
+    <!-- 规格型号1 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-2 column form-pre-des">
+        规格型号1 ：
+      </div>
+      <div class="col-md-3 column">
+        <input id="size1" type="text" class="form-control">
+      </div>
+    </div>
+
+    <!-- 规格型号2 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-2 column form-pre-des">
+        规格型号2 ：
+      </div>
+      <div class="col-md-3 column">
+        <input id="size2" type="text" class="form-control">
+      </div>
+    </div>
+
+    <!-- 物料长代码 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-2 column form-pre-des">
+        物料长代码 ：
+      </div>
+      <div class="col-md-3 column">
+        <input id="materialCode" type="text" class="form-control">
+      </div>
+    </div>
+
+    <div class="row clearfix form-des">
+      <div class="col-left-1p">
+        <button type="button" class="btn btn-default" onclick="editProduct();"><i class="fa fa-fw fa-check-square-o"></i> 完成</button>
+      </div>
+    </div>
+
+  </div>
+
+
+<script type="text/javascript">
+
+  function productEditSuccess(item) {
+    $("#process-main").empty();
+    $("#process-main").load("productEditSuccess.html", function() {
+        $("#id").text(item.id);
+        $("#name").text(item.materialName);
+        $("#size1").text(item.size1);
+        $("#size2").text(item.size2);
+        $("#materialCode").text(item.materialCode);
+    }); 
+  }
+
+  function editProduct() {
+    var product = {};
+    product.id = $("#id").text();
+    product.materialName = $("#name").val();
+    product.size1 = $("#size1").val();
+    product.size2 = $("#size2").val();
+    product.materialCode = $("#materialCode").val();
+
+    $.ajax({
+      type : "POST",
+      contentType : 'application/json', 
+      url : "editProduct.do",
+      data : JSON.stringify(product), 
+      dataType: "json",
+      success : function(data) {
+          if(data.status == 1) {
+            productEditSuccess(product);
+          } else {
+            alert(data.description);
+          }
+      },
+      error : function(){
+          alert("error");
+      }
+    });
+  }
+
+</script>

@@ -83,6 +83,24 @@ public abstract class DaoUtil {
 	}
 	
 	/**
+	 * get object by id
+	 * @param T
+	 * @param id
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> T findByID(int id) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		String hql = "from "+this.className()+" as t where t.id = ?";
+		Query query = session.createQuery(hql);
+		query.setParameter(0, id);
+		T res = (T) query.uniqueResult();
+		
+        return res;
+	}
+	
+	/**
 	 * 
 	 * @param className
 	 * @param columnName
