@@ -29,7 +29,7 @@ public class OrdersController {
 	@ResponseBody
 	public Msg ordersIn(@RequestBody Orders o) {
 		Msg msg;
-		
+		System.out.println("------------------------"+o.getRemarks());
 		o.setOperator(Constants.user);
 		msg = ordersDaoProxy.addOrders(o);
 		

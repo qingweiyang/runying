@@ -1,5 +1,5 @@
 $(document).ready(function(){
-	//getCurUser();
+	getCurUser();
 });
 
 function logout() {
