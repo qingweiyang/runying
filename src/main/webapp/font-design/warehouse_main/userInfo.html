@@ -1,0 +1,99 @@
+
+  <!-- 面包屑导航 -->
+  <ul class="breadcrumb">
+    <li class="active">
+       	个人信息
+    </li>
+  </ul>
+
+	<div class="zero-clipboard">
+		<a href="#" onclick="loadUserEdit();">
+			<span class="btn-clipboard">编辑</span>
+		</a>
+	</div>
+  <div class="info-panel">
+    <!-- 用户名 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-2 column form-pre-des">
+        	姓名 ：
+      </div>
+      <div id="name" class="col-md-3 column form-suf-des text-info">
+        null
+      </div>
+    </div>
+
+    <!-- 权限 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-2 column form-pre-des">
+          	权限 ：
+      </div>
+      <div id="pri-suf-des" class="col-md-7 column form-suf-des text-info">
+        
+      </div>
+    </div>
+
+  </div>
+
+  
+  <script type="text/javascript">
+
+  function editSuccess(item) {
+    $("#process-main").empty();
+    $("#process-main").load("editSuccess.html", function() {
+        $("#name-suf-des").text(item.username);
+        var pri = '';
+        var privilege = item.privilege;
+        if((privilege & 1) == 1) {
+          pri += '<span class="label label-primary">录入订单</span> ';
+        } 
+        if(((privilege >> 1) & 1) == 1) {
+          pri += '<span class="label label-primary">增加工序</span> ';
+        } 
+        if(((privilege >> 2) & 1) == 1) {
+          pri += '<span class="label label-primary">入库出库</span> ';
+        }
+        if(((privilege >> 3) & 1) == 1) {
+          pri += '<span class="label label-success">管理员</span> ';
+        }
+        $("#pri-suf-des").append(pri);
+    }); 
+  }
+
+  function editUserPrivilege() {
+    var user = {};
+    user.username = $("#name-suf-des").text();
+    var privilege = 0;
+    if(true == $("#inlineCheckbox1").is(":checked")) {
+      privilege += 1;
+    } 
+    if(true == $("#inlineCheckbox2").is(":checked")) {
+      privilege += 2;
+    } 
+    if(true == $("#inlineCheckbox3").is(":checked")) {
+      privilege += 4;
+    }
+    if(true == $("#inlineCheckbox4").is(":checked")) {
+      privilege += 8;
+    }
+    user.privilege = privilege;
+
+    $.ajax({
+      type : "POST",
+      contentType : 'application/json', 
+      url : "editUserPrivilege.do",
+      data : JSON.stringify(user), 
+      dataType: "json",
+      success : function(data) {
+          if(data.status == 1) {
+            editSuccess(user);
+          } else {
+            alert(data.description);
+          }
+      },
+      error : function(){
+          alert("error");
+      }
+    });
+  }
+
+</script>

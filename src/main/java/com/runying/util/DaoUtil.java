@@ -1,6 +1,9 @@
 package com.runying.util;
 
+import java.util.Iterator;
 import java.util.List;
+import java.util.Map;
+import java.util.Map.Entry;
 
 import javax.annotation.Resource;
 
@@ -54,19 +57,6 @@ public abstract class DaoUtil {
         
 	}
 	
-	@SuppressWarnings("unchecked")
-	public <T> List<T> loginCheck(String username, String password) {
-		Session session = sessionFactory.getCurrentSession();
-		
-		String hql = "from com.runying.po.User as user where user.username = ? and user.password = ?";
-		Query query = session.createQuery(hql);
-		query.setParameter(0, username);
-		query.setParameter(1, password);
-		List<T> res = query.list();
-		
-		return res;
-	}
-	
 	/**
 	 * get object by id
 	 * @param T
@@ -98,6 +88,36 @@ public abstract class DaoUtil {
 		T res = (T) query.uniqueResult();
 		
         return res;
+	}
+	
+	/**
+	 * 
+	 * @param className
+	 * @param columnName
+	 * @param columnValue
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> List<T> findByColumns(Map<String, Object> cols) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		String hql = "from "+this.className()+" as t where";
+		Iterator<Entry<String, Object>> itr = cols.entrySet().iterator();
+		while(itr.hasNext()) {
+			Entry<String, Object> entry = itr.next();
+			hql += " t." + entry.getKey() + "=? and";
+		}
+		hql = hql.substring(0, hql.length() - 4);
+		Query query = session.createQuery(hql);
+		itr = cols.entrySet().iterator();
+		int i  = 0 ;
+		while(itr.hasNext()) {
+			Entry<String, Object> entry = itr.next();
+			query.setParameter(i++, entry.getValue());
+		}
+		List<T> res = query.list();
+		
+		return res;
 	}
 	
 	/**

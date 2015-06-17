@@ -16,6 +16,7 @@ function getCurUser() {
 		"getCurUser.do",
 		function(data) {
 			$("#username").text(data.username);
+			$("#privilege").text(data.privilege);
 		});
 }
 
@@ -55,4 +56,48 @@ function loadProcessCheck() {
 
 function loadWarehouseInOut() {
 	location.href = "../warehouse/main.html";
+}
+
+function loadUserInfo() {
+	$("#main-page").empty();
+	$("#main-page").load("userInfo.html", function() {
+        $("#name").text($("#username").text());
+        var pri = '';
+        var privilege = Number($("#privilege").text());
+        if((privilege & 1) == 1) {
+          pri += '<span class="label label-primary">录入订单</span> ';
+        } 
+        if(((privilege >> 1) & 1) == 1) {
+          pri += '<span class="label label-primary">增加工序</span> ';
+        } 
+        if(((privilege >> 2) & 1) == 1) {
+          pri += '<span class="label label-primary">入库出库</span> ';
+        }
+        if(((privilege >> 3) & 1) == 1) {
+          pri += '<span class="label label-success">管理员</span> ';
+        }
+        $("#pri-suf-des").append(pri);
+    }); 
+}
+
+function loadUserEdit() {
+	$("#main-page").empty();
+	$("#main-page").load("userEdit.html", function() {
+        $("#name").text($("#username").text());
+        var pri = '';
+        var privilege = Number($("#privilege").text());
+        if((privilege & 1) == 1) {
+          pri += '<span class="label label-primary">录入订单</span> ';
+        } 
+        if(((privilege >> 1) & 1) == 1) {
+          pri += '<span class="label label-primary">增加工序</span> ';
+        } 
+        if(((privilege >> 2) & 1) == 1) {
+          pri += '<span class="label label-primary">入库出库</span> ';
+        }
+        if(((privilege >> 3) & 1) == 1) {
+          pri += '<span class="label label-success">管理员</span> ';
+        }
+        $("#pri-suf-des").append(pri);
+    }); 
 }
