@@ -17,7 +17,8 @@ import com.runying.util.Constants;
 import com.runying.util.Msg;
 
 @Controller
-@RequestMapping(value={"font-design/log/", "font-design/warehouse_main", "font-design/warehouse"})
+@RequestMapping(value={"font-design/log/", "font-design/warehouse_main", "font-design/warehouse",
+		"font-design/admConfig"})
 public class LogController {
 	@Autowired
 	private UserDao userDaoProxy;

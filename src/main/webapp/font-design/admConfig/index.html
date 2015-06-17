@@ -41,16 +41,18 @@
 					 	<span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 					 	 <font id="username"></font><strong class="caret"></strong>
 					 </a>
+					 <!-- 保存数据用 -->
+                	<label id="privilege" class="sr-only"></label>
 					<ul class="dropdown-menu">
 						<li>
-							 <a href="#">
+							 <a href="#" onclick="loadUserInfo();">
 							 	<span class="fa fa-external-link"></span> 个人资料
 							 </a>
 						</li>
 						<li class="divider">
 						</li>
 						<li> 
-							 <a href="#" onclick="logout()">
+							 <a href="#" onclick="logout();">
 							 	<span class="fa fa-sign-out"></span> 退出
 							 </a>
 						</li>
