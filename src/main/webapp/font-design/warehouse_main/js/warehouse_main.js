@@ -54,6 +54,12 @@ function loadProcessCheck() {
 	$("#main-page").load("../process/process_check.html");
 }
 
+//	加载 批量出库
+function loadOutBatch() {
+	$("#main-page").empty();
+	$("#main-page").load("warehouse/outBatch.html");
+}
+
 function loadWarehouseInOut() {
 	location.href = "../warehouse/main.html";
 }

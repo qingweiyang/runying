@@ -26,13 +26,7 @@ public class OrdersDao extends DaoUtil{
 	 */
 	public Msg addOrders(Orders o) {
 		Msg msg = new Msg();
-		int privilege = o.getOperator().getPrivilege();
-		//the use has not privilege
-		if((privilege & 1) == 0) {
-			msg.setStatus(0);
-			msg.setDescription("权限不足");
-			return msg;
-		}
+	
 		//获取系统（服务器）当前时间
 		Calendar now = Calendar.getInstance();
 		Date date = now.getTime();

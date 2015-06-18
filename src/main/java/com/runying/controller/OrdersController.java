@@ -9,7 +9,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.runying.dao.OrdersDao;
+import com.runying.dao.UserDao;
 import com.runying.po.Orders;
+import com.runying.po.User;
 import com.runying.service.OrdersService;
 import com.runying.util.Constants;
 import com.runying.util.Msg;
@@ -23,14 +25,24 @@ public class OrdersController {
 	private OrdersDao ordersDaoProxy;
 	
 	@Autowired
+	private UserDao userDaoProxy;
+	
+	@Autowired
 	private OrdersService ordersService;
+	
 	
 	@RequestMapping("/ordersIn.do")
 	@ResponseBody
 	public Msg ordersIn(@RequestBody Orders o) {
-		Msg msg;
-		System.out.println("------------------------"+o.getRemarks());
+		Msg msg = new Msg();
 		o.setOperator(Constants.user);
+		User resDB = userDaoProxy.findByUsername(Constants.user.getUsername());
+		//检查操作员是否拥有  录入订单信息  的权限
+		if(1 != (resDB.getPrivilege() & 1)) {
+			msg.setStatus(0);
+			msg.setDescription("权限不足");
+			return msg;
+		}
 		msg = ordersDaoProxy.addOrders(o);
 		
 		return msg;
