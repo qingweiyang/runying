@@ -29,7 +29,7 @@
       </div><!-- /.col-lg-6 -->
       
       <div class="col-md-1 column">
-         <button type="button" class="btn btn-default">
+         <button type="button" class="btn btn-default" onclick="loadOutBatchView();">
          	<i class='fa fa-check-square-o fa-lg'> 出库</i>
          	<span class="badge">0</span>
          </button>
@@ -65,31 +65,48 @@
 
 <script src="../plugins/js/page_division.js"></script>  
 <script type="text/javascript">
+  var tableVO = {};
   var orders = [];
   
   $(document).ready(function() {
-	orders = [];
+	tableVO = {};
     showAllOrders(1, countPerPage);
   });
 
-  function addOrders(selector, id) {
-	  if(!exist(id)) {
-		  orders.push(id);
+  function inWarehouseBatch() {
+	  tableVO.rows = orders;
+	  $.ajax({
+	      type : "POST",
+	      contentType : 'application/json', 
+	      url : "inWarehouseBatch.do",
+	      data : JSON.stringify(tableVO), 
+	      dataType: "json",
+	      success : function() {
+	      },
+	      error : function(){
+	          alert("error");
+	      }
+	   });
+  }
+  
+  function addOrders(selector, item) {
+	  if(!exist(item)) {
+		  orders.push(item);
 		  $(selector).find("i").remove();
-		  $(selector).append("<i class='fa fa-check-square-o fa-lg'> </i>");
+		  $(selector).append("<i class='fa fa-undo fa-lg'> </i>");
 		  $(".badge").text(orders.length);
 	  } else {
-		  removeArray(id);
+		  removeArray(item);
 		  $(selector).find("i").remove();
 		  $(selector).append("<i class='fa fa-cart-plus fa-lg'> </i>");
 		  $(".badge").text(orders.length);
 	  }
   }
  
-  function removeArray(val) {
+  function removeArray(item) {
 	  var isExist = false;
 	  for(var i = 0 ; i < orders.length ; i++) {
-		  if(orders[i] == val) {
+		  if(orders[i].id == item.id) {
 			  if(i != orders.length) {
 				  orders[i] = orders[orders.length - 1];  
 			  }
@@ -101,9 +118,9 @@
 	  }
   }
   
-  function exist(id) {
+  function exist(item) {
 	  for(var i = 0 ; i < orders.length ; i++) {
-		  if(orders[i] == id) {
+		  if(orders[i].id == item.id) {
 			  return true;
 		  }
 	  }
@@ -121,9 +138,9 @@
         var text = "";
         $.each(data.rows, function(i, item) {
         	if(!exist(item.id)) {
-        		option = "<a href='javascript:void(0);' onclick='addOrders(this, "+item.id+");'><i class='fa fa-cart-plus fa-lg'> </i></a>  ";
+        		option = "<a href='javascript:void(0);' onclick='addOrders(this, "+JSON.stringify(item)+");'><i class='fa fa-cart-plus fa-lg'> </i></a>  ";
         	} else {
-        		option = "<a href='javascript:void(0);' onclick='addOrders("+item.id+");'><i class='fa fa-check-square-o fa-lg'> </i></a>  ";
+        		option = "<a href='javascript:void(0);' onclick='addOrders(this, "+JSON.stringify(item)+");'><i class='fa fa-undo fa-lg'> </i></a>  ";
         	}
         	var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
         	var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");

@@ -107,3 +107,25 @@ function loadUserEdit() {
         $("#pri-suf-des").append(pri);
     }); 
 }
+
+function loadOutBatchView() {
+	if(orders.length == 0) {
+		alert("至少选个啊");
+		return ;
+	}
+	$("#main-page").empty();
+	$("#main-page").load("warehouse/outBatchView.html", function() {
+		var text = "";
+		for(var i = 0 ; i < orders.length ; i++) {
+			var item = orders[i];
+        	text += "<tr><td>"+(i+1)+"</td>"+
+                      "<td>"+item.materialName+"</td>"+
+                      "<td>"+item.size1+"</td>"+
+                      "<td>"+item.processes.length+"</td>"+
+                      "<td>"+item.count+"</td>"+
+                      "<td>null</td>"+
+                      "</tr>";
+        };
+		$("#current-table tbody").html(text);
+    }); 
+}

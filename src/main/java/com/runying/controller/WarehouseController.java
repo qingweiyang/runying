@@ -12,9 +12,11 @@ import com.runying.dao.WarehouseDao;
 import com.runying.po.Warehouse;
 import com.runying.util.Constants;
 import com.runying.util.Msg;
+import com.runying.vo.ProcessOrdersTableVO;
+import com.runying.vo.TableVO;
 
 @Controller
-@RequestMapping(value={"font-design/warehouse/"})
+@RequestMapping(value={"font-design/warehouse/", "font-design/warehouse_main/"})
 public class WarehouseController {
 	@Autowired
 	private WarehouseDao warehouseDaoProxy;
@@ -29,6 +31,12 @@ public class WarehouseController {
 	@ResponseBody
 	public Msg inWarehouse(@RequestBody Warehouse w) {
 		return warehouseDaoProxy.inWarehouse(Constants.user, w.getProduct(), w.getNumber());
+	}
+	
+	@RequestMapping("/inWarehouseBatch.do")
+	@ResponseBody
+	public void inWarehouseBatch(@RequestBody TableVO<ProcessOrdersTableVO> tvo) {
+		System.out.println("================="+tvo.getRows().size());
 	}
 	
 	@RequestMapping("/outWarehouse.do")

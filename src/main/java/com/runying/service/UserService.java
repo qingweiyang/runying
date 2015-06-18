@@ -53,14 +53,6 @@ public class UserService {
 	public Msg editUserInfo(User u, User operator) {
 		Msg msg = new Msg();
 		
-		User resDB = userDaoProxy.findByUsername(operator.getUsername());
-		//检查操作员是否拥有 编辑用户权限 的权限
-		if(1 != (resDB.getPrivilege() >> 3 & 1)) {
-			msg.setStatus(0);
-			msg.setDescription("权限不足");
-			return msg;
-		}
-		
 		User uDB = userDaoProxy.findByUsername(u.getUsername());
 		//检查该用户是否存在
 		if(uDB == null) {

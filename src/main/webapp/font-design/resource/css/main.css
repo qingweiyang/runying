@@ -83,6 +83,10 @@ body {
   color: #000066;
 }
 
+.text-center {
+	text-align: center;	
+}
+
 /*产品具体信息显示模版*/
 .pdt-panel {
   border: 1px solid #6584E5;
