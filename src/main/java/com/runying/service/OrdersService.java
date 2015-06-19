@@ -9,6 +9,7 @@ import org.springframework.stereotype.Service;
 import com.runying.dao.OrdersDao;
 import com.runying.dao.WarehouseDao;
 import com.runying.po.Orders;
+import com.runying.po.Warehouse;
 import com.runying.vo.ProcessOrdersTableVO;
 import com.runying.vo.TableVO;
 
@@ -30,7 +31,11 @@ public class OrdersService {
 		for(Orders o : os) {
 			po = new ProcessOrdersTableVO();
 			//找出该订单下产品的 库存量
-			int count = warehouseDaoProxy.findByProduct(o.getProduct()).getNumber();
+			int count = 0;
+			Warehouse tmp = warehouseDaoProxy.findByProduct(o.getProduct());
+			if(tmp != null) {
+				count = warehouseDaoProxy.findByProduct(o.getProduct()).getNumber();
+			}
 			po.setWarehouseCount(count);
 			
 			po.setProductID(o.getProduct().getId());
