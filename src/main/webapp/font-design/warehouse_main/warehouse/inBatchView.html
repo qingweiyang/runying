@@ -4,7 +4,7 @@
    <a href="#">仓库管理</a>
   </li>
   <li>
-   <a href="#" onclick="loadOutBatch();">批量出库</a>
+   <a href="#" onclick="loadOutBatch();">批量人库</a>
   </li>
   <li class="active">
      清单确认
@@ -15,7 +15,7 @@
 <div class="panel panel-success table-panel">
   <!-- Default panel contents -->
   <div class="panel-heading text-center">
-    <h4>高邮兴扬机械有限公司送货清单</h4>
+    <h4>高邮兴扬机械有限公司人货清单</h4>
   </div>
 
   <table id="current-table" class="table table-hover table-bordered">
@@ -31,12 +31,8 @@
     </thead>
     <tbody></tbody>
   </table>
-  
-  <div class="panel-footer">
-	送货单位（盖章）：
-  </div>
-</div>
+</div>  
 
 <div class="col-md-offset-11">
-	<button type="button" class="btn btn-default" onclick="outWarehouseBatch();"><i class="fa fa-fw fa-check-square-o"></i> 发货</button>
+	<button type="button" class="btn btn-default" onclick="inWarehouseBatch();"><i class="fa fa-fw fa-check-square-o"></i> 入库</button>
 </div>

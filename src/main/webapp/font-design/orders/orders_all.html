@@ -56,6 +56,8 @@
         <th>交货日期</th>
         <th>备注</th>
         <th>物料长代码</th>
+        <th>录入时间</th>
+        <th>状态</th>
       </tr>
     </thead>
     <tbody></tbody>
@@ -89,6 +91,27 @@
         $.each(data.rows, function(i, item) {
         	var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
         	var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
+        	var systemTime = getFormatDateByLong(item.systemTime, "yyyy-MM-dd hh:mm:ss");
+        	var status = "";
+        	if(item.status == 0) {
+        		status = '<span class="label label-primary">已删除</span> ';
+        	}
+        	if(item.status == 1) {
+        		status = '<span class="label label-primary">未进行生产计划</span> ';
+        	}
+        	if(item.status == 2) {
+        		status = '<span class="label label-primary">已进行生产计划</span> ';
+        	}
+        	if(item.status == 2) {
+        		status = '<span class="label label-primary">已进行生产计划</span> ';
+        	}
+        	if(item.status == 3) {
+        		status = '<span class="label label-primary">已入库</span> ';
+        	}
+        	if(item.status == 4) {
+        		status = '<span class="label label-primary">已发货</span> ';
+        	}
+        	
             text += "<tr><td>"+item.id+"</td>"+
                       "<td>"+releaseTime+"</td>"+
                       "<td>"+item.number+"</td>"+
@@ -99,6 +122,8 @@
                       "<td>"+deliveryTime+"</td>"+
                       "<td>"+item.remarks+"</td>"+
                       "<td>"+item.product.materialCode+"</td>"+
+                      "<td>"+systemTime+"</td>"+
+                      "<td>"+status+"</td>"+
                       "</tr>";
         });
         $("#all-orders-table tbody").html(text);

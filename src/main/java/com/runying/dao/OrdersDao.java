@@ -37,6 +37,18 @@ public class OrdersDao extends DaoUtil{
 		return msg;
 	}
 
+	/**
+	 * 修改订单状态
+	 * 
+	 * @param ordersID
+	 * @param status
+	 */
+	public void updateStatus(int ordersID, int status) {
+		Orders o = this.findByID(ordersID);
+		o.setStatus(status);
+		this.updat(o);
+	}
+	
 	@Override
 	protected String className() {
 		return "Orders";

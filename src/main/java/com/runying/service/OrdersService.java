@@ -33,6 +33,7 @@ public class OrdersService {
 			int count = warehouseDaoProxy.findByProduct(o.getProduct()).getNumber();
 			po.setWarehouseCount(count);
 			
+			po.setProductID(o.getProduct().getId());
 			po.setCount(o.getCount());
 			po.setDeliveryTime(o.getDeliveryTime());
 			po.setId(o.getId());

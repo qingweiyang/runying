@@ -82,4 +82,14 @@ public class OrdersController {
 		return ordersService.getOrdersVOByStatus(2, currentPage, countPerPage);
 	}
 	
+	/**
+	 * 获取已经录入库的订单
+	 * 
+	 * @return
+	 */
+	@RequestMapping(value = "getInWarehouseOrders.do")
+	@ResponseBody
+	public TableVO<ProcessOrdersTableVO> getInWarehouseOrders(int currentPage, int countPerPage) {
+		return ordersService.getOrdersVOByStatus(3, currentPage, countPerPage);
+	}
 }

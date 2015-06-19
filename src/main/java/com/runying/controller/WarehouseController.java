@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.runying.dao.WarehouseDao;
 import com.runying.po.Warehouse;
+import com.runying.service.WarehouseService;
 import com.runying.util.Constants;
 import com.runying.util.Msg;
 import com.runying.vo.ProcessOrdersTableVO;
@@ -21,10 +22,19 @@ public class WarehouseController {
 	@Autowired
 	private WarehouseDao warehouseDaoProxy;
 	
+	@Autowired
+	private WarehouseService warehouseService;
+	
 	@RequestMapping("/getWarehouses.do")
 	@ResponseBody
-	public List<Warehouse> getWarehouses() {
-		return warehouseDaoProxy.findAll(1, 5);
+	public TableVO<Warehouse> getWarehouses(int currentPage, int countPerPage) {
+		List<Warehouse> os = warehouseDaoProxy.findAll(currentPage, countPerPage);
+		TableVO<Warehouse> tvo = new TableVO<Warehouse>();
+		tvo.setRows(os);
+		tvo.setCurrentPage(currentPage);
+		tvo.setCountPerPage(countPerPage);
+		tvo.setPages((warehouseDaoProxy.size()-1) / countPerPage + 1);
+		return tvo;
 	}
 	
 	@RequestMapping("/inWarehouse.do")
@@ -35,13 +45,19 @@ public class WarehouseController {
 	
 	@RequestMapping("/inWarehouseBatch.do")
 	@ResponseBody
-	public void inWarehouseBatch(@RequestBody TableVO<ProcessOrdersTableVO> tvo) {
-		System.out.println("================="+tvo.getRows().size());
+	public Msg inWarehouseBatch(@RequestBody TableVO<ProcessOrdersTableVO> tvo) {
+		return warehouseService.inWarehouseBatch(tvo.getRows(), Constants.user);
 	}
 	
 	@RequestMapping("/outWarehouse.do")
 	@ResponseBody
 	public Msg outWarehouse(@RequestBody Warehouse w) {
 		return warehouseDaoProxy.outWarehouse(Constants.user, w.getProduct(), w.getNumber());
+	}
+	
+	@RequestMapping("/outWarehouseBatch.do")
+	@ResponseBody
+	public Msg outWarehouseBatch(@RequestBody TableVO<ProcessOrdersTableVO> tvo) {
+		return warehouseService.outWarehouseBatch(tvo.getRows(), Constants.user);
 	}
 }

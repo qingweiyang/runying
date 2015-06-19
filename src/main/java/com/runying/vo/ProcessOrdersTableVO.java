@@ -12,12 +12,19 @@ import com.runying.po.Process;
  *
  */
 public class ProcessOrdersTableVO {
-	//订单号
+	/**
+	 * 订单号
+	 */
 	private int id;
 	
 	//下达日期
 	private Date releaseTime;
 
+	/**
+	 * 产品id
+	 */
+	private int productID;
+	
 	//单据编号
 	private String number;
 	
@@ -119,6 +126,14 @@ public class ProcessOrdersTableVO {
 
 	public void setProcesses(Set<Process> processes) {
 		this.processes = processes;
+	}
+
+	public int getProductID() {
+		return productID;
+	}
+
+	public void setProductID(int productID) {
+		this.productID = productID;
 	}
 
 }

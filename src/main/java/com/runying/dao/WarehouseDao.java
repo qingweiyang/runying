@@ -76,7 +76,7 @@ public class WarehouseDao extends DaoUtil{
 		//出库数量是否合法
 		if(num <= 0) {
 			msg.setStatus(0);
-			msg.setDescription("入库数量错误，必须大于0");
+			msg.setDescription("出库数量错误，必须大于0");
 			return msg;
 		}
 		

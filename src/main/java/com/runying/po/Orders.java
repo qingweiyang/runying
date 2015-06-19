@@ -65,7 +65,7 @@ public class Orders {
 	@OneToMany(mappedBy = "orders")
 	private Set<Process> processes;
 	
-	//订单状态 [0:已删除]，[1:未进行生产计划]，[2:已进行生产计划]，[3：已发货]
+	//订单状态 [0:已删除]，[1:未进行生产计划]，[2:已进行生产计划]，[3:已入库], [4：已发货]
 	@Column
 	private int status;
 

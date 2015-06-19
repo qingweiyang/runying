@@ -6,7 +6,7 @@
    <a href="#">仓库管理</a>
   </li>
   <li class="active">
-     批量出库
+     批量人库
   </li>
 </ul>
 
@@ -29,8 +29,8 @@
       </div><!-- /.col-lg-6 -->
       
       <div class="col-md-1 column">
-         <button type="button" class="btn btn-default" onclick="loadOutBatchView();">
-         	<i class='fa fa-check-square-o fa-lg'> 出库</i>
+         <button type="button" class="btn btn-default" onclick="loadInBatchView();">
+         	<i class='fa fa-check-square-o fa-lg'> 人库</i>
          	<span class="badge">0</span>
          </button>
       </div>
@@ -116,7 +116,7 @@
     param.currentPage = currentPage;
     param.countPerPage = countPerPage;
     $.get(
-      "getInWarehouseOrders.do",
+      "getCheckedOrders.do",
       param,
       function(data) {
         var text = "";

@@ -54,12 +54,6 @@ function loadProcessCheck() {
 	$("#main-page").load("../process/process_check.html");
 }
 
-//	加载 批量出库
-function loadOutBatch() {
-	$("#main-page").empty();
-	$("#main-page").load("warehouse/outBatch.html");
-}
-
 function loadWarehouseInOut() {
 	location.href = "../warehouse/main.html";
 }
@@ -108,6 +102,24 @@ function loadUserEdit() {
     }); 
 }
 
+//加载 仓库列表
+function loadList() {
+	$("#main-page").empty();
+	$("#main-page").load("warehouse/list.html");
+}
+
+//加载 批量出库
+function loadOutBatch() {
+	$("#main-page").empty();
+	$("#main-page").load("warehouse/outBatch.html");
+}
+
+//加载 批量入库
+function loadInBatch() {
+	$("#main-page").empty();
+	$("#main-page").load("warehouse/inBatch.html");
+}
+
 function loadOutBatchView() {
 	if(orders.length == 0) {
 		alert("至少选个啊");
@@ -128,4 +140,86 @@ function loadOutBatchView() {
         };
 		$("#current-table tbody").html(text);
     }); 
+}
+
+function loadInBatchView() {
+	if(orders.length == 0) {
+		alert("至少选个啊");
+		return ;
+	}
+	$("#main-page").empty();
+	$("#main-page").load("warehouse/inBatchView.html", function() {
+		var text = "";
+		for(var i = 0 ; i < orders.length ; i++) {
+			var item = orders[i];
+        	text += "<tr><td>"+(i+1)+"</td>"+
+                      "<td>"+item.materialName+"</td>"+
+                      "<td>"+item.size1+"</td>"+
+                      "<td>"+item.processes.length+"</td>"+
+                      "<td>"+item.count+"</td>"+
+                      "<td>null</td>"+
+                      "</tr>";
+        };
+		$("#current-table tbody").html(text);
+    }); 
+}
+
+function inWarehouseBatch() {
+	  tableVO.rows = orders;
+	  $.ajax({
+	      type : "POST",
+	      contentType : 'application/json', 
+	      url : "inWarehouseBatch.do",
+	      data : JSON.stringify(tableVO), 
+	      dataType: "json",
+	      success : function() {
+	      },
+	      error : function(){
+	          alert("error");
+	      }
+	   });
+}
+
+function outWarehouseBatch() {
+	  tableVO.rows = orders;
+	  $.ajax({
+	      type : "POST",
+	      contentType : 'application/json', 
+	      url : "outWarehouseBatch.do",
+	      data : JSON.stringify(tableVO), 
+	      dataType: "json",
+	      success : function(data) {
+	    	  if(data.status == 1) {
+	    		  $("#main-page").empty();
+	    		  $("#main-page").load("warehouse/outBatchSuccess.html");
+	    	  } else {
+	    		  alert(data.description);
+	    	  }
+	      },
+	      error : function(){
+	          alert("error");
+	      }
+	   });
+}
+
+function inWarehouseBatch() {
+	  tableVO.rows = orders;
+	  $.ajax({
+	      type : "POST",
+	      contentType : 'application/json', 
+	      url : "inWarehouseBatch.do",
+	      data : JSON.stringify(tableVO), 
+	      dataType: "json",
+	      success : function(data) {
+	    	  if(data.status == 1) {
+	    		  $("#main-page").empty();
+	    		  $("#main-page").load("warehouse/inBatchSuccess.html");
+	    	  } else {
+	    		  alert(data.description);
+	    	  }
+	      },
+	      error : function(){
+	          alert("error");
+	      }
+	   });
 }

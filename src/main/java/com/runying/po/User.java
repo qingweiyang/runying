@@ -26,7 +26,7 @@ public class User {
 	private String password;
 	
 	//用户权限，000,000
-	// ？？？，[入库/出库，增加产品到仓库][增加工序权限]［录入订单信息权限］
+	// ？？[管理员]，[入库/出库，增加产品到仓库][增加工序权限]［录入订单信息权限］
 	@Column
 	private int privilege;
 	
