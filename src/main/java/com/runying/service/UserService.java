@@ -176,7 +176,8 @@ public class UserService {
 		}
 		
 		//设置密码(初始密码 123)
-		u.setPassword("123");
+		String md5Password = MD5Util.string2MD5("123");
+		u.setPassword(md5Password);
 		u.setStatus(1);
 		userDaoProxy.addObject(u);
 		
