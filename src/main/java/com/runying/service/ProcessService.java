@@ -76,15 +76,23 @@ public class ProcessService {
 				return msg;
 			}
 			
-			//保存一道工序
-			//获取系统（服务器）当前时间
-			Calendar now = Calendar.getInstance();
-			Date date = now.getTime();
-			p.setSystemTime(date);
-			p.setReceiver(receiverDB);
-			p.setOrders(oDB);
-			processDaoProxy.addObject(p);
 		}
+		
+		if(msg.getStatus() == 1) {
+			//工序输入合法，保存到数据库中
+			for(Process p : ps) {
+				//保存一道工序
+				//获取系统（服务器）当前时间
+				Calendar now = Calendar.getInstance();
+				Date date = now.getTime();
+				p.setSystemTime(date);
+				User receiverDB = userDaoProxy.findByUsername(p.getReceiver().getUsername());
+				p.setReceiver(receiverDB);
+				p.setOrders(oDB);
+				processDaoProxy.addObject(p);
+			}	
+		}
+		
 		//修改订单状态为 2:已进行生产计划
 		oDB.setStatus(2);
 		ordersDaoProxy.updat(oDB);

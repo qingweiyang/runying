@@ -10,6 +10,10 @@ public class Msg {
 	
 	private String description;
 
+	public Msg() {
+		this.status = 1;
+	}
+	
 	public int getStatus() {
 		return status;
 	}
