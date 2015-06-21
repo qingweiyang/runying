@@ -109,6 +109,23 @@
                       "</tr>";
         });
         $("#all-process-table tbody").html(pro);
+        
+      	//加载打印信息
+       	$("#print-name").text(item.materialName);
+       	$("#print-size").text(item.size1);
+       	$("#print-id").text(item.id);
+       	$("#print-count").text(item.count);
+       	$("#print-releaseTime").text(releaseTime);
+        for(var i = 1 ; i <= 9 ; i++) {
+        	var row = "<tr><td>0"+i+"</td>"+
+    			        "<td></td>"+
+    			        "<td></td>"+
+    			        "<td></td>"+
+    			        "<td></td>"+
+    			       "</tr>";
+        	$("#print-table tbody").append(row);
+        }
+        
    	}); 
     
     

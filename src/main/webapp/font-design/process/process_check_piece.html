@@ -15,10 +15,16 @@
 <div class="panel panel-success table-panel">
     <!-- Default panel contents -->
     <div class="panel-heading">
-      <label>
-      	<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-      	订单详情
-      </label>
+      <div class="col-md-2">
+	      <label>
+	      	<span class="glyphicon glyphicon-file" aria-hidden="true"></span>
+	      	订单详情
+	      </label>
+      </div>
+    
+      <div class="col-md-1 col-md-offset-9">
+      	<a href="#" onclick="print();">打印 <i class="fa fa-print"></i></a>
+      </div>
       <!-- 展示订单详情 -->
       <table id="one-orders-table" class="table">
         <thead>
@@ -36,10 +42,6 @@
         </thead>
         <tbody></tbody>
       </table>
-      <label>
-        <span class="glyphicon glyphicon-duplicate" aria-hidden="true"></span>
-        工序信息
-      </label>
     </div>
     <table id="all-process-table" class="table table-bordered table-hover">
       <thead>
@@ -54,4 +56,70 @@
       <tbody>
       </tbody>
     </table>
+</div>
+
+<div id="print_area" class="container" style="display : none;">
+	<div class="text-center">
+		<h4>兴扬公司产品工序流转卡</h4>
+	</div>
+	<div>
+		<ol class="list-inline">
+				<li>
+					产品名称 : 
+				</li>
+				<li>
+					<div id="print-name" class="border-underline text-center">null</div>
+				</li>
+				<li>
+					型 号 : 
+				</li>
+				<li>
+					<div id="print-size" class="border-underline text-center">null</div>
+				</li>
+				<li>
+					订单号 : 
+				</li>
+				<li>
+					<div id="print-id" class="border-underline text-center">null</div>
+				</li>
+				<li>
+					计划数 : 
+				</li>
+				<li>
+					<div id="print-count" class="border-underline text-center">null</div>
+				</li>
+				<li>
+					交货期 : 
+				</li>
+				<li>
+					<div id="print-releaseTime" class="border-underline text-center">null</div>
+				</li>
+			</ol>
+	</div>
+	<div>
+		<table id="print-table" class="table table-bordered">
+				<thead>
+					<tr>
+						<th>
+							工序号
+						</th>
+						<th>
+							工序名称
+						</th>
+						<th>
+							数量
+						</th>
+						<th>
+							责任人
+						</th>
+						<th>
+							备注
+						</th>
+					</tr>
+				</thead>
+				<tbody>
+					
+				</tbody>
+			</table>
+	</div>
 </div>

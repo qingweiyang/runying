@@ -103,6 +103,7 @@
       dataType: "json",
       success : function(data) {
           if(data.status == 1) {
+        	getCurUser();
             editSuccess(user);
           } else {
             alert(data.description);

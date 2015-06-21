@@ -25,12 +25,17 @@ public class Orders {
 	@Column
 	private int id;
 	
-	//订单号
-	//private int orderNum;
-	
+	//合同号
+	@Column
+	private String contractNumber;
+		
 	//单据编号
 	@Column
 	private String number;
+	
+	//图号
+	@Column
+	private String pictureNumber;
 	
 	//数量
 	@Column
@@ -65,9 +70,13 @@ public class Orders {
 	@OneToMany(mappedBy = "orders")
 	private Set<Process> processes;
 	
-	//订单状态 [0:已删除]，[1:未进行生产计划]，[2:已进行生产计划]，[3:已入库], [4：已发货]
+	//订单状态 [0:已删除]，[1:未进行生产计划]，[2:已进行生产计划]，[3:已入库], [4：发货中（已经发货部分，但未发完）], [5: 已发货（订单全部完成）]
 	@Column
 	private int status;
+	
+	//订单已完成数量
+	@Column
+	private int hasFinished;
 
 	public int getId() {
 		return id;
@@ -164,6 +173,29 @@ public class Orders {
 	public void setProcesses(Set<Process> processes) {
 		this.processes = processes;
 	}
-	
-	
+
+	public String getContractNumber() {
+		return contractNumber;
+	}
+
+	public void setContractNumber(String contractNumber) {
+		this.contractNumber = contractNumber;
+	}
+
+	public String getPictureNumber() {
+		return pictureNumber;
+	}
+
+	public void setPictureNumber(String pictureNumber) {
+		this.pictureNumber = pictureNumber;
+	}
+
+	public int getHasFinished() {
+		return hasFinished;
+	}
+
+	public void setHasFinished(int hasFinished) {
+		this.hasFinished = hasFinished;
+	}
+
 }

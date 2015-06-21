@@ -136,6 +136,7 @@ public class ProductService {
 		pDB.setSize1(p.getSize1());
 		pDB.setSize2(p.getSize2());
 		pDB.setMaterialCode(p.getMaterialCode());
+		pDB.setMaterial(p.getMaterial());
 		userDaoProxy.updat(pDB);
 		
 		msg.setStatus(1);

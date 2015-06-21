@@ -9,8 +9,10 @@ import com.runying.dao.OrdersDao;
 import com.runying.dao.ProductDao;
 import com.runying.dao.UserDao;
 import com.runying.dao.WarehouseDao;
+import com.runying.po.Orders;
 import com.runying.po.Product;
 import com.runying.po.User;
+import com.runying.po.Warehouse;
 import com.runying.util.Constants;
 import com.runying.util.Msg;
 import com.runying.util.Validate;
@@ -41,15 +43,118 @@ public class WarehouseService {
 		
 		//批量出库
 		for(ProcessOrdersTableVO ptvo : rows) {
-			msg = warehouseDaoProxy.outWarehouse(operator, (Product) productDaoProxy.findByID(ptvo.getProductID()), ptvo.getCount());
+			msg = this.outWarehouse(operator, (Product) productDaoProxy.findByID(ptvo.getProductID()), ptvo.getCount());
 			if(msg.getStatus() == 0) {
 				return msg;
 			} else {
-				//出库完成，修改订单状态, 已发货
-				ordersDaoProxy.updateStatus(ptvo.getId(), 4);
+				//出库完成，修改订单状态,
+				//订单还未全部完成
+				//先找到订单的数据库中保存的数量（从前端传来值非数据库值，是用户输入的当前入库数量）
+				Orders ordersDB = ordersDaoProxy.findByID(ptvo.getId());
+				int planCount = ordersDB.getCount();
+				int hasFinished = ordersDB.getHasFinished() + ptvo.getCount();
+				if(planCount > hasFinished) {
+					//此时订单未全部完成
+					ordersDB.setStatus(4);
+				} else {
+					//此时订单全部完成
+					ordersDB.setStatus(5);
+				}
+				ordersDB.setHasFinished(hasFinished);
+				ordersDaoProxy.updat(ordersDB);
 			}
 		}
 		
+		return msg;
+	}
+	
+	/**
+	 * 出库
+	 * @return
+	 */
+	public Msg outWarehouse(User operator, Product product, int num) {
+		Msg msg = new Msg();
+		
+		//检查操作员是否有权限
+		User oDB = userDaoProxy.findByUsername(operator.getUsername());
+		if(1 != (oDB.getPrivilege() >> 2 & 1)) {
+			msg.setStatus(0);
+			msg.setDescription("权限不足");
+			return msg;
+		}
+		
+		//出库数量是否合法
+		if(num <= 0) {
+			msg.setStatus(0);
+			msg.setDescription("出库数量错误，必须大于0");
+			return msg;
+		}
+		
+		//出库操作
+		//先检查仓库中是否已有该产品
+		List<Warehouse> wh = warehouseDaoProxy.findByColumn("product", product);
+		if(wh == null || wh.size() == 0) {
+			//没有该产品
+			msg.setStatus(0);
+			msg.setDescription("仓库没有该商品");
+			return msg;
+		} else {
+			Warehouse w = wh.get(0);
+			//库存量 是否足够
+			int wNum = w.getNumber();
+			if(wNum < num) {
+				msg.setStatus(0);
+				msg.setDescription("商品 "+w.getProduct().getMaterialName()+" 库存量不足");
+				return msg;
+			} else {
+				w.setNumber(w.getNumber()-num);
+				warehouseDaoProxy.updat(w);
+			}
+			
+		}
+		
+		msg.setStatus(1);
+		return msg;
+	}
+	
+	/**
+	 * 入库
+	 * @return
+	 */
+	public Msg inWarehouse(User operator, Product product, int num) {
+		Msg msg = new Msg();
+		
+		//检查操作员是否有权限
+		User oDB = userDaoProxy.findByUsername(operator.getUsername());
+		if(1 != (oDB.getPrivilege() >> 2 & 1)) {
+			msg.setStatus(0);
+			msg.setDescription("权限不足");
+			return msg;
+		}
+		
+		//入库数量是否合法
+		if(num <= 0) {
+			msg.setStatus(0);
+			msg.setDescription("入库数量错误，必须大于0");
+			return msg;
+		}
+		
+		//入库操作
+		//先检查仓库中是否已有该产品
+		List<Warehouse> wh = warehouseDaoProxy.findByColumn("product", product);
+		if(wh == null || wh.size() == 0) {
+			//没有该产品
+			Warehouse w = new Warehouse();
+			w.setNumber(num);
+			w.setProduct(product);
+			warehouseDaoProxy.addObject(w);
+		} else {
+			Warehouse w = wh.get(0);
+			w.setNumber(w.getNumber()+num);
+			warehouseDaoProxy.updat(w);
+		}
+		
+		msg.setStatus(1);
 		return msg;
 	}
 	
@@ -63,7 +168,7 @@ public class WarehouseService {
 		
 		//批量入库
 		for(ProcessOrdersTableVO ptvo : rows) {
-			msg = warehouseDaoProxy.inWarehouse(operator, (Product) productDaoProxy.findByID(ptvo.getProductID()), ptvo.getCount());
+			msg = this.inWarehouse(operator, (Product) productDaoProxy.findByID(ptvo.getProductID()), ptvo.getCount());
 			if(msg.getStatus() == 0) {
 				return msg;
 			} else {

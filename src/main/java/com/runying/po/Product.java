@@ -29,6 +29,10 @@ public class Product {
 	@Column
 	private String materialCode;
 	
+	//材质
+	@Column
+	private String material;
+	
 	//商品图片信息
 	@Column
 	private String img;
@@ -92,6 +96,14 @@ public class Product {
 
 	public void setStatus(int status) {
 		this.status = status;
+	}
+
+	public String getMaterial() {
+		return material;
+	}
+
+	public void setMaterial(String material) {
+		this.material = material;
 	}
 	
 }

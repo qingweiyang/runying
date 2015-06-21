@@ -1,3 +1,4 @@
+
   <!-- 面包屑导航 -->
   <ul class="breadcrumb">
     <li>
@@ -48,7 +49,9 @@
             <th>规格型号1</th>
             <th>规格型号2</th>
             <th>物料长代码</th>
+            <th>材质</th>
             <th>库存量</th>
+            <th>操作</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -61,6 +64,46 @@
     </ul>
   </nav>
 
+
+<!-- inWarehouse Modal -->
+<div class="modal fade" id="in-warehouse-modal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">产品入库</h4>
+      </div>
+      <div id="in-warehouse-modal-body" class="modal-body">
+		<label id="pdt-id" class="sr-only"></label>
+	    <div class="row clearfix form-des">
+	      <div class="col-md-3 column form-pre-des">
+	        	产品名称 ：
+	      </div>
+	      <div class="col-md-4 column">     
+	      	<input id="pdt-name" type="text" class="form-control" readonly>  	
+	      </div>
+	    </div>
+	    
+	    <div class="row clearfix form-des">
+	      <div class="col-md-3 column form-pre-des">
+	        	入库数量 ：
+	      </div>
+	      <div class="col-md-4 column">    
+	      	<input id="pdt-number" type="number" class="form-control">  	
+	      </div>
+	      <div id="number-suf-des" class="col-md-5 column form-suf-des text-info">
+        		仓库还剩 <strong id="pdt-left"></strong> 件
+      	  </div>
+	    </div>
+
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-default" data-dismiss="modal">取消</button>
+        <button type="button" class="btn btn-primary" onclick="inWarehouseSubmit();">确认</button>
+      </div>
+    </div>
+  </div>
+</div>
 
 <script src="../resource/js/page_division.js"></script>  
 <script type="text/javascript">
@@ -80,16 +123,20 @@
       function(data) {
         var text = "";
         $.each(data.rows, function(i, item) {
+          var option = "<a href='javascript:void(0);' onclick='inWarehouseShow("+JSON.stringify(item)+");'><i class='fa fa-cart-plus fa-lg'> </i></a>  ";
           text += "<tr><td>"+(i+1)+"</td>"+
                       "<td>"+item.product.materialName+"</td>"+
                       "<td>"+item.product.size1+"</td>"+
                       "<td>"+item.product.size2+"</td>"+
                       "<td>"+item.product.materialCode+"</td>"+
+                      "<td>"+item.product.material+"</td>"+
                       "<td>"+item.number+"</td>"+
+                      "<td>"+option+"</td>"+
                       "</tr>";
         });
         $("#current-table tbody").html(text);
         pageDivision(data.pages, currentPage);
       });
   }
+  
 </script>

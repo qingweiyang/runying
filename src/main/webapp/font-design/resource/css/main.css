@@ -123,6 +123,10 @@ body {
   color: #000066;
 }
 
+.border-underline {
+	border-bottom: 1px solid #ddd;
+}
+
 /********************************begin***************************************/
 /*override boostrap style*/
 .container {

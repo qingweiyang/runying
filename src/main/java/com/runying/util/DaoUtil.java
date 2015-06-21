@@ -121,6 +121,32 @@ public abstract class DaoUtil {
 	}
 	
 	/**
+	 * 通过查询连接词 or|and 获取相关条件数据, 在一列上查
+	 * @param vals
+	 * @return
+	 */
+	public <T> List<T> findByColumnWithConnector(String colName, String connetor, List<Object> vals,
+			int pageNumber, int countPerPage) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		String hql = "from "+this.className()+" as t where";
+		for(int i = 0 ; i < vals.size() ; i++) {
+			hql += " t." + colName + "=? " + connetor;
+		}
+		hql = hql.substring(0, hql.length() - (connetor.length() + 1));
+		Query query = session.createQuery(hql);
+		for(int i = 0 ; i < vals.size() ; i++) {
+			query.setParameter(i, vals.get(i));
+		}
+		query.setFirstResult((pageNumber - 1)*countPerPage);
+		query.setMaxResults(countPerPage);
+		@SuppressWarnings("unchecked")
+		List<T> res = query.list();
+		
+		return res;
+	}
+	
+	/**
 	 * 
 	 * @param className
 	 * @param columnName
@@ -135,6 +161,32 @@ public abstract class DaoUtil {
 		Query query = session.createQuery(hql);
 		query.setParameter(0, columnValue);
 		List<T> res = query.list();
+		
+		return res;
+	}
+	
+	/**
+	 * 获取相关查询条件下的数据总数量
+	 * 
+	 * @param colName
+	 * @param connetor
+	 * @param vals
+	 * @return
+	 */
+	public int countByColumns(String colName, String connetor, List<Object> vals) {
+		Session session = sessionFactory.getCurrentSession();
+		
+		String hql = "select count(*) from "+this.className()+" as t where";
+		for(int i = 0 ; i < vals.size() ; i++) {
+			hql += " t." + colName + "=? " + connetor;
+		}
+		hql = hql.substring(0, hql.length() - (connetor.length() + 1));
+		Query query = session.createQuery(hql);
+		for(int i = 0 ; i < vals.size() ; i++) {
+			query.setParameter(i, vals.get(i));
+		}
+		
+		int res = ((Long) query.uniqueResult()).intValue();
 		
 		return res;
 	}

@@ -36,8 +36,15 @@ public class ProcessOrdersTableVO {
 
 	private String size2;
 	
-	//数量
+	/**
+	 * 订单计划数
+	 */
 	private int count;
+	
+	/**
+	 * 订单已完成数
+	 */
+	private int hasFinished;
 	
 	//交货日期
 	private Date deliveryTime;
@@ -134,6 +141,14 @@ public class ProcessOrdersTableVO {
 
 	public void setProductID(int productID) {
 		this.productID = productID;
+	}
+
+	public int getHasFinished() {
+		return hasFinished;
+	}
+
+	public void setHasFinished(int hasFinished) {
+		this.hasFinished = hasFinished;
 	}
 
 }

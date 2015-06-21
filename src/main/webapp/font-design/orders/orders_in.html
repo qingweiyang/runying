@@ -11,6 +11,18 @@
 </ul>
 
   <div class="col-md-7 column">
+    <!-- 合同号 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-3 column form-pre-des">
+        合同号 ：
+      </div>
+      <div class="col-md-4 column">
+        <input id="constractNumber" class="form-control">  
+      </div>
+      <div id="contractNumber-suf-des" class="col-md-5 column form-suf-des text-info">
+        （必填）
+      </div>
+    </div>
     <!-- 单据编号 -->
     <div class="row clearfix form-des">
       <div class="col-md-3 column form-pre-des">
@@ -20,7 +32,19 @@
         <input id="number" class="form-control">  
       </div>
       <div id="number-suf-des" class="col-md-5 column form-suf-des text-info">
-        （必填）
+        （选填）
+      </div>
+    </div>
+    <!-- 图号 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-3 column form-pre-des">
+        图号 ：
+      </div>
+      <div class="col-md-4 column">
+        <input id="pictureNumber" class="form-control">  
+      </div>
+      <div id="pictureNumber-suf-des" class="col-md-5 column form-suf-des text-info">
+        （选填）
       </div>
     </div>
     <!-- 产品名称 -->
@@ -119,6 +143,14 @@
         未知
       </div>
     </div>
+    <div class="row clearfix pdt-des">
+      <div class="col-md-5 column pdt-pre-des">
+        材质
+      </div>
+      <div id="material" class="col-md-7 column pdt-suf-des">
+        未知
+      </div>
+    </div>
   </div>
 
   <legend class="valtype"></legend>
@@ -145,10 +177,12 @@ $(document).ready(function() {
             var size1FromJson = item.size1;
             var size2FromJson = item.size2;
             var materialCodeFromJson = item.materialCode;
+            var materialFromJson = item.material;
             $("#materialName").text(materialNameFromJson);
             $("#size1").text(size1FromJson);
             $("#size2").text(size2FromJson);
             $("#materialCode").text(materialCodeFromJson);
+            $("#material").text(materialFromJson);
         }
     });   
 	});
@@ -157,7 +191,9 @@ $(document).ready(function() {
 function submit() {
     var orders = {};
     //orders.orderNum = $("#orderNum").val();
+    orders.contractNumber = $("#constractNumber").val();
     orders.number = $("#number").val();
+    orders.pictureNumber = $("#pictureNumber").val();
     orders.count = $("#count").val();
     orders.remarks = $("#remarks").val();
     orders.releaseTime = $("#releaseTime").val();
@@ -174,9 +210,9 @@ function submit() {
 
     //检查输入是否合法
     var isValid = 1;
-    if("" == orders.number) {
-      $("#number-suf-des").text("单据编号不能为空");
-      $("#number-suf-des").addClass("text-danger");
+    if("" == orders.contractNumber) {
+      $("#contractNumber-suf-des").text("合同号不能为空");
+      $("#contractNumber-suf-des").addClass("text-danger");
       isValid = 0;
     }
     //测试是否为正整数
@@ -226,8 +262,8 @@ function submit() {
 
 //提交前清除错误提示信息
 function clearWarningMsg() {
-  $("#number-suf-des").text("（必填）");
-  $("#number-suf-des").removeClass("text-danger");
+  $("#contractNumber-suf-des").text("（必填）");
+  $("#contractNumber-suf-des").removeClass("text-danger");
   
   $("#count-suf-des").text("（必填）");
   $("#count-suf-des").removeClass("text-danger");

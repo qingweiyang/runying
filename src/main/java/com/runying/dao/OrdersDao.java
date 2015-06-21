@@ -14,8 +14,16 @@ public class OrdersDao extends DaoUtil{
 		return this.findByColumn("status", status, pageNumber, countPerPage);
 	}
 	
+	public List<Orders> findByMultiStatus(List<Object> status, int pageNumber, int countPerPage) {
+		return this.findByColumnWithConnector("status", "or", status, pageNumber, countPerPage);
+	}
+	
 	public Long sizeWithStatus(int status) {
 		return (long) this.findByColumn("status", status).size();
+	}
+	
+	public int sizeWithMultiStatus(List<Object> status) {
+		return this.countByColumns("status", "or", status);
 	}
 	
 	/**

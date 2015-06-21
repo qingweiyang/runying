@@ -52,6 +52,7 @@
             <th>规格型号1</th>
             <th>规格型号2</th>
             <th>物料长代码</th>
+            <th>材质</th>
             <th>操作</th>
           </tr>
         </thead>
@@ -82,6 +83,7 @@
         $("#size1").val(item.size1);
         $("#size2").val(item.size2);
         $("#materialCode").val(item.materialCode);
+        $("#material").val(item.material);
     }); 
   }
 
@@ -124,6 +126,7 @@
                       "<td>"+item.size1+"</td>"+
                       "<td>"+item.size2+"</td>"+
                       "<td>"+item.materialCode+"</td>"+
+                      "<td>"+item.material+"</td>"+
                       "<td>"+option+"</td>"+
                       "</tr>";
         });

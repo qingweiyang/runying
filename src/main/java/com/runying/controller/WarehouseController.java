@@ -40,7 +40,7 @@ public class WarehouseController {
 	@RequestMapping("/inWarehouse.do")
 	@ResponseBody
 	public Msg inWarehouse(@RequestBody Warehouse w) {
-		return warehouseDaoProxy.inWarehouse(Constants.user, w.getProduct(), w.getNumber());
+		return warehouseService.inWarehouse(Constants.user, w.getProduct(), w.getNumber());
 	}
 	
 	@RequestMapping("/inWarehouseBatch.do")
@@ -52,7 +52,7 @@ public class WarehouseController {
 	@RequestMapping("/outWarehouse.do")
 	@ResponseBody
 	public Msg outWarehouse(@RequestBody Warehouse w) {
-		return warehouseDaoProxy.outWarehouse(Constants.user, w.getProduct(), w.getNumber());
+		return warehouseService.outWarehouse(Constants.user, w.getProduct(), w.getNumber());
 	}
 	
 	@RequestMapping("/outWarehouseBatch.do")

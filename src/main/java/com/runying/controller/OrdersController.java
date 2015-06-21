@@ -1,5 +1,6 @@
 package com.runying.controller;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +16,7 @@ import com.runying.po.User;
 import com.runying.service.OrdersService;
 import com.runying.util.Constants;
 import com.runying.util.Msg;
+import com.runying.vo.OrdersDetailVO;
 import com.runying.vo.ProcessOrdersTableVO;
 import com.runying.vo.TableVO;
 
@@ -50,14 +52,8 @@ public class OrdersController {
 	
 	@RequestMapping(value = "getAllOrders.do")
 	@ResponseBody
-	public TableVO<Orders> getOrders(int currentPage, int countPerPage) {
-		List<Orders> os = ordersDaoProxy.findAll(currentPage, countPerPage);
-		TableVO<Orders> tvo = new TableVO<Orders>();
-		tvo.setRows(os);
-		tvo.setCurrentPage(currentPage);
-		tvo.setCountPerPage(countPerPage);
-		tvo.setPages((ordersDaoProxy.size()-1) / countPerPage + 1);
-		return tvo;
+	public TableVO<OrdersDetailVO> getOrders(int currentPage, int countPerPage) {
+		return ordersService.getUndeleteOrdersTVO(currentPage, countPerPage);
 	}
 	
 	/**
@@ -68,7 +64,9 @@ public class OrdersController {
 	@RequestMapping(value = "getUncheckedOrders.do")
 	@ResponseBody
 	public TableVO<ProcessOrdersTableVO> getUncheckedOrders(int currentPage, int countPerPage) {
-		return ordersService.getOrdersVOByStatus(1, currentPage, countPerPage);
+		List<Object> status = new ArrayList<Object>();
+		status.add(1);
+		return ordersService.getOrdersVOByMultiStatus(status, currentPage, countPerPage);
 	}
 	
 	/**
@@ -79,7 +77,12 @@ public class OrdersController {
 	@RequestMapping(value = "getCheckedOrders.do")
 	@ResponseBody
 	public TableVO<ProcessOrdersTableVO> getCheckedOrders(int currentPage, int countPerPage) {
-		return ordersService.getOrdersVOByStatus(2, currentPage, countPerPage);
+		List<Object> status = new ArrayList<Object>();
+		status.add(2);
+		status.add(3);
+		status.add(4);
+		status.add(5);
+		return ordersService.getOrdersVOByMultiStatus(status, currentPage, countPerPage);
 	}
 	
 	/**
@@ -90,6 +93,10 @@ public class OrdersController {
 	@RequestMapping(value = "getInWarehouseOrders.do")
 	@ResponseBody
 	public TableVO<ProcessOrdersTableVO> getInWarehouseOrders(int currentPage, int countPerPage) {
-		return ordersService.getOrdersVOByStatus(3, currentPage, countPerPage);
+		List<Object> status = new ArrayList<Object>();
+		status.add(2);
+		status.add(3);
+		status.add(4);
+		return ordersService.getOrdersVOByMultiStatus(status, currentPage, countPerPage);
 	}
 }

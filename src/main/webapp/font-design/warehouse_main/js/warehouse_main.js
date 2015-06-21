@@ -104,7 +104,7 @@ function loadUserEdit() {
 
 //加载 仓库列表
 function loadList() {
-	$("#main-page").empty();
+	$("#main-page").children().remove();
 	$("#main-page").load("warehouse/list.html");
 }
 
@@ -134,8 +134,8 @@ function loadOutBatchView() {
                       "<td>"+item.materialName+"</td>"+
                       "<td>"+item.size1+"</td>"+
                       "<td>"+item.processes.length+"</td>"+
-                      "<td>"+item.count+"</td>"+
-                      "<td>null</td>"+
+                      "<td><input></td>"+
+                      "<td> NULL </td>"+
                       "</tr>";
         };
 		$("#current-table tbody").html(text);
@@ -164,24 +164,33 @@ function loadInBatchView() {
     }); 
 }
 
-function inWarehouseBatch() {
-	  tableVO.rows = orders;
-	  $.ajax({
-	      type : "POST",
-	      contentType : 'application/json', 
-	      url : "inWarehouseBatch.do",
-	      data : JSON.stringify(tableVO), 
-	      dataType: "json",
-	      success : function() {
-	      },
-	      error : function(){
-	          alert("error");
-	      }
-	   });
-}
-
 function outWarehouseBatch() {
 	  tableVO.rows = orders;
+	  var error = false;
+	  $("#current-table tbody tr").each(function(i, item) {
+		  var ct = $($(item).find("input:eq(0)")).val();
+		  
+		  //测试是否为正整数
+		  var type = "^[0-9]*[1-9][0-9]*$"; 
+		  var re = new RegExp(type);
+		  if("" == ct || ct.match(re) == null) {
+			  alert("数量得为正数");
+			  error = true;
+			  return false ;
+		  }
+		  //测试数量是否小于库存数
+		  if(tableVO.rows[i].warehouseCount < ct) {
+			  alert("出货数量必须小于库存量");
+			  error = true;
+			  return false ;
+		  }
+		  tableVO.rows[i].count = ct;
+		  
+	   });
+	  if(error) {
+		  return ;
+	  }
+	  
 	  $.ajax({
 	      type : "POST",
 	      contentType : 'application/json', 
@@ -222,4 +231,56 @@ function inWarehouseBatch() {
 	          alert("error");
 	      }
 	   });
+}
+
+/*入库*/
+function inWarehouseSubmit() {
+	var param = {};
+  	//获取输入值
+  	var pay = $("#pdt-number").val();
+  	if(isNaN(pay) || pay < 0) {
+    	//输入不合法，要求为大于0的整数
+    	alert("输入不合法，要求为大于0的整数");
+    	return;
+  	}
+  	var product = {};
+  	product.id = $("#pdt-id").text();
+  	param.product = product;
+  	param.number = pay;
+  	
+  	$("#in-warehouse-modal").modal("hide");
+  	
+  	$.ajax({
+      type : "POST",
+      contentType : 'application/json', 
+      url : "inWarehouse.do",
+      data : JSON.stringify(param), 
+      dataType: "json",
+      success : function(data) {
+          if(data.status == 1) {
+        	//刷新
+        	loadList();
+        	//bug ...
+        	$("div").removeClass("modal-backdrop fade in");
+          } else {
+            alert(data.description);
+          }
+      },
+      error : function(){
+          alert("error");
+      }
+    });
+}
+
+function inWarehouseShow(item) {
+	$("#pdt-name").val(item.product.materialName);
+	$("#pdt-left").text(item.number); 
+	$("#pdt-id").text(item.id); 
+	$("#in-warehouse-modal").modal("show");
+}
+
+function print() {
+	$("#print_area").show();
+	$("#print_area").printArea();
+	$("#print_area").hide();
 }

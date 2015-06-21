@@ -16,6 +16,10 @@ public class UserService {
 	@Autowired
 	private UserDao userDaoProxy;
 	
+	public User findByUsername(String username) {
+		return userDaoProxy.findByUsername(username);
+	}
+	
 	public TableVO<User> getAllUser(int pageNumber, int countPerPage) {
 		List<User> us = userDaoProxy.findAll(pageNumber, countPerPage);
 		TableVO<User> tvo = new TableVO<User>();

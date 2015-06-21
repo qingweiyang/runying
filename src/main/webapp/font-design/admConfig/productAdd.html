@@ -43,6 +43,16 @@
         <input id="size2" type="text" class="form-control">
       </div>
     </div>
+    
+    <!-- 材质 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-2 column form-pre-des">
+        材质 ：
+      </div>
+      <div class="col-md-3 column">
+        <input id="material" type="text" class="form-control">
+      </div>
+    </div>
 
     <!-- 物料长代码 -->
     <div class="row clearfix form-des">
@@ -71,6 +81,7 @@
     product.materialName = $("#name").val();
     product.size1 = $("#size1").val();
     product.size2 = $("#size2").val();
+    product.material = $("#material").val();
     product.materialCode = $("#materialCode").val();
 
     $.ajax({
@@ -99,6 +110,7 @@
         $("#size1").text(item.size1);
         $("#size2").text(item.size2);
         $("#materialCode").text(item.materialCode);
+        $("#material").text(item.material);
     }); 
   }
 
