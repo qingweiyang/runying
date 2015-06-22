@@ -1,0 +1,47 @@
+<!-- 面包屑导航 -->
+<ul class="breadcrumb">
+  <li>
+   <a href="#">仓库管理</a>
+  </li>
+  <li>
+   <a href="#" onclick="loadOutBatch();">批量出库</a>
+  </li>
+  <li class="active">
+     清单确认
+  </li>
+</ul>
+
+
+<div class="panel panel-success table-panel">
+  <!-- Default panel contents -->
+  <div class="panel-heading">
+  	<div class="row clearfix">
+		<div class="col-md-11 column text-center">
+			<h4>高邮兴扬机械有限公司送货清单</h4>
+		</div>
+		<div style="padding-top:10px;" class="col-md-1 column">
+			<a href="#" onclick="print();">打印 <i class="fa fa-print"></i></a>
+		</div>
+		<div class="col-md-4 column">
+		</div>
+	</div>
+    
+  </div>
+
+  <table id="current-table" class="table table-hover table-bordered">
+    <thead>
+      <tr class="active">
+        <th>序号</th>
+        <th>名称</th>
+        <th>规格</th>
+        <th>数量</th>
+        <th>备注</th>
+      </tr>
+    </thead>
+    <tbody></tbody>
+  </table>
+  
+  <div class="panel-footer">
+	送货单位（盖章）：
+  </div>
+</div>

@@ -21,6 +21,12 @@
 	<bean id="warehouseDao" class="com.runying.dao.WarehouseDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="salesBillDao" class="com.runying.dao.SalesBillDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
+	<bean id="salesBill_OrdesDao" class="com.runying.dao.SalesBill_OrdersDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	
 
 	
@@ -39,5 +45,11 @@
 	</bean>
 	<bean name="warehouseDaoProxy" parent="transactionProxy">
 		<property name="target" ref="warehouseDao"></property>
+	</bean>
+	<bean name="salesBillDaoProxy" parent="transactionProxy">
+		<property name="target" ref="salesBillDao"></property>
+	</bean>
+	<bean name="salesBill_OrdesDaoProxy" parent="transactionProxy">
+		<property name="target" ref="salesBill_OrdesDao"></property>
 	</bean>
 </beans>

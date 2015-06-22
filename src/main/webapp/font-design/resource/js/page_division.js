@@ -10,7 +10,7 @@
     } else if(cp != "上一页" && cp != "下一页") {
     	currentPage = cp;
     } 
-    showAllOrders(Number(currentPage), countPerPage);
+    show(Number(currentPage), countPerPage);
   }
   
   // 分页的显示

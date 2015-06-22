@@ -10,9 +10,12 @@ import org.springframework.web.bind.annotation.ResponseBody;
 
 import com.runying.dao.WarehouseDao;
 import com.runying.po.Warehouse;
+import com.runying.service.SalesBillService;
 import com.runying.service.WarehouseService;
 import com.runying.util.Constants;
 import com.runying.util.Msg;
+import com.runying.vo.OrdersBillDetailVO;
+import com.runying.vo.OrdersBillVO;
 import com.runying.vo.ProcessOrdersTableVO;
 import com.runying.vo.TableVO;
 
@@ -24,6 +27,9 @@ public class WarehouseController {
 	
 	@Autowired
 	private WarehouseService warehouseService;
+	
+	@Autowired
+	private SalesBillService salesBillService;
 	
 	@RequestMapping("/getWarehouses.do")
 	@ResponseBody
@@ -49,15 +55,27 @@ public class WarehouseController {
 		return warehouseService.inWarehouseBatch(tvo.getRows(), Constants.user);
 	}
 	
-	@RequestMapping("/outWarehouse.do")
-	@ResponseBody
-	public Msg outWarehouse(@RequestBody Warehouse w) {
-		return warehouseService.outWarehouse(Constants.user, w.getProduct(), w.getNumber());
-	}
+//	@RequestMapping("/outWarehouse.do")
+//	@ResponseBody
+//	public Msg outWarehouse(@RequestBody Warehouse w) {
+//		return warehouseService.outWarehouse(Constants.user, w.getProduct(), w.getNumber());
+//	}
 	
 	@RequestMapping("/outWarehouseBatch.do")
 	@ResponseBody
 	public Msg outWarehouseBatch(@RequestBody TableVO<ProcessOrdersTableVO> tvo) {
 		return warehouseService.outWarehouseBatch(tvo.getRows(), Constants.user);
+	}
+	
+	@RequestMapping("/getAll.do")
+	@ResponseBody
+	public TableVO<OrdersBillVO> getAll(int currentPage, int countPerPage) {
+		return salesBillService.getAll(currentPage, countPerPage);
+	}
+	
+	@RequestMapping("/getSalesbillDetail.do")
+	@ResponseBody
+	public List<OrdersBillDetailVO> getSalesbillDetail(int id) {
+		return salesBillService.getDetail(id);
 	}
 }

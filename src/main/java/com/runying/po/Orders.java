@@ -12,6 +12,8 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+
 /**
  * 订货单po
  * @author yqw
@@ -77,6 +79,10 @@ public class Orders {
 	//订单已完成数量
 	@Column
 	private int hasFinished;
+	
+	@OneToMany(mappedBy = "orders")
+	@JsonBackReference
+	private Set<SalesBill_Orders> salesBill_Orders;
 
 	public int getId() {
 		return id;
@@ -196,6 +202,14 @@ public class Orders {
 
 	public void setHasFinished(int hasFinished) {
 		this.hasFinished = hasFinished;
+	}
+
+	public Set<SalesBill_Orders> getSalesBill_Orders() {
+		return salesBill_Orders;
+	}
+
+	public void setSalesBill_Orders(Set<SalesBill_Orders> salesBill_Orders) {
+		this.salesBill_Orders = salesBill_Orders;
 	}
 
 }

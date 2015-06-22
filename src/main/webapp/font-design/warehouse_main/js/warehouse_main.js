@@ -108,6 +108,12 @@ function loadList() {
 	$("#main-page").load("warehouse/list.html");
 }
 
+//加载 出货单 列表
+function loadSalesbillList() {
+	$("#main-page").empty();
+	$("#main-page").load("warehouse/salesbillList.html");
+}
+
 //加载 批量出库
 function loadOutBatch() {
 	$("#main-page").empty();
@@ -139,6 +145,28 @@ function loadOutBatchView() {
                       "</tr>";
         };
 		$("#current-table tbody").html(text);
+    }); 
+}
+
+function loadSalesbillView(id) {
+	$("#main-page").empty();
+	$("#main-page").load("warehouse/salesbillView.html", function() {
+		$.get(
+			"getSalesbillDetail.do",
+			"id="+id,
+			function(data) {
+				var text = "";
+				$.each(data, function(i, item) {
+					text += "<tr><td>"+(i+1)+"</td>"+
+			                    "<td>"+item.productName+"</td>"+
+			                    "<td>"+item.size+"</td>"+
+			                    "<td>"+item.count+"</td>"+
+			                    "<td></td>"+
+		                    "</tr>";
+				});
+				$("#current-table tbody").html(text);
+		});
+		
     }); 
 }
 
