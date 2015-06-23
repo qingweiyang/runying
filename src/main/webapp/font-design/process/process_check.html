@@ -56,7 +56,7 @@
             <th>数量</th>
             <th>交货日期</th>
             <th>库存量</th>
-            <th>操作</th>
+            <th>详情</th>
           </tr>
         </thead>
         <tbody></tbody>
@@ -143,7 +143,7 @@
         var text = "";
         var option = "";
         $.each(data.rows, function(i, item) {
-        	option = "<div><a href='javascript:void(0);' onclick='detail("+JSON.stringify(item)+");'>查看详情</a></div>";
+        	option = "<div><a href='javascript:void(0);' onclick='detail("+JSON.stringify(item)+");'><i class='fa fa-hand-o-right fa-lg'> </i></a></div>";
         	var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
         	var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
           text += "<tr><td>"+item.id+"</td>"+

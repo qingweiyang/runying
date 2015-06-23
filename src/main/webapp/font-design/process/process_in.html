@@ -111,7 +111,7 @@
         var text = "";
         var option = "";
         $.each(data.rows, function(i, item) {
-        	option = "<div><a href='javascript:void(0);' onclick='detail("+JSON.stringify(item)+");'>生产计划</a></div>";
+        	option = "<div><a href='javascript:void(0);' onclick='detail("+JSON.stringify(item)+");'><i class='fa fa-pencil-square-o fa-lg'> </i></a></div>";
         	var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
         	var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
           text += "<tr><td>"+item.id+"</td>"+
