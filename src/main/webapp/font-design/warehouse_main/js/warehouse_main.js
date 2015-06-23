@@ -165,6 +165,19 @@ function loadSalesbillView(id) {
 		                    "</tr>";
 				});
 				$("#current-table tbody").html(text);
+				
+				//打印内容
+				var text = "";
+				$.each(data, function(i, item) {
+					text += "<div class='clearfix'>" +
+								"<div class='td'><h5>"+(i+1)+"</h5></div>"+
+								"<div class='td'><h5>"+item.productName+"</h5></div>"+
+								"<div class='td'><h5>"+item.size+"</h5></div>"+
+								"<div class='td'><h5>"+item.count+"</h5></div>"+
+								"<div class='td'><h5>&nbsp</h5></div>"+
+		                    "</div>";
+				});
+				$("#head").after(text);
 		});
 		
     }); 
