@@ -127,20 +127,9 @@ body {
 	border-bottom: 1px solid #ddd;
 }
 
-.mytable {
-  border-top: 2px solid black;
-  border-left: 2px solid black;
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
-}
-
-.mytable .td{
-  border-bottom: 1px solid black;
-  border-right: 1px solid black;
-  min-height: 21px;
-  float: left;
-  width: 20%;
-  padding-left: 15px;
+.print-table-name {
+	text-align: center;
+  	min-height: 30px;
 }
 
 /********************************begin***************************************/

@@ -58,67 +58,52 @@
     </table>
 </div>
 
-<div id="print_area" class="container" style="display : none;">
+<div id="print_area" class="container" style="display:none;">
 	<div class="text-center">
 		<h4>兴扬公司产品工序流转卡</h4>
 	</div>
-	<div>
-		<ol class="list-inline">
-				<li>
-					产品名称 : 
-				</li>
-				<li>
-					<div id="print-name" class="border-underline text-center">null</div>
-				</li>
-				<li>
-					型 号 : 
-				</li>
-				<li>
-					<div id="print-size" class="border-underline text-center">null</div>
-				</li>
-				<li>
-					订单号 : 
-				</li>
-				<li>
-					<div id="print-id" class="border-underline text-center">null</div>
-				</li>
-				<li>
-					计划数 : 
-				</li>
-				<li>
-					<div id="print-count" class="border-underline text-center">null</div>
-				</li>
-				<li>
-					交货期 : 
-				</li>
-				<li>
-					<div id="print-releaseTime" class="border-underline text-center">null</div>
-				</li>
-			</ol>
+	<div class="print-table-name">
+		<div style="float:left; width:15%;">
+			<strong>产品名称 :</strong>
+		</div>
+		<div id="print-name" style="float:left; border-bottom:1px solid black; width:16%;">			
+		</div>
+		<div style="float:left; width:10%; margin-left:6%;">
+			<strong>型 号 :</strong>
+		</div>
+		<div id="print-size" style="float:left; border-bottom:1px solid black; width:48%;">			
+		</div>
 	</div>
+	
+	<div class="print-table-name">
+		<div class="text-left" style="float:left; width:10%; margin-left:5%;">
+			<strong>订单号 :</strong>
+		</div>
+		<div id="print-id" style="float:left; border-bottom:1px solid black; width:16%;">null			
+		</div>
+		<div style="float:left; width:10%; margin-left:6%;">
+			<strong>计划数 :</strong>
+		</div>
+		<div id="print-count" style="float:left; border-bottom:1px solid black; width:16%;">null			
+		</div>
+		<div style="float:left; width:10%; margin-left:6%;">
+			<strong>交货期 :</strong>
+		</div>
+		<div id="print-releaseTime" style="float:left; border-bottom:1px solid black; width:16%;">null			
+		</div>
+	</div>
+
+
 	<div>
-		<table id="print-table" class="table table-bordered">
-				<thead>
-					<tr>
-						<th>
-							工序号
-						</th>
-						<th>
-							工序名称
-						</th>
-						<th>
-							数量
-						</th>
-						<th>
-							责任人
-						</th>
-						<th>
-							备注
-						</th>
-					</tr>
-				</thead>
+		<table id="print-table" style="border-collapse:collapse; width:100%; border:2px solid black;">
 				<tbody>
-					
+					<tr>
+						<td style="border:1px solid black; padding-left:15px;"><h5><strong>工序号</strong></h5></td>
+						<td style="border:1px solid black; padding-left:15px;"><h5><strong>工序名称</strong></h5></td>
+						<td style="border:1px solid black; padding-left:15px;"><h5><strong>数量</strong></h5></td>
+						<td style="border:1px solid black; padding-left:15px;"><h5><strong>责任人</strong></h5></td>
+						<td style="border:1px solid black; padding-left:15px;"><h5><strong>备注</strong></h5></td>
+					</tr>
 				</tbody>
 			</table>
 	</div>

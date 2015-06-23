@@ -169,15 +169,14 @@ function loadSalesbillView(id) {
 				//打印内容
 				var text = "";
 				$.each(data, function(i, item) {
-					text += "<div class='clearfix'>" +
-								"<div class='td'><h5>"+(i+1)+"</h5></div>"+
-								"<div class='td'><h5>"+item.productName+"</h5></div>"+
-								"<div class='td'><h5>"+item.size+"</h5></div>"+
-								"<div class='td'><h5>"+item.count+"</h5></div>"+
-								"<div class='td'><h5>&nbsp</h5></div>"+
-		                    "</div>";
+					text += "<tr><td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'>"+(i+1)+"</td>"+
+			                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'>"+item.productName+"</td>"+
+			                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'>"+item.size+"</td>"+
+			                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'>"+item.count+"</td>"+
+			                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'></td>"+
+			                "</tr>";
 				});
-				$("#head").after(text);
+				$("#print-table tbody tr").after(text);
 		});
 		
     }); 
