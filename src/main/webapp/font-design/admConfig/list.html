@@ -93,7 +93,6 @@
   }
 
   function deleteUser(user) {
-	loading();
     $.ajax({
       type : "POST",
       contentType : 'application/json', 
@@ -101,9 +100,10 @@
       data : JSON.stringify(user), 
       dataType: "json",
       success : function(data) {
-    	  loadingEnd();
           if(data.status == 1) {
-            loadList();
+        	//刷新
+            setTimeout('loadList();', 500);
+            
           } else {
             alert(data.description);
           }
