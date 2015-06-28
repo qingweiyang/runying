@@ -1,5 +1,7 @@
 package com.runying.vo;
 
+import java.util.Date;
+
 /**
  * 一张出货单的详情信息vo
  * 
@@ -22,6 +24,11 @@ public class OrdersBillDetailVO {
 	 * 发货产品数量
 	 */
 	private int count;
+	
+	/**
+	 * 发货时间
+	 */
+	private Date billTime;
 
 	public String getProductName() {
 		return productName;
@@ -45,6 +52,14 @@ public class OrdersBillDetailVO {
 
 	public void setCount(int count) {
 		this.count = count;
+	}
+
+	public Date getBillTime() {
+		return billTime;
+	}
+
+	public void setBillTime(Date billTime) {
+		this.billTime = billTime;
 	}
 
 }

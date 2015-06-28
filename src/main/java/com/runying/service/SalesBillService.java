@@ -56,6 +56,7 @@ public class SalesBillService {
 			ob.setProductName(sbo.getOrders().getProduct().getMaterialName());
 			ob.setCount(sbo.getCount());
 			ob.setSize(sbo.getOrders().getProduct().getSize1());
+			ob.setBillTime(sb.getSystemTime());
 			
 			obds.add(ob);
 		}

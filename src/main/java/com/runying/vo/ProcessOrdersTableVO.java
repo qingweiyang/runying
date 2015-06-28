@@ -55,6 +55,9 @@ public class ProcessOrdersTableVO {
 	//对应的工序
 	private Set<Process> processes;
 	
+	//工序制定者
+	private String processOperator;
+	
 	public int getId() {
 		return id;
 	}
@@ -149,6 +152,14 @@ public class ProcessOrdersTableVO {
 
 	public void setHasFinished(int hasFinished) {
 		this.hasFinished = hasFinished;
+	}
+
+	public String getProcessOperator() {
+		return processOperator;
+	}
+
+	public void setProcessOperator(String processOperator) {
+		this.processOperator = processOperator;
 	}
 
 }

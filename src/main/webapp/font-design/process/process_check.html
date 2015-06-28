@@ -99,8 +99,9 @@
 
         // 展示订单下的所有关系
         var pro = "";
+        var systemTime = null;
         $.each(item.processes, function(i, item) {
-          var systemTime = getFormatDateByLong(item.systemTime, "yyyy-MM-dd");
+          systemTime = getFormatDateByLong(item.systemTime, "yyyy-MM-dd");
           pro += "<tr><td>"+item.processNum+"</td>"+
                       "<td>"+item.name+"</td>"+
                       "<td>"+item.num+"</td>"+
@@ -113,12 +114,14 @@
       	//加载打印信息
        	$("#print-name").text(item.materialName);
        	$("#print-size").text(item.size1);
+       	$("#print-date").text(systemTime);
        	$("#print-id").text(item.id);
        	$("#print-count").text(item.count);
        	$("#print-releaseTime").text(releaseTime);
        	var text = "";
         for(var i = 1 ; i <= 9 ; i++) {
    			text += "<tr><td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'>0"+i+"</td>"+
+	                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'></td>"+
 	                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'></td>"+
 	                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'></td>"+
 	                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'></td>"+

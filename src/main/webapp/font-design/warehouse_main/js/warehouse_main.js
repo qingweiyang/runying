@@ -156,7 +156,9 @@ function loadSalesbillView(id) {
 			"id="+id,
 			function(data) {
 				var text = "";
+				var billTime = null;
 				$.each(data, function(i, item) {
+					billTime = getFormatDateByLong(item.billTime, "yyyy-MM-dd");
 					text += "<tr><td>"+(i+1)+"</td>"+
 			                    "<td>"+item.productName+"</td>"+
 			                    "<td>"+item.size+"</td>"+
@@ -166,6 +168,8 @@ function loadSalesbillView(id) {
 				});
 				$("#current-table tbody").html(text);
 				
+				$("#print-date").text(billTime);
+				
 				//打印内容
 				var text = "";
 				$.each(data, function(i, item) {
@@ -174,8 +178,10 @@ function loadSalesbillView(id) {
 			                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'>"+item.size+"</td>"+
 			                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'>"+item.count+"</td>"+
 			                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'></td>"+
+			                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'></td>"+
 			                "</tr>";
 				});
+				
 				$("#print-table tbody tr").after(text);
 		});
 		

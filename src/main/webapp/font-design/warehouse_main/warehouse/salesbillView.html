@@ -47,24 +47,47 @@
 </div>
 
 <!-- 打印 -->
-<div id="print_area" class="container" style="display:none">
+<div id="print_area" class="container" style="display: none;">
 	<div class="clearfix text-center">
-        <h4><strong>高邮兴扬机械有限公司送货清单</strong></h4>
+        <h4><strong>高邮市兴扬机械有限公司发货清单</strong></h4>
     </div>
     
+    <div class="print-table-name">
+		<div style="float:left; width:15%;">
+			<strong>收货单位 :</strong>
+		</div>
+		<div id="print-name" style="float:left; width:10%;">			
+		</div>
+		<div id="print-date" class="text-left" style="float:right; width:16%;">			
+		</div>
+		<div style="float:right; width:10%; margin-left:6%;">
+			<strong>日 期 :</strong>
+		</div>
+	</div>
+	
 	<table id="print-table" style="border-collapse:collapse; width:100%; border:2px solid black;">
 		<tr>
-			<td style="border:1px solid black; padding-left:15px;"><h5><strong>序号</strong></h5></td>
-			<td style="border:1px solid black; padding-left:15px;"><h5><strong>名称</strong></h5></td>
-			<td style="border:1px solid black; padding-left:15px;"><h5><strong>规格</strong></h5></td>
-			<td style="border:1px solid black; padding-left:15px;"><h5><strong>数量</strong></h5></td>
-			<td style="border:1px solid black; padding-left:15px;"><h5><strong>备注</strong></h5></td>
+			<td style="border:1px solid black; padding-left:15px; width: 12%;"><h5><strong>序号</strong></h5></td>
+			<td style="border:1px solid black; padding-left:15px; width: 19%;"><h5><strong>名称</strong></h5></td>
+			<td style="border:1px solid black; padding-left:15px; width: 20%;"><h5><strong>规格</strong></h5></td>
+			<td style="border:1px solid black; padding-left:15px; width: 14%;"><h5><strong>数量</strong></h5></td>
+			<td style="border:1px solid black; padding-left:15px; width: 10%;"><h5><strong>单位</strong></h5></td>
+			<td style="border:1px solid black; padding-left:15px; width: 25%;"><h5><strong>备注</strong></h5></td>
 		</tr>
 	</table>
 	
-
-    <div class="clearfix">
-        <h5><strong>送货单位（盖章）：</strong></h5>
-    </div>
-	
+	<div class="print-table-name">
+		<div class="text-left" style="float:left; width:30%;">
+			<h5><strong>送货单位（盖章）：</strong></h5>
+		</div>
+		<div id="print-name" style="float:left; width:10%;">	
+			&nbsp;			
+		</div>
+		<div id="print-date" class="text-left" style="float:right; width:16%;">	
+			&nbsp;		
+		</div>
+		<div style="float:right; width:10%; margin-left:6%;">
+			<h5><strong>开票人 ：</strong></h5>
+		</div>
+	</div>
 </div>
