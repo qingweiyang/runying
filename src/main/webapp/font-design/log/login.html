@@ -6,6 +6,7 @@
 
 	<!-- Bootstrap -->
 	<link href="../resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+	<link rel="stylesheet" href="../admConfig/lib/font-awesome-4.3.0/css/font-awesome.css">
 	<link href="../resource/css/main.css" rel="stylesheet">
 	<!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
 	<script src="../resource/jquery/jquery-1.11.3.min.js"></script>
@@ -17,23 +18,35 @@
 <body style="background: url(../resource/img/a36cb1ea.hero-bg.jpg) 0 0/cover no-repeat;">
 
 <div class="container text-center">
-	<h1 class="hero-headline">Xing Yang, Make Your Life Easy And Beautiful</h1>
+	<h1 class="hero-headline">
+		<span class="fa fa-diamond"></span> Xing Yang, Make Your Life Easy And Beautiful
+	</h1>
 	
 	        <!-- 主页面 -->
     <div class="col-md-8 col-md-offset-4 column">
 	    
         <div class="row clearfix form-des">
           <div class="col-md-6 column">
-            <input id="username" type="text" class="form-control" placeholder="用户名">  
+          	<div class="input-group">
+	          	<div class="input-group-addon">
+	          		<span class="fa fa-user fa-fw"></span>
+	          	</div>
+	            <input id="username" type="text" class="form-control" placeholder="用户名">  
+          	</div>
           </div>
           <div id="username-suf-des" class="col-md-6 form-suf-des hero-tagline text-danger">
-	        
+
 	      </div>
         </div>
         
         <div class="row clearfix form-des">
           <div class="col-md-6 column">
-            <input id="password" type="password" class="form-control" placeholder="密  码">  
+          	<div class="input-group">
+	          	<div class="input-group-addon">
+	          		<span class="fa fa-key fa-fw"></span>
+	          	</div>
+	            <input id="password" type="password" class="form-control" placeholder="密  码">
+	        </div>  
           </div>
           <div id="password-suf-des" class="col-md-6 form-suf-des hero-tagline text-danger">
 	        
@@ -42,12 +55,16 @@
 
         <div class="row clearfix form-des">
 	        <div class="col-md-3 column">
-	            <button type="button" class="btn btn-default btn-block">忘记密码？</button>
+	            <button type="button" class="btn btn-default btn-block">
+	            	忘记密码 <span class="fa fa-question-circle fa-fw"></span> 
+	            </button>
 	          </div>
         	
-          <div class="col-md-3 column">
-            <button type="button" class="btn btn-info btn-block" onclick="login();">登入</button>
-          </div>
+	          <div class="col-md-3 column">
+	            <button type="button" class="btn btn-info btn-block" onclick="login();">
+	            	登入 <span class="fa fa-sign-in fa-fw"></span> 
+	            </button>
+	          </div>
         </div>
 
     </div>
