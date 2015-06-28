@@ -105,6 +105,7 @@
     product.materialCode = $("#materialCode").val();
     product.material = $("#material").val();
 
+    loading();
     $.ajax({
       type : "POST",
       contentType : 'application/json', 
@@ -112,6 +113,7 @@
       data : JSON.stringify(product), 
       dataType: "json",
       success : function(data) {
+    	  loadingEnd();
           if(data.status == 1) {
             productEditSuccess(product);
           } else {
@@ -119,6 +121,7 @@
           }
       },
       error : function(){
+    	  loadingEnd();
           alert("error");
       }
     });

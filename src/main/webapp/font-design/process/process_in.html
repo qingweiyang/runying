@@ -104,6 +104,7 @@
     var param = {};
     param.currentPage = currentPage;
     param.countPerPage = countPerPage;
+    loading();
     $.get(
       "getUncheckedOrders.do",
       param,
@@ -128,6 +129,7 @@
         });
         $("#all-process-table tbody").html(text);
         pageDivision(data.pages, currentPage);
+        loadingEnd();
       });
   }
 </script>

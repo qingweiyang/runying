@@ -73,6 +73,7 @@
     }
     user.privilege = privilege;
 
+    loading();
     $.ajax({
       type : "POST",
       contentType : 'application/json', 
@@ -80,6 +81,7 @@
       data : JSON.stringify(user), 
       dataType: "json",
       success : function(data) {
+    	  loadingEnd();
           if(data.status == 1) {
             addSuccess(user);
           } else {
@@ -87,6 +89,7 @@
           }
       },
       error : function(){
+    	  loadingEnd();
           alert("error");
       }
     });

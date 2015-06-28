@@ -88,6 +88,7 @@
   }
 
   function deleteProduct(product) {
+	  loading();
     $.ajax({
       type : "POST",
       contentType : 'application/json', 
@@ -95,6 +96,7 @@
       data : JSON.stringify(product), 
       dataType: "json",
       success : function(data) {
+    	  loadingEnd();
           if(data.status == 1) {
             loadProductList();
           } else {
@@ -102,6 +104,7 @@
           }
       },
       error : function(){
+    	  loadingEnd();
           alert("error");
       }
     });
@@ -111,6 +114,7 @@
     var param = {};
     param.currentPage = currentPage;
     param.countPerPage = countPerPage;
+    loading();
     $.get(
       "getUndeletedProduct.do",
       param,
@@ -132,6 +136,7 @@
         });
         $("#current-table tbody").html(text);
         pageDivision(data.pages, currentPage);
+        loadingEnd();
       });
   }
 </script>

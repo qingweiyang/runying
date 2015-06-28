@@ -115,6 +115,7 @@
     var param = {};
     param.currentPage = currentPage;
     param.countPerPage = countPerPage;
+    loading();
     $.get(
       "getInWarehouseOrders.do",
       param,
@@ -142,6 +143,7 @@
         });
         $("#all-orders-table tbody").html(text);
         pageDivision(data.pages, currentPage);
+        loadingEnd();
       });
   }
 

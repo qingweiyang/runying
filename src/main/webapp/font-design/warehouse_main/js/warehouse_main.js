@@ -26,32 +26,50 @@ function watchWarehouse() {
 
 function loadProductIn() {
 	$("#main-page").empty();
-	$("#main-page").load("../warehouse_in/product_in.html");
+	loading();
+	$("#main-page").load("../warehouse_in/product_in.html", function() {
+		loadingEnd();
+	});
 }
 
 function loadWarehouseCurrent() {
 	$("#main-page").empty();
-	$("#main-page").load("../warehouse_check/warehouse_current.html");
+	loading();
+	$("#main-page").load("../warehouse_check/warehouse_current.html", function() {
+		loadingEnd();
+	});
 }
 
 function loadOrdersIn() {
 	$("#main-page").empty();
-	$("#main-page").load("../orders/orders_in.html");
+	loading();
+	$("#main-page").load("../orders/orders_in.html", function() {
+		loadingEnd();
+	});
 }
 
 function loadAllOrders() {
 	$("#main-page").empty();
-	$("#main-page").load("../orders/orders_all.html");
+	loading();
+	$("#main-page").load("../orders/orders_all.html", function() {
+		loadingEnd();
+	});
 }
 
 function loadProcessIn() {
 	$("#main-page").empty();
-	$("#main-page").load("../process/process_in.html");
+	loading();
+	$("#main-page").load("../process/process_in.html", function() {
+		loadingEnd();
+	});
 }
 
 function loadProcessCheck() {
 	$("#main-page").empty();
-	$("#main-page").load("../process/process_check.html");
+	loading();
+	$("#main-page").load("../process/process_check.html", function() {
+		loadingEnd();
+	});
 }
 
 function loadWarehouseInOut() {
@@ -60,6 +78,7 @@ function loadWarehouseInOut() {
 
 function loadUserInfo() {
 	$("#main-page").empty();
+	loading();
 	$("#main-page").load("userInfo.html", function() {
         $("#name").text($("#username").text());
         var pri = '';
@@ -77,11 +96,14 @@ function loadUserInfo() {
           pri += '<span class="label label-success">管理员</span> ';
         }
         $("#pri-suf-des").append(pri);
+        
+        loadingEnd();
     }); 
 }
 
 function loadUserEdit() {
 	$("#main-page").empty();
+	loading();
 	$("#main-page").load("userEdit.html", function() {
         $("#name").text($("#username").text());
         var pri = '';
@@ -99,31 +121,45 @@ function loadUserEdit() {
           pri += '<span class="label label-success">管理员</span> ';
         }
         $("#pri-suf-des").append(pri);
+        
+        loadingEnd();
     }); 
 }
 
 //加载 仓库列表
 function loadList() {
 	$("#main-page").children().remove();
-	$("#main-page").load("warehouse/list.html");
+	loading();
+	$("#main-page").load("warehouse/list.html", function() {
+		loadingEnd();
+	});
 }
 
 //加载 出货单 列表
 function loadSalesbillList() {
 	$("#main-page").empty();
-	$("#main-page").load("warehouse/salesbillList.html");
+	loading();
+	$("#main-page").load("warehouse/salesbillList.html", function() {
+		loadingEnd();
+	});
 }
 
 //加载 批量出库
 function loadOutBatch() {
 	$("#main-page").empty();
-	$("#main-page").load("warehouse/outBatch.html");
+	loading();
+	$("#main-page").load("warehouse/outBatch.html", function() {
+		loadingEnd();
+	});
 }
 
 //加载 批量入库
 function loadInBatch() {
 	$("#main-page").empty();
-	$("#main-page").load("warehouse/inBatch.html");
+	loading();
+	$("#main-page").load("warehouse/inBatch.html", function() {
+		loadingEnd();
+	});
 }
 
 function loadOutBatchView() {
@@ -132,6 +168,7 @@ function loadOutBatchView() {
 		return ;
 	}
 	$("#main-page").empty();
+	loading();
 	$("#main-page").load("warehouse/outBatchView.html", function() {
 		var text = "";
 		for(var i = 0 ; i < orders.length ; i++) {
@@ -145,11 +182,14 @@ function loadOutBatchView() {
                       "</tr>";
         };
 		$("#current-table tbody").html(text);
+		
+		loadingEnd();
     }); 
 }
 
 function loadSalesbillView(id) {
 	$("#main-page").empty();
+	loading();
 	$("#main-page").load("warehouse/salesbillView.html", function() {
 		$.get(
 			"getSalesbillDetail.do",
@@ -183,6 +223,8 @@ function loadSalesbillView(id) {
 				});
 				
 				$("#print-table tbody tr").after(text);
+				
+				loadingEnd();
 		});
 		
     }); 
@@ -194,6 +236,7 @@ function loadInBatchView() {
 		return ;
 	}
 	$("#main-page").empty();
+	loading();
 	$("#main-page").load("warehouse/inBatchView.html", function() {
 		var text = "";
 		for(var i = 0 ; i < orders.length ; i++) {
@@ -207,6 +250,8 @@ function loadInBatchView() {
                       "</tr>";
         };
 		$("#current-table tbody").html(text);
+		
+		loadingEnd();
     }); 
 }
 
@@ -237,6 +282,8 @@ function outWarehouseBatch() {
 		  return ;
 	  }
 	  
+	  loading();
+	  
 	  $.ajax({
 	      type : "POST",
 	      contentType : 'application/json', 
@@ -244,6 +291,7 @@ function outWarehouseBatch() {
 	      data : JSON.stringify(tableVO), 
 	      dataType: "json",
 	      success : function(data) {
+	    	  loadingEnd();
 	    	  if(data.status == 1) {
 	    		  $("#main-page").empty();
 	    		  $("#main-page").load("warehouse/outBatchSuccess.html");
@@ -252,6 +300,7 @@ function outWarehouseBatch() {
 	    	  }
 	      },
 	      error : function(){
+	    	  loadingEnd();
 	          alert("error");
 	      }
 	   });
@@ -259,6 +308,7 @@ function outWarehouseBatch() {
 
 function inWarehouseBatch() {
 	  tableVO.rows = orders;
+	  loading();
 	  $.ajax({
 	      type : "POST",
 	      contentType : 'application/json', 
@@ -266,6 +316,7 @@ function inWarehouseBatch() {
 	      data : JSON.stringify(tableVO), 
 	      dataType: "json",
 	      success : function(data) {
+	    	  loadingEnd();
 	    	  if(data.status == 1) {
 	    		  $("#main-page").empty();
 	    		  $("#main-page").load("warehouse/inBatchSuccess.html");
@@ -274,6 +325,7 @@ function inWarehouseBatch() {
 	    	  }
 	      },
 	      error : function(){
+	    	  loadingEnd();
 	          alert("error");
 	      }
 	   });
@@ -296,6 +348,7 @@ function inWarehouseSubmit() {
   	
   	$("#in-warehouse-modal").modal("hide");
   	
+  	
   	$.ajax({
       type : "POST",
       contentType : 'application/json', 
@@ -303,16 +356,20 @@ function inWarehouseSubmit() {
       data : JSON.stringify(param), 
       dataType: "json",
       success : function(data) {
+    	  
           if(data.status == 1) {
         	//刷新
-        	loadList();
+        	setTimeout('loadList()', 500);
+
+        	//loadList();
         	//bug ...
-        	$("div").removeClass("modal-backdrop fade in");
+        	//$("div").removeClass("modal-backdrop fade in");
           } else {
             alert(data.description);
           }
       },
       error : function(){
+    	  loadingEnd();
           alert("error");
       }
     });

@@ -72,6 +72,7 @@
     var param = {};
     param.currentPage = currentPage;
     param.countPerPage = countPerPage;
+    loading();
     $.get(
       "getAll.do",
       param,
@@ -88,6 +89,7 @@
         });
         $("#current-table tbody").html(text);
         pageDivision(data.pages, currentPage);
+        loadingEnd();
       });
   }
   

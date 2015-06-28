@@ -117,6 +117,7 @@
     var param = {};
     param.currentPage = currentPage;
     param.countPerPage = countPerPage;
+    loading();
     $.get(
       "getWarehouses.do",
       param,
@@ -136,6 +137,7 @@
         });
         $("#current-table tbody").html(text);
         pageDivision(data.pages, currentPage);
+        loadingEnd();
       });
   }
   

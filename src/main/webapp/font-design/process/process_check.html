@@ -139,6 +139,7 @@
     var param = {};
     param.currentPage = currentPage;
     param.countPerPage = countPerPage;
+    loading();
     $.get(
       "getCheckedOrders.do",
       param,
@@ -163,6 +164,7 @@
         });
         $("#all-process-table tbody").html(text);
         pageDivision(data.pages, currentPage);
+        loadingEnd();
       });
   }
 </script>
