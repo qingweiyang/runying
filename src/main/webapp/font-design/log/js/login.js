@@ -14,6 +14,9 @@ function login() {
 		function(data) {
 			if(data.status == 1) {
 				location.href = "../warehouse_main/warehouse_main.html";
+			} else {
+				$("#username-suf-des").text("输入错误");
+				$("#password-suf-des").text("输入错误");
 			}
 		});
 

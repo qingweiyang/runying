@@ -1,11 +1,26 @@
 body {
 	background-color: #CCCCCC;
+	background: url(../img/a36cb1ea.hero-bg.jpg) 0 0/cover no-repeat;
 }
 
 #main-page {
   min-height: 500px;
   padding: 12px;
   background-color: #fff;
+}
+
+.hero-headline {
+  color: #fff;
+  font-size: 45px;
+  font-weight: 400;
+  text-shadow: 0 2px 3px rgba(0,0,0,.5);
+  margin: 6rem 0 4rem;
+}
+
+.hero-tagline {
+  font-family: freight-sans-pro,sans-serif;
+  font-weight: 400;
+  text-shadow: 0 1px 2px rgba(0,0,0,.5);
 }
 
 .login-panel {
@@ -166,6 +181,22 @@ body {
 }
 
 /*override bootstrap navbar-fixed-top style*/
+.navbar-default .navbar-brand {
+  color: #fff;
+}
+
+.navbar-default .navbar-nav>li>a {
+  color: #fff;
+}
+
+.navbar-default {
+  background: none;
+}
+
+.navbar {
+  border: 0px;
+}
+
 .navbar-fixed-top {
   padding-left: 5%;
   padding-right: 5%;
@@ -203,14 +234,9 @@ body {
 }
 
 .footer {
-  width: 100%;
-  margin-top: 100px;
-  padding-top: 30px;
-  padding-bottom: 30px;
+  padding-top: 20px;
+  padding-bottom: 20px;
   font-size: 12px;
-  line-height: 1.5;
-  border-top: 1px solid #eee;
-  background-color: grey;
   text-align: center;
 }
 
