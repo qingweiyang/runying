@@ -125,7 +125,7 @@
         	option = "<a href='javascript:void(0);' onclick='productEdit("+JSON.stringify(item)+");'><i class='fa fa-pencil-square-o fa-lg'> </i></a>  ";
           option += "<a href='javascript:void(0);' onclick='deleteProduct("+JSON.stringify(item)+");'><i class='fa fa-trash fa-lg'> </i></a>";
 
-          text += "<tr><td>"+(i+1)+"</td>"+
+          text += "<tr><td>"+(i+1+(currentPage-1)*countPerPage)+"</td>"+
                       "<td>"+item.materialName+"</td>"+
                       "<td>"+item.size1+"</td>"+
                       "<td>"+item.size2+"</td>"+

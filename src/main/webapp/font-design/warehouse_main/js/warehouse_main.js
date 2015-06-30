@@ -202,8 +202,8 @@ function loadSalesbillView(id) {
 					text += "<tr><td>"+(i+1)+"</td>"+
 			                    "<td>"+item.productName+"</td>"+
 			                    "<td>"+item.size+"</td>"+
-			                    "<td>"+item.count+"</td>"+
 			                    "<td></td>"+
+			                    "<td>"+item.count+"</td>"+
 		                    "</tr>";
 				});
 				$("#current-table tbody").html(text);
