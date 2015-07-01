@@ -147,7 +147,8 @@
         var text = "";
         var option = "";
         $.each(data.rows, function(i, item) {
-        	option = "<div><a href='javascript:void(0);' onclick='detail("+JSON.stringify(item)+");'><i class='fa fa-hand-o-right fa-lg'> </i></a></div>";
+        	var info = strTransfer(JSON.stringify(item));
+        	option = "<div><a href='javascript:void(0);' onclick='detail("+info+");'><i class='fa fa-hand-o-right fa-lg'> </i></a></div>";
         	var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
         	var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");
           text += "<tr><td>"+item.id+"</td>"+

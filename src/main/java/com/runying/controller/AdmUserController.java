@@ -24,6 +24,12 @@ public class AdmUserController {
 		return userService.getUndeletedUser(currentPage, countPerPage);
 	}
 	
+	@RequestMapping(value = "getSingleUser.do")
+	@ResponseBody
+	public User getSingleUser(int id) {
+		return userService.findByID(id);
+	}
+	
 	/**
 	 * 修改用户权限
 	 * @param currentPage
@@ -44,8 +50,8 @@ public class AdmUserController {
 	 */
 	@RequestMapping(value = "deleteUser.do")
 	@ResponseBody
-	public Msg deleteUser(@RequestBody User user) {
-		return userService.deleteUser(user, Constants.user);
+	public Msg deleteUser(int id) {
+		return userService.deleteUser(id, Constants.user);
 	}
 	
 	/**

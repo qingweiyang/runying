@@ -72,47 +72,47 @@
   });
 
   // 权限编辑
-  function edit(item) {
+  function edit(id) {
     $("#process-main").empty();
     $("#process-main").load("edit.html", function() {
-        $("#name-suf-des").text(item.username);
-        var privilege = item.privilege;
-        if((privilege & 1) == 1) {
-          $("#inlineCheckbox1").attr("checked", true);
-        } 
-        if(((privilege >> 1) & 1) == 1) {
-          $("#inlineCheckbox2").attr("checked", true);
-        } 
-        if(((privilege >> 2) & 1) == 1) {
-          $("#inlineCheckbox3").attr("checked", true);
-        }
-        if(((privilege >> 3) & 1) == 1) {
-          $("#inlineCheckbox4").attr("checked", true);
-        }
+    	loading();
+    	$.get(
+    		"getSingleUser.do",
+    		"id="+id,
+    		function(item) {
+    	        $("#name-suf-des").text(item.username);
+    	        var privilege = item.privilege;
+    	        if((privilege & 1) == 1) {
+    	          $("#inlineCheckbox1").attr("checked", true);
+    	        } 
+    	        if(((privilege >> 1) & 1) == 1) {
+    	          $("#inlineCheckbox2").attr("checked", true);
+    	        } 
+    	        if(((privilege >> 2) & 1) == 1) {
+    	          $("#inlineCheckbox3").attr("checked", true);
+    	        }
+    	        if(((privilege >> 3) & 1) == 1) {
+    	          $("#inlineCheckbox4").attr("checked", true);
+    	        }
+    	        loadingEnd();
+    	});
+    	
     }); 
   }
 
-  function deleteUser(user) {
-    $.ajax({
-      type : "POST",
-      contentType : 'application/json', 
-      url : "deleteUser.do",
-      data : JSON.stringify(user), 
-      dataType: "json",
-      success : function(data) {
-          if(data.status == 1) {
-        	//刷新
-            setTimeout('loadList();', 500);
-            
-          } else {
+  function deleteUser(id) {
+	  $.get(
+		"deleteUser.do",
+	  	"id="+id,
+	  	function(data) {
+	  	if(data.status == 1) {
+	  		//刷新
+	  	    setTimeout('loadList();', 500);
+	  	} else {
             alert(data.description);
-          }
-      },
-      error : function(){
-    	  loadingEnd();
-          alert("error");
-      }
-    });
+	  	}
+	 });	 
+
   }
     
   function show(currentPage, countPerPage) {
@@ -127,8 +127,8 @@
         var text = "";
         var option = "";
         $.each(data.rows, function(i, item) {
-        	option = "<a href='javascript:void(0);' onclick='edit("+JSON.stringify(item)+");'><i class='fa fa-pencil-square-o fa-lg'> </i></a>  ";
-          option += "<a href='javascript:void(0);' onclick='deleteUser("+JSON.stringify(item)+");'><i class='fa fa-trash fa-lg'> </i></a>";
+        	option = "<a href='javascript:void(0);' onclick='edit("+item.id+");'><i class='fa fa-pencil-square-o fa-lg'> </i></a>  ";
+          option += "<a href='javascript:void(0);' onclick='deleteUser("+item.id+");'><i class='fa fa-trash fa-lg'> </i></a>";
           var pri = '';
           var privilege = item.privilege;
           if((privilege & 1) == 1) {
@@ -144,7 +144,7 @@
             pri += '<span class="label label-success">管理员</span> ';
           }
 
-          text += "<tr><td>"+(i+1)+"</td>"+
+          text += "<tr><td>"+(i+1+(currentPage-1)*countPerPage)+"</td>"+
                       "<td>"+item.username+"</td>"+
                       "<td>"+pri+"</td>"+
                       "<td>"+option+"</td>"+

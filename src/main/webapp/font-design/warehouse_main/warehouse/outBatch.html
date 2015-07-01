@@ -122,10 +122,11 @@
       function(data) {
         var text = "";
         $.each(data.rows, function(i, item) {
+        	var info = strTransfer(JSON.stringify(item));
         	if(!exist(item.id)) {
-        		option = "<a href='javascript:void(0);' onclick='addOrders(this, "+JSON.stringify(item)+");'><i class='fa fa-cart-plus fa-lg'> </i></a>  ";
+        		option = "<a href='javascript:void(0);' onclick='addOrders(this, "+info+");'><i class='fa fa-cart-plus fa-lg'> </i></a>  ";
         	} else {
-        		option = "<a href='javascript:void(0);' onclick='addOrders(this, "+JSON.stringify(item)+");'><i class='fa fa-undo fa-lg'> </i></a>  ";
+        		option = "<a href='javascript:void(0);' onclick='addOrders(this, "+info+");'><i class='fa fa-undo fa-lg'> </i></a>  ";
         	}
         	var releaseTime = getFormatDateByLong(item.releaseTime, "yyyy-MM-dd");
         	var deliveryTime = getFormatDateByLong(item.deliveryTime, "yyyy-MM-dd");

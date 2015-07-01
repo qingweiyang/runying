@@ -202,8 +202,8 @@ function loadSalesbillView(id) {
 					text += "<tr><td>"+(i+1)+"</td>"+
 			                    "<td>"+item.productName+"</td>"+
 			                    "<td>"+item.size+"</td>"+
-			                    "<td></td>"+
 			                    "<td>"+item.count+"</td>"+
+			                    "<td></td>"+
 		                    "</tr>";
 				});
 				$("#current-table tbody").html(text);
@@ -216,8 +216,8 @@ function loadSalesbillView(id) {
 					text += "<tr><td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'>"+(i+1)+"</td>"+
 			                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'>"+item.productName+"</td>"+
 			                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'>"+item.size+"</td>"+
-			                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'>"+item.count+"</td>"+
 			                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'></td>"+
+			                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'>"+item.count+"</td>"+
 			                    "<td style='border:1px solid black; padding-left:15px; padding-top:5px; padding-bottom:5px;'></td>"+
 			                "</tr>";
 				});
@@ -386,4 +386,16 @@ function print() {
 	$("#print_area").show();
 	$("#print_area").printArea();
 	$("#print_area").hide();
+}
+
+function strTransfer(str) {
+	var res = "";
+	for(var i = 0 ; i < str.length ; i++) {
+		if(str.charAt(i) == "'") {
+			res += "&apos;";
+		} else{
+			res += str.charAt(i);
+		}
+	}
+	return res;
 }

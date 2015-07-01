@@ -16,6 +16,10 @@ public class UserService {
 	@Autowired
 	private UserDao userDaoProxy;
 	
+	public User findByID(int id) {
+		return userDaoProxy.findByID(id);
+	}
+	
 	public User findByUsername(String username) {
 		return userDaoProxy.findByUsername(username);
 	}
@@ -120,7 +124,7 @@ public class UserService {
 	 * @param operator
 	 * @return
 	 */
-	public Msg deleteUser(User u, User operator) {
+	public Msg deleteUser(int uID, User operator) {
 		Msg msg = new Msg();
 		
 		User resDB = userDaoProxy.findByUsername(operator.getUsername());
@@ -131,11 +135,11 @@ public class UserService {
 			return msg;
 		}
 		
-		User uDB = userDaoProxy.findByUsername(u.getUsername());
+		User uDB = userDaoProxy.findByID(uID);
 		//检查该用户是否存在
 		if(uDB == null) {
 			msg.setStatus(0);
-			msg.setDescription("用户 " + u.getUsername() + " 不存在");
+			msg.setDescription("用户ID " + uID + " 不存在");
 			return msg;
 		}
 		
