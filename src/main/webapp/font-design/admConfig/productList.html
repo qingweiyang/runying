@@ -96,27 +96,18 @@
     }); 
   }
 
-  function deleteProduct(product) {
-    $.ajax({
-      type : "POST",
-      contentType : 'application/json', 
-      url : "deleteProduct.do",
-      data : JSON.stringify(product), 
-      dataType: "json",
-      success : function(data) {
-  
-          if(data.status == 1) {
-        	//刷新
-          	setTimeout('loadProductList();', 500);
-            
-          } else {
-            alert(data.description);
-          }
-      },
-      error : function(){
-          alert("error");
-      }
-    });
+  function deleteProduct(id) {
+  	$.get(
+    	"deleteProduct.do",
+    	"id="+id,
+    	function(data) {
+            if(data.status == 1) {
+          	//刷新
+            setTimeout('loadProductList();', 500);
+            } else {
+              alert(data.description);
+            }
+    	});	 
   }
     
   function show(currentPage, countPerPage) {
@@ -132,7 +123,7 @@
         var option = "";
         $.each(data.rows, function(i, item) {
         	option = "<a href='javascript:void(0);' onclick='productEdit("+item.id+");'><i class='fa fa-pencil-square-o fa-lg'> </i></a>  ";
-          option += "<a href='javascript:void(0);' onclick='deleteProduct("+JSON.stringify(item)+");'><i class='fa fa-trash fa-lg'> </i></a>";
+          option += "<a href='javascript:void(0);' onclick='deleteProduct("+item.id+");'><i class='fa fa-trash fa-lg'> </i></a>";
 
           text += "<tr><td>"+(i+1+(currentPage-1)*countPerPage)+"</td>"+
                       "<td>"+item.materialName+"</td>"+

@@ -39,8 +39,8 @@ public class AdmProductController {
 	 */
 	@RequestMapping(value = "deleteProduct.do")
 	@ResponseBody
-	public Msg deleteProduct(@RequestBody Product p) {
-		return productService.deleteProduct(p, Constants.user);
+	public Msg deleteProduct(int id) {
+		return productService.deleteProduct(id, Constants.user);
 	}
 	
 	/**

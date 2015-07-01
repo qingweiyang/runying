@@ -66,7 +66,7 @@ public class ProductService {
 	 * @param operator
 	 * @return
 	 */
-	public Msg deleteProduct(Product p, User operator) {
+	public Msg deleteProduct(int pID, User operator) {
 		Msg msg = new Msg();
 		
 		User resDB = userDaoProxy.findByUsername(operator.getUsername());
@@ -77,11 +77,11 @@ public class ProductService {
 			return msg;
 		}
 		
-		Product pDB = productDaoProxy.findByID(p.getId());
+		Product pDB = productDaoProxy.findByID(pID);
 		//检查该产品是否存在
 		if(pDB == null) {
 			msg.setStatus(0);
-			msg.setDescription("产品 " + p.getMaterialName() + " 不存在");
+			msg.setDescription("产品ID " + pID + " 不存在");
 			return msg;
 		}
 		
