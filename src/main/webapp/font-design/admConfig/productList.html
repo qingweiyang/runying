@@ -75,15 +75,24 @@
   });
 
   // 权限编辑
-  function productEdit(item) {
+  function productEdit(id) {
     $("#process-main").empty();
     $("#process-main").load("productEdit.html", function() {
-        $("#id").text(item.id);
-        $("#name").val(item.materialName);
-        $("#size1").val(item.size1);
-        $("#size2").val(item.size2);
-        $("#materialCode").val(item.materialCode);
-        $("#material").val(item.material);
+    	loading();
+    	$.get(
+    		"getSingleProduct.do",
+    		"id="+id,
+    		function(item) {
+    	        $("#id").text(item.id);
+    	        $("#name").val(item.materialName);
+    	        $("#size1").val(item.size1);
+    	        $("#size2").val(item.size2);
+    	        $("#materialCode").val(item.materialCode);
+    	        $("#material").val(item.material);
+    	        
+    	        loadingEnd();
+    		});
+    	
     }); 
   }
 
@@ -122,7 +131,7 @@
         var text = "";
         var option = "";
         $.each(data.rows, function(i, item) {
-        	option = "<a href='javascript:void(0);' onclick='productEdit("+JSON.stringify(item)+");'><i class='fa fa-pencil-square-o fa-lg'> </i></a>  ";
+        	option = "<a href='javascript:void(0);' onclick='productEdit("+item.id+");'><i class='fa fa-pencil-square-o fa-lg'> </i></a>  ";
           option += "<a href='javascript:void(0);' onclick='deleteProduct("+JSON.stringify(item)+");'><i class='fa fa-trash fa-lg'> </i></a>";
 
           text += "<tr><td>"+(i+1+(currentPage-1)*countPerPage)+"</td>"+

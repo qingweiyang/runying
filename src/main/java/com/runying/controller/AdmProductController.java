@@ -24,6 +24,11 @@ public class AdmProductController {
 		return productService.getUndeletedProduct(currentPage, countPerPage);
 	}
 	
+	@RequestMapping(value = "getSingleProduct.do")
+	@ResponseBody
+	public Product getSingleProduct(int id) {
+		return productService.findByID(id);
+	}
 	
 	/**
 	 * 删除产品

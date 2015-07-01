@@ -21,6 +21,16 @@ public class ProductService {
 	private UserDao userDaoProxy;
 	
 	/**
+	 * 根据产品ID搜索产品
+	 * 
+	 * @param productID
+	 * @return
+	 */
+	public Product findByID(int productID) {
+		return productDaoProxy.findByID(productID);
+	}
+	
+	/**
 	 * 获取未被删除的产品
 	 * 
 	 * @param pageNumber
