@@ -6,29 +6,35 @@
 
     <!-- Bootstrap -->
     <link href="../resource/bootstrap/css/bootstrap.min.css" rel="stylesheet">
-    <link href="../resource/native_css/main.css" rel="stylesheet">
+    <link href="../resource/css/main.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="../admConfig/lib/font-awesome-4.3.0/css/font-awesome.css">
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="../resource/jquery/jquery-1.11.3.min.js"></script>
     <!-- Include all compiled plugins (below), or include individual files as needed -->
     <script src="../resource/bootstrap/js/bootstrap.min.js"></script>
     
-    <script src="../plugins/js/date-helper.js"></script>
+    <script src="../resource/js/date-helper.js"></script>
+    <script src="../print/jquery.PrintArea.js"></script>
+    
+    <link href="../resource/loading/loading.css" rel="stylesheet">
+	<script src="../resource/loading/loading.js"></script>
   </head>
   <body>
 
   <div class="container">
     <!-- 顶部导航 -->
-    <div id="nav-top">
-      <nav class="navbar navbar-default navbar-inverse navbar-fixed-top" role="navigation">
+      <nav class="navbar navbar-default" role="navigation">
         <div class="navbar-header">
-           <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1"> <span class="sr-only">Toggle navigation</span><span class="icon-bar"></span><span class="icon-bar"></span><span class="icon-bar"></span></button> <a class="navbar-brand" href="#">Brand</a>
+          <a href="warehouse_main.html">
+            <span class="navbar-brand">
+              <span class="fa fa-diamond"></span> RunYing
+            </span>
+          </a>
         </div>
         
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
-            <li>
-               <a href="#">Link</a>
-            </li>
             <!-- 订单管理 -->
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">订单管理<strong class="caret"></strong></a>
@@ -44,7 +50,7 @@
 
             <!-- 工序管理 -->
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">工序管理<strong class="caret"></strong></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">生产管理<strong class="caret"></strong></a>
               <ul class="dropdown-menu">
                 <li>
                    <a href="javascript:void(0);" onclick="loadProcessIn();">工序录入</a>
@@ -59,44 +65,59 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">仓库管理<strong class="caret"></strong></a>
               <ul class="dropdown-menu">
+               	<li>
+                   <a href="#"  onclick="loadList();">仓库查看</a>
+                </li>
                 <li>
-                   <a href="../warehouse/main.html" target="_blank">入库出库</a>
+                   <a href="#"  onclick="loadOutBatch();">批量出库</a>
+                </li>
+                <li>
+                   <a href="#"  onclick="loadSalesbillList();">发货单</a>
                 </li>
               </ul>
             </li>
-
           </ul>
+
           <ul class="nav navbar-nav navbar-right">
             <li>
-               <a id="identity" href="#">Link</a>
+              <a href="../admConfig/index.html">
+                <i class="fa fa-pencil fa-gears"></i> 后台管理
+              </a>
             </li>
+
             <li class="dropdown">
-               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><font id="username"></font><strong class="caret"></strong></a>
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+                  <font id="username"></font><strong class="caret"></strong>
+                </a>
+                <!-- 保存数据用 -->
+                <label id="privilege" class="sr-only"></label>
               <ul class="dropdown-menu">
                 <li>
-                   <a href="#">Action</a>
-                </li>
-                <li>
-                   <a href="#">Another action</a>
-                </li>
-                <li>
-                   <a href="#">Something else here</a>
+                   <a href="#" onclick="loadUserInfo();">
+                    <span class="fa fa-external-link"></span> 个人资料
+                   </a>
                 </li>
                 <li class="divider">
                 </li>
-                <li>
-                   <a href="#" onclick="logout()">退出</a>
+                <li> 
+                   <a href="#" onclick="logout();">
+                      <span class="fa fa-sign-out"></span> 退出
+                   </a>
                 </li>
               </ul>
             </li>
+
+          
           </ul>
+
+
         </div>
       </nav>
-    </div>
 
     <!-- 主页面 -->
     <div id="main-page" class="thumbnail">
-       here is main page!
+       <img alt="null" src="../resource/img/background.jpg">
     </div>
 
   </div>
