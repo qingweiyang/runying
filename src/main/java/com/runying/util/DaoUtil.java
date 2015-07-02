@@ -91,6 +91,7 @@ public abstract class DaoUtil {
 	}
 	
 	/**
+	 * 根据不同列筛选，用and连接
 	 * 
 	 * @param className
 	 * @param columnName

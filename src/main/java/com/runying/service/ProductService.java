@@ -1,5 +1,6 @@
 package com.runying.service;
 
+import java.util.HashMap;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -110,10 +111,65 @@ public class ProductService {
 			return msg;
 		}
 		
+		//检查是否该产品已存在
+		if(this.isExist(p)) {
+			msg.setStatus(0);
+			msg.setDescription("该产品已存在");
+			return msg;
+		}
+		
 		p.setStatus(1);
 		productDaoProxy.addObject(p);
 		msg.setStatus(1);
 		return msg;
+	}
+	
+	/**
+	 *  检验产品p是否已存在，注意：状态为0的产品（该产品已被删除）被认为不存在
+	 *  
+	 * @param p
+	 * @return
+	 */
+	public boolean isExist(Product p) {
+		HashMap<String, Object> cols = new HashMap<String, Object>();
+		if(p.getMaterialName() == null) {
+			cols.put("materialName", "");
+		} else {
+			cols.put("materialName", p.getMaterialName());
+		}
+		if(p.getMaterialCode() == null) {
+			cols.put("materialCode", "");
+		} else {
+			cols.put("materialCode", p.getMaterialCode());
+		}
+		if(p.getSize1() == null) {
+			cols.put("size1", "");
+		} else {
+			cols.put("size1", p.getSize1());
+		}
+		if(p.getSize2() == null) {
+			cols.put("size2", "");
+		} else {
+			cols.put("size2", p.getSize2());
+		}
+		if(p.getMaterial() == null) {
+			cols.put("material", "");
+		} else {
+			cols.put("material", p.getMaterial());
+		}
+//		System.out.println("map materialname = "+cols.get("materialName"));
+		List<Product> pDB = productDaoProxy.findByColumns(cols);
+		if(pDB == null || pDB.size() == 0) {
+			return false;
+		} else {
+			for(Product sp : pDB) {
+				if(sp.getStatus() == 0) {
+					//该产品已被删除
+					return false;
+				}
+			}
+			return true;
+		}
 	}
 	
 	/**
