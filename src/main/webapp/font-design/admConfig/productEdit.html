@@ -72,6 +72,16 @@
         <input id="material" type="text" class="form-control">
       </div>
     </div>
+    
+    <!-- 净重 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-2 column form-pre-des">
+        净 重 ：
+      </div>
+      <div class="col-md-3 column">
+        <input id="weight" type="text" class="form-control">
+      </div>
+    </div>
 
     <div class="row clearfix form-des">
       <div class="col-left-1p">
@@ -93,6 +103,7 @@
         $("#size2").text(item.size2);
         $("#materialCode").text(item.materialCode);
         $("#material").text(item.material);
+        $("#weight").text(item.weight);
     }); 
   }
 
@@ -104,6 +115,23 @@
     product.size2 = $("#size2").val();
     product.materialCode = $("#materialCode").val();
     product.material = $("#material").val();
+    product.weight = $("#weight").val();
+
+  	//检查输入是否合法
+    var isValid = 1;
+  	//测试是否为非负小数
+    var re = /^\d+(\.\d+)?$/;
+  	if("" == product.weight) {
+  		product.weight = 0;
+  	} else if(!re.test(product.weight)) { 
+        $("#weight-suf-des").text("请输入大于0的小数");
+      	$("#weight-suf-des").addClass("text-danger");
+      	isValid = 0;
+    }
+    if(!isValid) {
+    	//console.log(re.test(product.weight));
+    	return;
+    }
 
     loading();
     $.ajax({

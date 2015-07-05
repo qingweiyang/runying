@@ -33,6 +33,10 @@ public class Product {
 	@Column
 	private String material;
 	
+	//净重
+	@Column
+	private double weight;
+	
 	//商品图片信息
 	@Column
 	private String img;
@@ -104,6 +108,14 @@ public class Product {
 
 	public void setMaterial(String material) {
 		this.material = material;
+	}
+
+	public double getWeight() {
+		return weight;
+	}
+
+	public void setWeight(double weight) {
+		this.weight = weight;
 	}
 	
 }

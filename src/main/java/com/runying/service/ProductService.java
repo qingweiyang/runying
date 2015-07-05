@@ -162,13 +162,18 @@ public class ProductService {
 		if(pDB == null || pDB.size() == 0) {
 			return false;
 		} else {
+			//可能存在与 已被删除的产品 相同情况
+			//系统允许新增的产品与 状态为[被删除]的产品 重复；（已删除的数据用户看不到，只是系统留作备份之用）
+			boolean isTrue = true;
 			for(Product sp : pDB) {
 				if(sp.getStatus() == 0) {
 					//该产品已被删除
-					return false;
+					isTrue = false;
+				}else if(sp.getStatus() != 0) {
+					isTrue = true;
 				}
 			}
-			return true;
+			return isTrue;
 		}
 	}
 	
@@ -203,6 +208,7 @@ public class ProductService {
 		pDB.setSize2(p.getSize2());
 		pDB.setMaterialCode(p.getMaterialCode());
 		pDB.setMaterial(p.getMaterial());
+		pDB.setWeight(p.getWeight());
 		userDaoProxy.updat(pDB);
 		
 		msg.setStatus(1);

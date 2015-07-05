@@ -47,7 +47,7 @@
     <!-- 材质 -->
     <div class="row clearfix form-des">
       <div class="col-md-2 column form-pre-des">
-        材质 ：
+        材 质 ：
       </div>
       <div class="col-md-3 column">
         <input id="material" type="text" class="form-control">
@@ -61,6 +61,19 @@
       </div>
       <div class="col-md-3 column">
         <input id="materialCode" type="text" class="form-control">
+      </div>
+    </div>
+    
+    <!-- 净重 -->
+    <div class="row clearfix form-des">
+      <div class="col-md-2 column form-pre-des">
+        净 重 ：
+      </div>
+      <div class="col-md-3 column">
+        <input id="weight" type="text" class="form-control">
+      </div>
+      <div id="weight-suf-des" class="col-md-5 column form-suf-des text-info">
+        （正小数）
       </div>
     </div>
 
@@ -83,7 +96,24 @@
     product.size2 = $("#size2").val();
     product.material = $("#material").val();
     product.materialCode = $("#materialCode").val();
+    product.weight = $("#weight").val();
 
+  	//检查输入是否合法
+    var isValid = 1;
+  	//测试是否为非负小数
+    var re = /^\d+(\.\d+)?$/;
+  	if("" == product.weight) {
+  		product.weight = 0;
+  	} else if(!re.test(product.weight)) { 
+        $("#weight-suf-des").text("请输入大于0的小数");
+      	$("#weight-suf-des").addClass("text-danger");
+      	isValid = 0;
+    }
+    if(!isValid) {
+    	//console.log(re.test(product.weight));
+    	return;
+    }
+    
     loading();
     $.ajax({
       type : "POST",
@@ -114,6 +144,7 @@
         $("#size2").text(item.size2);
         $("#materialCode").text(item.materialCode);
         $("#material").text(item.material);
+        $("#weight").text(item.weight);
     }); 
   }
 
