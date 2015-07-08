@@ -47,3 +47,8 @@
     $(".pagination").append('<li><a href="#" onclick="pageClick(this, '+currentPage+', '+pages+');">下一页</a></li>');
     
   }
+  
+  function getCurrentPageNum() {
+	  var num = $(".pagination").find(".active").children().text();
+	  return Number(num);
+  }

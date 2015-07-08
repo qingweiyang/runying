@@ -83,3 +83,7 @@ function loadUserEdit() {
         $("#pri-suf-des").append(pri);
     }); 
 }
+
+function searchProduct() {
+	show(1, countPerPage);
+}

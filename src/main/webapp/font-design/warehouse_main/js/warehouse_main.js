@@ -378,7 +378,7 @@ function inWarehouseSubmit() {
 function inWarehouseShow(item) {
 	$("#pdt-name").val(item.product.materialName);
 	$("#pdt-left").text(item.number); 
-	$("#pdt-id").text(item.id); 
+	$("#pdt-id").text(item.product.id); 
 	$("#in-warehouse-modal").modal("show");
 }
 

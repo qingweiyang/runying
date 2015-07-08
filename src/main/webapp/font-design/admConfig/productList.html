@@ -35,10 +35,12 @@
           <!-- 表格搜索 -->
           <div class="col-md-3 col-md-offset-5">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="输入关键字进行搜索...">
+              <input id="search-input" type="text" class="form-control" placeholder="输入关键字进行搜索...">
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button">搜索</button>
-              </span>
+	            <button class="btn btn-default" type="button" onclick="searchProduct();">
+	            	<i class='fa fa-search fa-lg'> </i>
+	            </button>
+         	 </span>
             </div><!-- /input-group -->
           </div><!-- /.col-lg-6 -->
         </div>
@@ -104,21 +106,24 @@
     	"id="+id,
     	function(data) {
             if(data.status == 1) {
-          	//刷新
-            setTimeout('loadProductList();', 500);
+          		//刷新
+            	show(getCurrentPageNum(), countPerPage);
             } else {
-              alert(data.description);
+              	alert(data.description);
             }
     	});	 
   }
     
   function show(currentPage, countPerPage) {
+	var search = $("#search-input").val();
     var param = {};
     param.currentPage = currentPage;
     param.countPerPage = countPerPage;
+   	param.search = search;
+   	
     loading();
-    $.get(
-      "getUndeletedProduct.do",
+    $.post(
+      "getProductsByConditions.do",
       param,
       function(data) {
         var text = "";

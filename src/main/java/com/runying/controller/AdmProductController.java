@@ -1,5 +1,8 @@
 package com.runying.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,10 +21,18 @@ public class AdmProductController {
 	@Autowired
 	private ProductService productService;
 	
-	@RequestMapping(value = "getUndeletedProduct.do")
+	@RequestMapping(value = "getProductsByConditions.do")
 	@ResponseBody
-	public TableVO<Product> getUndeletedProduct(int currentPage, int countPerPage) {
-		return productService.getUndeletedProduct(currentPage, countPerPage);
+	public TableVO<Product> getProductsByConditions(int currentPage, int countPerPage, String search) {
+		Map<String, Object> conds = new HashMap<String, Object>();
+		//支持根据 产品名，规格型号1，规格型号2，物料长代码，材质 模糊搜索
+		conds.put("materialName", search);
+		conds.put("size1", search);
+		conds.put("size2", search);
+		conds.put("materialCode", search);
+		conds.put("material", search);
+		
+		return productService.findProducts(conds, currentPage, countPerPage);
 	}
 	
 	@RequestMapping(value = "getSingleProduct.do")
@@ -66,4 +77,23 @@ public class AdmProductController {
 	public Msg editProduct(@RequestBody Product p) {
 		return productService.editProduct(p, Constants.user);
 	}
+	
+	/**
+	 * 模糊搜索
+	 * 
+	 * @param currentPage
+	 * @param countPerPage
+	 * @param os
+	 * @return
+	 */
+//	@RequestMapping(value = "searchProduct.do")
+//	@ResponseBody
+//	public TableVO<Product> searchProduct(int currentPage, int countPerPage, String cons) {
+//		Map<String, Object> condition = new HashMap<String, Object>();
+//		System.out.println("......................"+cons);
+//		//参数列表 [产品名]
+//		condition.put("materialName", cons);
+//		
+//		return productService.searchProduct(condition, currentPage, countPerPage);
+//	}
 }

@@ -1,4 +1,4 @@
-//package com.runying.dao.test;
+//package com.runying.util.test;
 //
 //import java.util.List;
 //
@@ -8,17 +8,29 @@
 //import org.springframework.test.context.ContextConfiguration;
 //import org.springframework.test.context.junit4.SpringJUnit4ClassRunner;
 //
-//import com.runying.dao.ProductDao;
+//import com.runying.dao.WarehouseDao;
 //import com.runying.po.Product;
+//import com.runying.po.Warehouse;
+//import com.runying.service.ProductService;
 //
 //@RunWith(SpringJUnit4ClassRunner.class)
 //@ContextConfiguration(locations = {"classpath:conf/spring-mvc.xml", "classpath:conf/spring-hibernate.xml", "classpath:conf/spring-beans.xml"})
-//public class ProductDaoTest {
+//public class InitialData {
 //	@Autowired
-//	private ProductDao productDaoProxy;
+//	private WarehouseDao warehouseDaoProxy;
 //	
-//	@Test
-//	public void initial() {
+//	@Autowired
+//	private ProductService productService;
 //
+//	@Test
+//	public void initialWarehouse() {
+//		List<Product> ps = productService.getAllUndeletedProduct();
+//		for(Product p : ps) {
+//			Warehouse w = new Warehouse();
+//			w.setProduct(p);
+//			w.setNumber(0);
+//			warehouseDaoProxy.addObject(w);
+//		}
 //	}
+//	
 //}

@@ -2,14 +2,17 @@ package com.runying.service;
 
 import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.runying.dao.ProductDao;
 import com.runying.dao.UserDao;
+import com.runying.dao.WarehouseDao;
 import com.runying.po.Product;
 import com.runying.po.User;
+import com.runying.po.Warehouse;
 import com.runying.util.Msg;
 import com.runying.vo.TableVO;
 
@@ -21,6 +24,9 @@ public class ProductService {
 	@Autowired
 	private UserDao userDaoProxy;
 	
+	@Autowired
+	private WarehouseDao warehouseDaoProxy;
+	
 	/**
 	 * 根据产品ID搜索产品
 	 * 
@@ -31,22 +37,22 @@ public class ProductService {
 		return productDaoProxy.findByID(productID);
 	}
 	
-	/**
-	 * 获取未被删除的产品
-	 * 
-	 * @param pageNumber
-	 * @param countPerPage
-	 * @return
-	 */
-	public TableVO<Product> getUndeletedProduct(int pageNumber, int countPerPage) {
-		List<Product> us = productDaoProxy.findByColumn("status", 1, pageNumber, countPerPage);
-		TableVO<Product> tvo = new TableVO<Product>();
-		tvo.setRows(us);
-		tvo.setCurrentPage(pageNumber);
-		tvo.setCountPerPage(countPerPage);
-		tvo.setPages((productDaoProxy.sizeWithStatus(1)-1) / countPerPage + 1);
-		return tvo;
-	}
+//	/**
+//	 * 获取未被删除的产品
+//	 * 
+//	 * @param pageNumber
+//	 * @param countPerPage
+//	 * @return
+//	 */
+//	public TableVO<Product> getUndeletedProduct(int pageNumber, int countPerPage) {
+//		List<Product> us = productDaoProxy.findByColumn("status", 1, pageNumber, countPerPage);
+//		TableVO<Product> tvo = new TableVO<Product>();
+//		tvo.setRows(us);
+//		tvo.setCurrentPage(pageNumber);
+//		tvo.setCountPerPage(countPerPage);
+//		tvo.setPages((productDaoProxy.sizeWithStatus(1)-1) / countPerPage + 1);
+//		return tvo;
+//	}
 	
 	/**
 	 * 获取所有未被删除的产品
@@ -120,6 +126,17 @@ public class ProductService {
 		
 		p.setStatus(1);
 		productDaoProxy.addObject(p);
+		
+		//更新仓库，并将该产品数量置为 0
+		Warehouse w = new Warehouse();
+		w.setNumber(0);
+		w.setProduct(p);
+		//检查仓库中是否已存在该产品，若存在，不做任何处理
+		Warehouse wDB = warehouseDaoProxy.findByProduct(p);
+		if(wDB == null) {
+			warehouseDaoProxy.addObject(w);
+		}
+			
 		msg.setStatus(1);
 		return msg;
 	}
@@ -213,5 +230,35 @@ public class ProductService {
 		
 		msg.setStatus(1);
 		return msg;
+	}
+	
+	/**
+	 * 搜索所有状态为 未被删除 的产品
+	 * 
+	 * @param colsLike
+	 * @param pageNumber
+	 * @param countPerPage
+	 * @return
+	 */
+	public TableVO<Product> findProducts(int pageNumber, int countPerPage) {
+		Map<String, Object> colsEqual = new HashMap<String, Object>();
+		colsEqual.put("status", 1);
+		
+		return productDaoProxy.findByConditions(null, "and", colsEqual, "or", "materialName", pageNumber, countPerPage);
+	}
+	
+	/**
+	 * 模糊搜索，产品状态未删除
+	 * 
+	 * @param colsLike
+	 * @param pageNumber
+	 * @param countPerPage
+	 * @return
+	 */
+	public TableVO<Product> findProducts(Map<String, Object> colsLike, int pageNumber, int countPerPage) {
+		Map<String, Object> colsEqual = new HashMap<String, Object>();
+		colsEqual.put("status", 1);
+		
+		return productDaoProxy.findByConditions(colsLike, "or", colsEqual, "or", "materialName", pageNumber, countPerPage);
 	}
 }
