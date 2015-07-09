@@ -14,6 +14,7 @@ import com.runying.po.Product;
 import com.runying.po.User;
 import com.runying.po.Warehouse;
 import com.runying.util.Msg;
+import com.runying.util.Pinyin;
 import com.runying.vo.TableVO;
 
 @Service
@@ -35,6 +36,10 @@ public class ProductService {
 	 */
 	public Product findByID(int productID) {
 		return productDaoProxy.findByID(productID);
+	}
+	
+	public List<Product> findAll(int pageNumber, int countPerPage) {
+		return productDaoProxy.findAll(pageNumber, countPerPage);
 	}
 	
 //	/**
@@ -125,6 +130,8 @@ public class ProductService {
 		}
 		
 		p.setStatus(1);
+		//完成产品名称 映射 到 拼音首字母缩写
+		p.setPinyin(Pinyin.toPinyinString(p.getMaterialName()));
 		productDaoProxy.addObject(p);
 		
 		//更新仓库，并将该产品数量置为 0
@@ -259,6 +266,7 @@ public class ProductService {
 		Map<String, Object> colsEqual = new HashMap<String, Object>();
 		colsEqual.put("status", 1);
 		
-		return productDaoProxy.findByConditions(colsLike, "or", colsEqual, "or", "materialName", pageNumber, countPerPage);
+		return productDaoProxy.findByConditions(colsLike, "or", colsEqual, "or", "pinyin", pageNumber, countPerPage);
 	}
+	
 }

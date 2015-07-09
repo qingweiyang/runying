@@ -45,6 +45,10 @@ public class Product {
 	// [删除]
 	@Column
 	private int status;
+	
+	//产品名称对应的拼音首字母缩写，如果有多音字则已空格 隔开
+	@Column
+	private String pinyin;
 
 	public int getId() {
 		return id;
@@ -116,6 +120,14 @@ public class Product {
 
 	public void setWeight(double weight) {
 		this.weight = weight;
+	}
+
+	public String getPinyin() {
+		return pinyin;
+	}
+
+	public void setPinyin(String pinyin) {
+		this.pinyin = pinyin;
 	}
 	
 }
