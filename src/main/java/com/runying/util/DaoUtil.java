@@ -161,6 +161,8 @@ public abstract class DaoUtil {
 	 * 		精确搜索，关键字＝ (where t.col ＝ ...)
 	 * @param connetorEqual
 	 * 		精确搜索间的连接词 (where t.col1 ＝ val1 ?连接词? t.col2 ＝ val2)
+	 * @param sortCol
+	 * 		按sortCol列升序排列
 	 * @param pageNumber
 	 * @param countPerPage
 	 * @return

@@ -1,6 +1,8 @@
 package com.runying.service;
 
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -191,5 +193,20 @@ public class UserService {
 		
 		msg.setStatus(1);
 		return msg;
+	}
+	
+	/**
+	 * 模糊搜索，产品状态未删除
+	 * 
+	 * @param colsLike
+	 * @param pageNumber
+	 * @param countPerPage
+	 * @return
+	 */
+	public TableVO<User> findUsers(Map<String, Object> colsLike, int pageNumber, int countPerPage) {
+		Map<String, Object> colsEqual = new HashMap<String, Object>();
+		colsEqual.put("status", 1);
+		
+		return userDaoProxy.findByConditions(colsLike, "or", colsEqual, "or", "username", pageNumber, countPerPage);
 	}
 }

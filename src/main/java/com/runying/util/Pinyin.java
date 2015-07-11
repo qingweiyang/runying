@@ -29,6 +29,10 @@ public class Pinyin {
 	 * @return
 	 */
 	public static String toPinyinString(String word) {
+		if(word == null || word.equals("")) {
+			return "";
+		}
+		
 		List<String> pinyins = toPinyin(word);
 		String str = "";
 		for(String s : pinyins) {

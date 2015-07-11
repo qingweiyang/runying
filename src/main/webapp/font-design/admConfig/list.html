@@ -35,9 +35,11 @@
           <!-- 表格搜索 -->
           <div class="col-md-3 col-md-offset-5">
             <div class="input-group">
-              <input type="text" class="form-control" placeholder="输入关键字进行搜索...">
+              <input id="search-input" type="text" class="form-control" placeholder="输入关键字进行搜索...">
               <span class="input-group-btn">
-                <button class="btn btn-default" type="button">搜索</button>
+                <button class="btn btn-default" type="button" onclick="search();">
+					<i class='fa fa-search fa-lg'> </i>
+				</button>
               </span>
             </div><!-- /input-group -->
           </div><!-- /.col-lg-6 -->
@@ -116,9 +118,12 @@
   }
     
   function show(currentPage, countPerPage) {
+	var search = $("#search-input").val();
     var param = {};
     param.currentPage = currentPage;
     param.countPerPage = countPerPage;
+    param.search = search;
+    
     loading();
     $.get(
       "getAllUser.do",

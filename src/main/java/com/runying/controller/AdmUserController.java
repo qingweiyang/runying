@@ -1,5 +1,8 @@
 package com.runying.controller;
 
+import java.util.HashMap;
+import java.util.Map;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -20,8 +23,12 @@ public class AdmUserController {
 	
 	@RequestMapping(value = "getAllUser.do")
 	@ResponseBody
-	public TableVO<User> getAllUser(int currentPage, int countPerPage) {
-		return userService.getUndeletedUser(currentPage, countPerPage);
+	public TableVO<User> getAllUser(int currentPage, int countPerPage, String search) {
+		Map<String, Object> conds = new HashMap<String, Object>();
+		//支持根据 用户名 模糊搜索
+		conds.put("username", search);
+		
+		return userService.findUsers(conds, currentPage, countPerPage);
 	}
 	
 	@RequestMapping(value = "getSingleUser.do")

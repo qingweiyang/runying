@@ -84,6 +84,6 @@ function loadUserEdit() {
     }); 
 }
 
-function searchProduct() {
+function search() {
 	show(1, countPerPage);
 }
