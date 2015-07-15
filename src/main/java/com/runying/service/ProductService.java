@@ -269,4 +269,12 @@ public class ProductService {
 		return productDaoProxy.findByConditions(colsLike, "or", colsEqual, "or", "pinyin", pageNumber, countPerPage);
 	}
 	
+	/**
+	 * 返回product的总数量
+	 * 
+	 * @return
+	 */
+	public int size() {
+		return productDaoProxy.size().intValue();
+	}
 }

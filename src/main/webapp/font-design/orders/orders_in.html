@@ -53,9 +53,16 @@
         产品名称 ：
       </div>
       <div class="col-md-4 column">
-        <select id="pdt-name" class="form-control">
-        </select>
-      </div>
+	      <div id="pdt-name-dropdown" class="input-group dropdown">
+			  <input id="pdt-name" class="form-control">
+			  <div class="input-group-addon">
+			    <ul id="pdt-name-ul" class="dropdown-menu" aria-labelledby="dropdownMenu1" style="width:100%; max-height: 200px; overflow:auto;">
+			    </ul>
+			    <a data-toggle="dropdown" href="#" style="display:none;"></a>
+			    <a href="javascript:getProducts('');"><span class="glyphicon glyphicon-triangle-bottom" aria-hidden="true"></span></a>
+			  </div>
+		  </div>
+	  </div>
       <div class="col-md-5 column form-suf-des text-info">
         （请选择系统相应产品名称）
       </div>
@@ -168,24 +175,9 @@
 <script type="text/javascript">
 var products;
 $(document).ready(function() {
-	getProducts();
-	$("#pdt-name").change(function() {
-		var curID=$(this).children('option:selected').val();//这就是selected的值
-    $.each(products,function(i,item){
-        if(item.id == curID) {
-            var materialNameFromJson = item.materialName;
-            var size1FromJson = item.size1;
-            var size2FromJson = item.size2;
-            var materialCodeFromJson = item.materialCode;
-            var materialFromJson = item.material;
-            $("#materialName").text(materialNameFromJson);
-            $("#size1").text(size1FromJson);
-            $("#size2").text(size2FromJson);
-            $("#materialCode").text(materialCodeFromJson);
-            $("#material").text(materialFromJson);
-        }
-    });   
-	});
+	$('#pdt-name').bind('input propertychange', function() {
+	   getProducts($("#pdt-name").val());
+	 });
 });
 
 function submit() {
@@ -283,16 +275,39 @@ function showSubmitOrdersSuccess() {
   });
 }
 
-function getProducts() {
-	
+function getProducts(search) {
+	$("#pdt-name-ul").children().remove();
 	$.get(
 		"getProducts.do",
+		"search="+search,
 		function(data) {
-			products = data;
-      $.each(data,function(i,item){
-        var option = "'<option value='"+item.id+"'>"+item.materialName+' '+item.size1+"</option>'";
-        $("#pdt-name").append(option); 
-      });
+		  products = data;
+	      $.each(data,function(i,item){
+	  	    $("#pdt-name-ul").append('<li><a href="javascript:void(0);" onclick="showPdt('+item.id+');" onmouseover="showPdt('+item.id+');">'+item.materialName+' '+item.size1+'</a></li>');
+	  	    
+	  	    if(!($(".input-group-addon").hasClass("open"))) {
+	  	      $(".dropdown-menu").dropdown('toggle');
+	  	    }
+	      });
 		});
+}
+
+function showPdt(curID) {
+	$.each(products,function(i,item){
+        if(item.id == curID) {
+            var materialNameFromJson = item.materialName;
+            var size1FromJson = item.size1;
+            var size2FromJson = item.size2;
+            var materialCodeFromJson = item.materialCode;
+            var materialFromJson = item.material;
+            $("#materialName").text(materialNameFromJson);
+            $("#size1").text(size1FromJson);
+            $("#size2").text(size2FromJson);
+            $("#materialCode").text(materialCodeFromJson);
+            $("#material").text(materialFromJson);
+            
+            $("#pdt-name").val(item.materialName+" "+item.size1);
+        }
+    });
 }
 </script>
