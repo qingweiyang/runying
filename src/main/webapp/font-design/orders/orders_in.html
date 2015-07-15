@@ -118,6 +118,8 @@
   </div>
   <!-- 显示产品具体信息 -->
   <div id="pdt-detail" class="col-md-3 column pdt-panel">
+  	<div id="materialID" style="display:none;">
+    </div>
     <div class="row clearfix pdt-des">
       <div class="col-md-5 column pdt-pre-des">
         物料名称
@@ -191,7 +193,7 @@ function submit() {
     orders.releaseTime = $("#releaseTime").val();
     orders.deliveryTime = $("#deliveryTime").val();
     var pdt = {};
-    pdt.id = $("#pdt-name").children('option:selected').val();
+    pdt.id = $("#materialID").text();
     pdt.materialName = $("#materialName").text();
     pdt.size1 = $("#size1").text();
     pdt.size2 = $("#size2").text();
@@ -300,6 +302,7 @@ function showPdt(curID) {
             var size2FromJson = item.size2;
             var materialCodeFromJson = item.materialCode;
             var materialFromJson = item.material;
+            $("#materialID").text(curID);
             $("#materialName").text(materialNameFromJson);
             $("#size1").text(size1FromJson);
             $("#size2").text(size2FromJson);
