@@ -348,7 +348,6 @@ function inWarehouseSubmit() {
   	
   	$("#in-warehouse-modal").modal("hide");
   	
-  	
   	$.ajax({
       type : "POST",
       contentType : 'application/json', 
@@ -359,11 +358,7 @@ function inWarehouseSubmit() {
     	  
           if(data.status == 1) {
         	//刷新
-        	setTimeout('loadList()', 500);
-
-        	//loadList();
-        	//bug ...
-        	//$("div").removeClass("modal-backdrop fade in");
+          	show(getCurrentPageNum(), countPerPage);
           } else {
             alert(data.description);
           }
@@ -376,9 +371,9 @@ function inWarehouseSubmit() {
 }
 
 function inWarehouseShow(item) {
-	$("#pdt-name").val(item.product.materialName);
-	$("#pdt-left").text(item.number); 
-	$("#pdt-id").text(item.product.id); 
+	$("#pdt-name").val(item.materialName);
+	$("#pdt-left").text(item.warehouseCount); 
+	$("#pdt-id").text(item.productID); 
 	$("#in-warehouse-modal").modal("show");
 }
 

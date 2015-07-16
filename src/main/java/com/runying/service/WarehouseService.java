@@ -296,7 +296,8 @@ public class WarehouseService {
 		for(Product p : pstvo.getRows()) {
 			WarehouseVO wvo = new WarehouseVO();
 			wvo.setWarehouseID(p.getWarehouse().getId());
-			wvo.setProductName(p.getMaterialName());
+			wvo.setProductID(p.getId());
+			wvo.setMaterialName(p.getMaterialName());
 			wvo.setSize1(p.getSize1());
 			wvo.setSize2(p.getSize2());
 			wvo.setMaterial(p.getMaterial());

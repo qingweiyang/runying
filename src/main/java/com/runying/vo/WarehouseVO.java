@@ -9,7 +9,9 @@ package com.runying.vo;
 public class WarehouseVO {
 	private int warehouseID;
 	
-	private String productName;
+	private int productID;
+	
+	private String materialName;
 	
 	private String size1;
 	
@@ -30,14 +32,6 @@ public class WarehouseVO {
 
 	public void setWarehouseID(int warehouseID) {
 		this.warehouseID = warehouseID;
-	}
-
-	public String getProductName() {
-		return productName;
-	}
-
-	public void setProductName(String productName) {
-		this.productName = productName;
 	}
 
 	public String getSize1() {
@@ -79,4 +73,21 @@ public class WarehouseVO {
 	public void setWarehouseCount(int warehouseCount) {
 		this.warehouseCount = warehouseCount;
 	}
+
+	public String getMaterialName() {
+		return materialName;
+	}
+
+	public void setMaterialName(String materialName) {
+		this.materialName = materialName;
+	}
+
+	public int getProductID() {
+		return productID;
+	}
+
+	public void setProductID(int productID) {
+		this.productID = productID;
+	}
+
 }
