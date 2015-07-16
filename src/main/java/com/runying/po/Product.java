@@ -4,6 +4,7 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 @Entity
@@ -50,6 +51,9 @@ public class Product {
 	@Column
 	private String pinyin;
 
+	@OneToOne(mappedBy = "product")
+	private Warehouse warehouse;
+	
 	public int getId() {
 		return id;
 	}
@@ -128,6 +132,14 @@ public class Product {
 
 	public void setPinyin(String pinyin) {
 		this.pinyin = pinyin;
+	}
+
+	public Warehouse getWarehouse() {
+		return warehouse;
+	}
+
+	public void setWarehouse(Warehouse warehouse) {
+		this.warehouse = warehouse;
 	}
 	
 }

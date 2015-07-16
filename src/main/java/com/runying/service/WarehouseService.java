@@ -1,8 +1,11 @@
 package com.runying.service;
 
+import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,6 +26,8 @@ import com.runying.util.Constants;
 import com.runying.util.Msg;
 import com.runying.util.Validate;
 import com.runying.vo.ProcessOrdersTableVO;
+import com.runying.vo.TableVO;
+import com.runying.vo.WarehouseVO;
 
 @Service
 public class WarehouseService {
@@ -273,4 +278,38 @@ public class WarehouseService {
 		return msg;
 	}
 
+	/**
+	 * 模糊搜索，产品状态未删除
+	 * 
+	 * @param colsLike
+	 * @param pageNumber
+	 * @param countPerPage
+	 * @return
+	 */
+	public TableVO<WarehouseVO> findWarehouses(Map<String, Object> colsLike, int pageNumber, int countPerPage) {
+		Map<String, Object> colsEqual = new HashMap<String, Object>();
+		colsEqual.put("status", 1);
+		
+		TableVO<Product> pstvo = productDaoProxy.findByConditions(colsLike, "or", colsEqual, "or", "pinyin", pageNumber, countPerPage);
+		TableVO<WarehouseVO> whtvo = new TableVO<WarehouseVO>();
+		List<WarehouseVO> whs = new ArrayList<WarehouseVO>();
+		for(Product p : pstvo.getRows()) {
+			WarehouseVO wvo = new WarehouseVO();
+			wvo.setWarehouseID(p.getWarehouse().getId());
+			wvo.setProductName(p.getMaterialName());
+			wvo.setSize1(p.getSize1());
+			wvo.setSize2(p.getSize2());
+			wvo.setMaterial(p.getMaterial());
+			wvo.setMaterialCode(p.getMaterialCode());
+			wvo.setWarehouseCount(p.getWarehouse().getNumber());
+			
+			whs.add(wvo);
+		}
+		whtvo.setRows(whs);
+		whtvo.setCountPerPage(countPerPage);
+		whtvo.setCurrentPage(pageNumber);
+		whtvo.setPages(pstvo.getPages());
+		
+		return whtvo;
+	}
 }

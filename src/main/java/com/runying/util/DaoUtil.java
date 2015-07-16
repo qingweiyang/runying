@@ -355,4 +355,16 @@ public abstract class DaoUtil {
 		return res;
 	}
 
+	/**
+	 * 执行一段HQL语句，返回查询结果
+	 * @param hql
+	 * @return
+	 */
+	@SuppressWarnings("unchecked")
+	public <T> List<T> excute(String hql) {
+		Session session = sessionFactory.getCurrentSession();
+		Query query = session.createQuery(hql);
+		List<T> res = query.list();
+		return res;
+	}
 }

@@ -5,8 +5,10 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
+import com.fasterxml.jackson.annotation.JsonBackReference;
 
 /**
  * 仓库po
@@ -22,7 +24,7 @@ public class Warehouse {
 	@Column
 	private int id;
 	
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "productID")
 	private Product product;
 	
@@ -42,6 +44,7 @@ public class Warehouse {
 		return product;
 	}
 
+	@JsonBackReference
 	public void setProduct(Product product) {
 		this.product = product;
 	}
