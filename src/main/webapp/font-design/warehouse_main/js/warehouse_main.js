@@ -164,7 +164,7 @@ function loadInBatch() {
 
 function loadOutBatchView() {
 	if(orders.length == 0) {
-		alert("至少选个啊");
+		showWarningDialog("至少选个啊");
 		return ;
 	}
 	$("#main-page").empty();
@@ -232,7 +232,7 @@ function loadSalesbillView(id) {
 
 function loadInBatchView() {
 	if(orders.length == 0) {
-		alert("至少选个啊");
+		showWarningDialog("至少选个啊");
 		return ;
 	}
 	$("#main-page").empty();
@@ -265,13 +265,13 @@ function outWarehouseBatch() {
 		  var type = "^[0-9]*[1-9][0-9]*$"; 
 		  var re = new RegExp(type);
 		  if("" == ct || ct.match(re) == null) {
-			  alert("数量得为正数");
+			  showWarningDialog("数量得为正数");
 			  error = true;
 			  return false ;
 		  }
 		  //测试数量是否小于库存数
 		  if(tableVO.rows[i].warehouseCount < ct) {
-			  alert("出货数量必须小于库存量");
+			  showWarningDialog("出货数量必须小于库存量");
 			  error = true;
 			  return false ;
 		  }
@@ -296,12 +296,12 @@ function outWarehouseBatch() {
 	    		  $("#main-page").empty();
 	    		  $("#main-page").load("warehouse/outBatchSuccess.html");
 	    	  } else {
-	    		  alert(data.description);
+	    		  showWarningDialog(data.description);
 	    	  }
 	      },
 	      error : function(){
 	    	  loadingEnd();
-	          alert("error");
+	          showWarningDialog("error");
 	      }
 	   });
 }
@@ -321,12 +321,12 @@ function inWarehouseBatch() {
 	    		  $("#main-page").empty();
 	    		  $("#main-page").load("warehouse/inBatchSuccess.html");
 	    	  } else {
-	    		  alert(data.description);
+	    		  showWarningDialog(data.description);
 	    	  }
 	      },
 	      error : function(){
 	    	  loadingEnd();
-	          alert("error");
+	          showWarningDialog("error");
 	      }
 	   });
 }
@@ -338,7 +338,7 @@ function inWarehouseSubmit() {
   	var pay = $("#pdt-number").val();
   	if(isNaN(pay) || pay < 0) {
     	//输入不合法，要求为大于0的整数
-    	alert("输入不合法，要求为大于0的整数");
+    	showWarningDialog("输入不合法，要求为大于0的整数");
     	return;
   	}
   	var product = {};
@@ -360,12 +360,12 @@ function inWarehouseSubmit() {
         	//刷新
           	show(getCurrentPageNum(), countPerPage);
           } else {
-            alert(data.description);
+            showWarningDialog(data.description);
           }
       },
       error : function(){
     	  loadingEnd();
-          alert("error");
+          showWarningDialog("error");
       }
     });
 }

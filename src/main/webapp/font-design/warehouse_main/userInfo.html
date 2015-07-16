@@ -87,11 +87,11 @@
           if(data.status == 1) {
             editSuccess(user);
           } else {
-            alert(data.description);
+            showWarningDialog(data.description);
           }
       },
       error : function(){
-          alert("error");
+          showWarningDialog("error");
       }
     });
   }

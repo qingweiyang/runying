@@ -66,11 +66,11 @@
           if(data.status == 1) {
         	  loadUserInfo();
           } else {
-            alert(data.description);
+            showWarningDialog(data.description);
           }
       },
       error : function(){
-          alert("error");
+          showWarningDialog("error");
       }
     });
   }

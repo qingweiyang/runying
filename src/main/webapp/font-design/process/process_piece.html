@@ -101,11 +101,11 @@
           if(res.status == 1) {
             showSubmitProcessesSuccess();
           } else {
-            alert(res.description);
+            showWarningDialog(res.description);
           }
       },
       error : function(){
-          alert("error");
+          showWarningDialog("error");
       }
     });
 

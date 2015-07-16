@@ -108,12 +108,12 @@
         	getCurUser();
             editSuccess(user);
           } else {
-            alert(data.description);
+            showWarningDialog(data.description);
           }
       },
       error : function(){
     	  loadingEnd();
-          alert("error");
+          showWarningDialog("error");
       }
     });
   }

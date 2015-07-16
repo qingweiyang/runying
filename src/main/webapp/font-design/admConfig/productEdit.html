@@ -148,12 +148,12 @@
           if(data.status == 1) {
             productEditSuccess(product);
           } else {
-            alert(data.description);
+            showWarningDialog(data.description);
           }
       },
       error : function(){
     	  loadingEnd();
-          alert("error");
+          showWarningDialog("error");
       }
     });
   }

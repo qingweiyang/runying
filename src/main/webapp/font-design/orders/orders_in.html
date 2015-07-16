@@ -252,11 +252,11 @@ function submit() {
           if(data.status == 1) {
         	  showSubmitOrdersSuccess();
           } else {
-            alert(data.description);
+            showWarningDialog(data.description);
           }
       },
       error : function(){
-          alert("error");
+          showWarningDialog("error");
       }
     });
 }

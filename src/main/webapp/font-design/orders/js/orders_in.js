@@ -8,7 +8,7 @@ function getProducts() {
 	$.get(
 		"getProducts.do",
 		function(data) {
-			alert(data);
+			showWarningDialog(data);
 		});
 
 }
