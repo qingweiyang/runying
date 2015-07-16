@@ -7,9 +7,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.runying.dao.OrdersDao;
+import com.runying.dao.ProductDao;
+import com.runying.dao.UserDao;
 import com.runying.dao.WarehouseDao;
 import com.runying.po.Orders;
+import com.runying.po.Product;
+import com.runying.po.User;
 import com.runying.po.Warehouse;
+import com.runying.util.Msg;
+import com.runying.util.Validate;
 import com.runying.vo.OrdersDetailVO;
 import com.runying.vo.ProcessOrdersTableVO;
 import com.runying.vo.TableVO;
@@ -22,6 +28,12 @@ public class OrdersService {
 	
 	@Autowired
 	private WarehouseDao warehouseDaoProxy;
+	
+	@Autowired
+	private UserDao userDaoProxy;
+	
+	@Autowired
+	private ProductDao productDaoProxy;
 	
 	public TableVO<ProcessOrdersTableVO> getOrdersVOByMultiStatus(List<Object> status, int currentPage, int countPerPage) {
 		TableVO<ProcessOrdersTableVO> tvo = new TableVO<ProcessOrdersTableVO>();
@@ -100,5 +112,29 @@ public class OrdersService {
 		tvo.setRows(odvo);
 		
 		return tvo;
+	}
+	
+	public Msg addOrders(Orders o, User u) {
+		Msg msg = new Msg();
+		
+		User uDB = userDaoProxy.findByID(u.getId());
+		//检查操作员是否拥有  录入订单信息  的权限
+		msg = Validate.checkUserPrivilege(uDB, 1);
+		if(msg.getStatus() == 0) {
+			return msg;
+		}
+		o.setOperator(uDB);
+		
+		//检查订单下的产品是否存在
+		Product pDB = productDaoProxy.findByID(o.getProduct().getId());
+		if(null == pDB) {
+			msg.setStatus(0);
+			msg.setDescription("产品不存在");
+			return msg;
+		}
+		
+		msg = ordersDaoProxy.addOrders(o);
+		
+		return msg;
 	}
 }

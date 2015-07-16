@@ -63,7 +63,7 @@
 			  </div>
 		  </div>
 	  </div>
-      <div class="col-md-5 column form-suf-des text-info">
+      <div id="pdt-name-suf-des" class="col-md-5 column form-suf-des text-info">
         （请选择系统相应产品名称）
       </div>
     </div>
@@ -218,6 +218,13 @@ function submit() {
       isValid = 0;
     }
 
+    //检查产品是否选择
+    if("" == $("#pdt-name").val()) {
+    	$("#pdt-name-suf-des").text("产品必须选择");
+        $("#pdt-name-suf-des").addClass("text-danger");
+        isValid = 0;
+    }
+    
     //检查下达日期是否输入
     if("" == orders.releaseTime) {
       $("#releaseTime-suf-des").text("下达日期必须输入");
@@ -258,6 +265,9 @@ function submit() {
 function clearWarningMsg() {
   $("#contractNumber-suf-des").text("（必填）");
   $("#contractNumber-suf-des").removeClass("text-danger");
+  
+  $("#pdt-name-suf-des").text(" （请选择系统相应产品名称）");
+  $("#pdt-name-suf-des").removeClass("text-danger");
   
   $("#count-suf-des").text("（必填）");
   $("#count-suf-des").removeClass("text-danger");

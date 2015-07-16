@@ -15,6 +15,12 @@ public class Validate {
 	public static Msg checkUserPrivilege(User u, int pri) {
 		Msg msg = new Msg();
 		
+		if(null == u) {
+			msg.setStatus(0);
+			msg.setDescription("用户不存在");
+			return msg;
+		}
+		
 		//检查操作员是否拥有 删除用户权限 的权限
 		if(1 != (u.getPrivilege() >> pri & 1)) {
 			msg.setStatus(0);
