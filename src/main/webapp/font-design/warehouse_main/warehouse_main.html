@@ -15,7 +15,7 @@
     <script src="../resource/bootstrap/js/bootstrap.min.js"></script>
     
     <script src="../resource/js/date-helper.js"></script>
-    <script src="../resource/js/dialog-helper.js"></script>
+  
     <script src="../print/jquery.PrintArea.js"></script>
     
     <link href="../resource/loading/loading.css" rel="stylesheet">
@@ -123,6 +123,25 @@
 
   </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title text-danger" id="warningModalLabel">
+              <i class="fa fa-warning"></i> 警告
+            </h4>
+          </div>
+          <div id="warningModalContent" class="modal-body text-danger">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
   <!-- 底部脚注 -->
   <div class="footer">
     <label>©1992-2015 Runying.com 版权所有</label>

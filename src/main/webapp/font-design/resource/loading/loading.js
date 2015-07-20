@@ -12,4 +12,5 @@ function loading() {
 
 function loadingEnd() {
 	$('#loadingModal').modal('hide');
+	$("body").removeAttr("style");
 }

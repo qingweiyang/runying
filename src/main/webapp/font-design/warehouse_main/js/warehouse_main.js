@@ -1,6 +1,15 @@
 $(document).ready(function(){
 	getCurUser();
+	
+	$("#warningModal").on("hidden.bs.modal", function (e) {
+	    $("body").removeAttr("style");
+	});
 });
+
+function showWarningDialog(mes) {
+    $("#warningModalContent").html("<strong>"+mes+"</strong>"); 
+    $("#warningModal").modal("show");
+}
 
 function logout() {
 	$.get(

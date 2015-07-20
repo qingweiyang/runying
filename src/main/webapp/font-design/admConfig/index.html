@@ -13,7 +13,6 @@
 
     <link href="./css/native.css" rel="stylesheet">
     <link rel="stylesheet" href="lib/font-awesome-4.3.0/css/font-awesome.css">
-    <script src="../resource/js/dialog-helper.js"></script>
     
     <link href="../resource/loading/loading.css" rel="stylesheet">
 	<script src="../resource/loading/loading.js"></script>
@@ -124,6 +123,25 @@
     	<div class="background-img"></div>
     </div>
 
+    <!-- Modal -->
+    <div class="modal fade" id="warningModal" tabindex="-1" role="dialog" aria-labelledby="warningModalLabel">
+      <div class="modal-dialog modal-sm" role="document">
+        <div class="modal-content">
+          <div class="modal-header">
+            <button type="button" class="close" data-dismiss="modal" aria-label="Close"><span aria-hidden="true">&times;</span></button>
+            <h4 class="modal-title text-danger" id="warningModalLabel">
+              <i class="fa fa-warning"></i> 警告
+            </h4>
+          </div>
+          <div id="warningModalContent" class="modal-body text-danger">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-default btn-danger" data-dismiss="modal">确认</button>
+          </div>
+        </div>
+      </div>
+    </div>
+    
 </body>
 
 <script src="./js/index.js"></script>
