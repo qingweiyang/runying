@@ -361,10 +361,21 @@ public abstract class DaoUtil {
 	 * @return
 	 */
 	@SuppressWarnings("unchecked")
-	public <T> List<T> excute(String hql) {
+	public <T> TableVO<T> excute(String hql, int pageNumber, int countPerPage) {
+		TableVO<T> tvo = new TableVO<T>();
 		Session session = sessionFactory.getCurrentSession();
 		Query query = session.createQuery(hql);
+		
+		//设置查询结果页数
+		tvo.setPages((query.list().size()-1) / countPerPage + 1);
+		tvo.setCurrentPage(pageNumber);
+		tvo.setCountPerPage(countPerPage);
+				
+		query.setFirstResult((pageNumber - 1)*countPerPage);
+		query.setMaxResults(countPerPage);
 		List<T> res = query.list();
-		return res;
+		
+		tvo.setRows(res);
+		return tvo;
 	}
 }

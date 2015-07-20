@@ -27,6 +27,9 @@
 	<bean id="salesBill_OrdesDao" class="com.runying.dao.SalesBill_OrdersDao">
 		<property name="sessionFactory" ref="sessionFactory"></property>
 	</bean>
+	<bean id="inHouseLogDao" class="com.runying.dao.InHouseLogDao">
+		<property name="sessionFactory" ref="sessionFactory"></property>
+	</bean>
 	
 
 	
@@ -51,5 +54,8 @@
 	</bean>
 	<bean name="salesBill_OrdesDaoProxy" parent="transactionProxy">
 		<property name="target" ref="salesBill_OrdesDao"></property>
+	</bean>
+	<bean name="inHouseLogDaoProxy" parent="transactionProxy">
+		<property name="target" ref="inHouseLogDao"></property>
 	</bean>
 </beans>

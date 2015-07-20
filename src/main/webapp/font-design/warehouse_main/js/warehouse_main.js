@@ -144,6 +144,15 @@ function loadList() {
 	});
 }
 
+//加载 入库单列表
+function loadInHouseList() {
+	$("#main-page").children().remove();
+	loading();
+	$("#main-page").load("warehouse/inHouseList.html", function() {
+		loadingEnd();
+	});
+}
+
 //加载 出货单 列表
 function loadSalesbillList() {
 	$("#main-page").empty();

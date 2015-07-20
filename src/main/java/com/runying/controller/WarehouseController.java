@@ -16,6 +16,7 @@ import com.runying.service.SalesBillService;
 import com.runying.service.WarehouseService;
 import com.runying.util.Constants;
 import com.runying.util.Msg;
+import com.runying.vo.InHouseLogVO;
 import com.runying.vo.OrdersBillDetailVO;
 import com.runying.vo.OrdersBillVO;
 import com.runying.vo.ProcessOrdersTableVO;
@@ -49,23 +50,22 @@ public class WarehouseController {
 		return warehouseService.findWarehouses(conds, currentPage, countPerPage);
 	}
 	
+	@RequestMapping("/getInHouseLogs.do")
+	@ResponseBody
+	public TableVO<InHouseLogVO> getInHouseLogs(int currentPage, int countPerPage, String search) {
+		return warehouseService.findInHouseLogVO(search, currentPage, countPerPage);
+	}
+	
 	@RequestMapping("/inWarehouse.do")
 	@ResponseBody
 	public Msg inWarehouse(@RequestBody Warehouse w) {
-		return warehouseService.inWarehouse(Constants.user, w.getProduct(), w.getNumber());
+		Msg msg = warehouseService.inWarehouse(Constants.user, w.getProduct(), w.getNumber());
+		if(msg.getStatus() == 1) {
+			warehouseService.logInWarehouse(Constants.user, w.getProduct(), w.getNumber());
+		}
+		
+		return msg;
 	}
-	
-	@RequestMapping("/inWarehouseBatch.do")
-	@ResponseBody
-	public Msg inWarehouseBatch(@RequestBody TableVO<ProcessOrdersTableVO> tvo) {
-		return warehouseService.inWarehouseBatch(tvo.getRows(), Constants.user);
-	}
-	
-//	@RequestMapping("/outWarehouse.do")
-//	@ResponseBody
-//	public Msg outWarehouse(@RequestBody Warehouse w) {
-//		return warehouseService.outWarehouse(Constants.user, w.getProduct(), w.getNumber());
-//	}
 	
 	@RequestMapping("/outWarehouseBatch.do")
 	@ResponseBody

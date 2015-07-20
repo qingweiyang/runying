@@ -10,12 +10,14 @@ import java.util.Map;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import com.runying.dao.InHouseLogDao;
 import com.runying.dao.OrdersDao;
 import com.runying.dao.ProductDao;
 import com.runying.dao.SalesBillDao;
 import com.runying.dao.SalesBill_OrdersDao;
 import com.runying.dao.UserDao;
 import com.runying.dao.WarehouseDao;
+import com.runying.po.InHouseLog;
 import com.runying.po.Orders;
 import com.runying.po.Product;
 import com.runying.po.SalesBill;
@@ -25,6 +27,7 @@ import com.runying.po.Warehouse;
 import com.runying.util.Constants;
 import com.runying.util.Msg;
 import com.runying.util.Validate;
+import com.runying.vo.InHouseLogVO;
 import com.runying.vo.ProcessOrdersTableVO;
 import com.runying.vo.TableVO;
 import com.runying.vo.WarehouseVO;
@@ -33,6 +36,9 @@ import com.runying.vo.WarehouseVO;
 public class WarehouseService {
 	@Autowired
 	private WarehouseDao warehouseDaoProxy;
+	
+	@Autowired
+	private InHouseLogDao inHouseLogDaoProxy;
 	
 	@Autowired
 	private ProductDao productDaoProxy;
@@ -256,6 +262,22 @@ public class WarehouseService {
 		return msg;
 	}
 	
+	/**
+	 * 入库操作成功后， 记录入库日志
+	 * @param operator
+	 * @param product
+	 * @param num
+	 */
+	public void logInWarehouse(User operator, Product product, int num) {
+		InHouseLog inHouseLog = new InHouseLog();
+		inHouseLog.setUser(operator);
+		inHouseLog.setProduct(product);
+		inHouseLog.setNumber(num);
+		
+		inHouseLogDaoProxy.addInHouseLog(inHouseLog);
+		
+	}
+	
 	public Msg inWarehouseBatch(List<ProcessOrdersTableVO> rows, User operator) {
 		//检查操作员是否拥有 入库出库 权限
 		User oDB = userDaoProxy.findByUsername(operator.getUsername());
@@ -312,5 +334,17 @@ public class WarehouseService {
 		whtvo.setPages(pstvo.getPages());
 		
 		return whtvo;
+	}
+	
+	/**
+	 * 根据关键字模糊查询 InHouseLog, User, Product 连接表
+	 * 
+	 * @param search
+	 * @param pageNumber
+	 * @param countPerPage
+	 * @return
+	 */
+	public TableVO<InHouseLogVO> findInHouseLogVO(String search, int pageNumber, int countPerPage) {
+		return inHouseLogDaoProxy.findInHouseLogVO(search, pageNumber, countPerPage);
 	}
 }

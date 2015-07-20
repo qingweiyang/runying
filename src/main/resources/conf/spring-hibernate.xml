@@ -44,6 +44,7 @@
 				<value>com.runying.po.Warehouse</value>
 				<value>com.runying.po.SalesBill</value>
 				<value>com.runying.po.SalesBill_Orders</value>
+				<value>com.runying.po.InHouseLog</value>
 			</list>
 		</property>
 	</bean>
